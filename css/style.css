@@ -2,10 +2,11 @@
 
 p {color:red;}
 
-    .wrapper {
+.wrapper {
+    display: -webkit-flex;
     display: flex;
 }
 
 .wrapper > div {
-        flex: 1;
+    flex: 1;
 }
