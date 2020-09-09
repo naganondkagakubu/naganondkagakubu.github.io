@@ -16,6 +16,6 @@ p {color:red;}
     display: flex;
 }
 
-.box1> div {
+.box1　> div {
     flex: 1;
 }
