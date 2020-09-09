@@ -1,10 +1,11 @@
 @charset "UTF-8";
 
 p {color:red;}
-.wrapper {
+
+    .wrapper {
     display: flex;
 }
 
 .wrapper > div {
-    flex: 1;
+        flex: 1;
 }
