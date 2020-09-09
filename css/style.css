@@ -10,3 +10,12 @@ p {color:red;}
 .wrapper > div {
     flex: 1;
 }
+
+.box1{
+    display: -webkit-flex;
+    display: flex;
+}
+
+.box1> div {
+    flex: 1;
+}
