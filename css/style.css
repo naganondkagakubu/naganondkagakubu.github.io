@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-p {color:blue;}
+p {color:red;}
 
 .wrapper {
     display: -webkit-flex;
