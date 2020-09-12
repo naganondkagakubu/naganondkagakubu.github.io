@@ -1,9 +1,10 @@
+/*文字コード宣言*/
 @charset "UTF-8";
 
+/* 設定の初期化*/
 * {
     box-sizing: border-box;
 }
-
 body {
     margin: 0;
     padding: 0;
@@ -11,6 +12,7 @@ body {
     background-color: #e6e6e6;
 }
 
+/*headerの調整*/
 header {
     width: 100%;
     padding: 30px 4% 10px;
@@ -20,12 +22,12 @@ header {
     display: flex;
     align-items: center;
 }
-
+/*リンクの色替え*/
 a{
     text-decoration: none;
     color: #4b4b4b;
 }
-
+/*リンクの位置*/
 ul{
     list-style: none;
     margin: 0;
@@ -36,6 +38,6 @@ li{
     margin: 0 0 0 15px;
 }
 
-nav{
+.pc-nav{
     margin: 0 0 0 auto;
 }
