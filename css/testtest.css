@@ -27,17 +27,25 @@ a{
     text-decoration: none;
     color: #4b4b4b;
 }
-/*リンクの位置*/
-ul{
+/*リンク(普通)の位置*/
+.nav-ul{
     list-style: none;
     margin: 0;
     display: flex0;
 }
 
-li{
+.nav-li{
     margin: 0 0 0 15px;
 }
 
 .pc-nav{
-    margin: 0 0 0 auto;
+    margin: auto;
+}
+/*ハンバーガーメニュー*/
+.wrapper{
+
+}
+
+.hum-nav{
+    
 }
