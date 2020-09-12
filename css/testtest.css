@@ -17,4 +17,25 @@ header {
     background-color: #fff;
     position: fixed;
     top: 0;
+    display: flex;
+    align-items: center;
+}
+
+a{
+    text-decoration: none;
+    color: #4b4b4b;
+}
+
+ul{
+    list-style: none;
+    margin: 0;
+    display: flex0;
+}
+
+li{
+    margin: 0 0 0 15px;
+}
+
+nav{
+    margin: 0 0 0 auto;
 }
