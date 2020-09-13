@@ -13,7 +13,7 @@ body {
 }
 
 /*headerの調整*/
-header {
+.nav-menu {
     width: 100%;
     padding: 30px 4% 10px;
     background-color: #fff;
@@ -46,38 +46,40 @@ a{
 /*メニューボタン*/
 /*メニュー開閉*/
 .menu-btn{
+    display: block;
     position: relative;
     width: 1.75rem;
     height: 1.5rem;
-    display: block;
+    left: 10;
+    background-color: #333;
 }
 .menu-btn i {
-    position: absolute;
-    width: 100%;
-    height: 2px;
     display: block;
-    background-color: #333;
-    transition: transform .5s, opasity .5s;
+    width: 65%;
+    height: 2px;
+    background-color: #fff;
+    position: absolute;
+    transition: transform .5s, opacity .5s;
 }
-.menu-btn i :nth-child(1) {
-    top: 0;
+.menu-btn i:nth-child(1) {
+    top: 5px;
 }
-.menu-btn i :nth-child(2) {
+.menu-btn i:nth-child(2) {
     top: 0;
     bottom: 0;
     margin: auto;
 }
-.menu-btn i :nth-child(3) {
-    bottom: 0;
+.menu-btn i:nth-child(3) {
+    bottom: 5px;
 }
 /**/
-.menu-btn.is-active i :nth-child(1) {
+.menu-btn.is-active i:nth-child(1) {
     transform: translateY(10px); rotate: (-45deg);
 }
-.menu-btn.is-active i :nth-child(2) {
+.menu-btn.is-active i:nth-child(2) {
     opacity: 0;
 }
-.menu-btn.is-active i :nth-child(3) {
+.menu-btn.is-active i:nth-child(3) {
     transform: translateY(-12px); rotate: (45deg);
 }
 /**/
