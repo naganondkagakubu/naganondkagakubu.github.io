@@ -10,7 +10,6 @@ body {
     padding: 0;
     font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", メイリオ, Meiryo, "ＭＳ Ｐゴシック", "Helvetica Neue", Helvetica, Arial, sans-serif;
     background-color: #e6e6e6;
-    overflow: hidden;
 }
 
 /*headerの調整*/
@@ -23,7 +22,6 @@ body {
     display: flex;
     align-items: center;
     z-index: 1;
-    overflow: hidden;
 }
 
 /*リンクの色替え*/
@@ -35,7 +33,7 @@ a{
 .nav-ul{
     list-style: none;
     margin: 0;
-    display: flex0;
+    display: none;
 }
 
 .nav-li{
@@ -92,9 +90,9 @@ a{
 /**/
 .menu{
     position: absolute;
-    top: 3rem;
+    top: 2rem;
     left: auto;
-    right: 30px;
+    right: 10px;
     bottom: 0;
     padding: 1rem;
     opacity: 0;
@@ -108,8 +106,10 @@ a{
 
 body{
     position: relative;
+    max-width: 100%;
     top: 120px;
     left: 10px;
+    word-break: break-all;
 }
 
 p{
