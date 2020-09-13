@@ -5,7 +5,7 @@ jQuery(function(){
 }());
 
 jQuery(function(){
-    jQuery(document).on("click", function(event){
+    jQuery(".whole").on("click", function(event){
         if (!jQuery(event.target).closest(".menu-btn").length){
             jQuery(".menu-btn.is-active, .menu.is-active").removeClass("is-active")
         }
