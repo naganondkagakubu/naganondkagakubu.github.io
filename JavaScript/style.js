@@ -1,7 +1,7 @@
 jQuery(function(){
-    jQuery(".menu-btn").on("click",function(){
-        jQuery(".menu-btn, .menu").toggleClass("is-active");
-    });
+    jQuery(document).on("click", ".menu-btn", function () {
+            jQuery(".menu-btn, .menu").toggleClass("is-active");
+        });
 }());
 
 jQuery(function(){
