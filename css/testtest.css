@@ -41,11 +41,58 @@ a{
 .pc-nav{
     margin: auto;
 }
+
 /*ハンバーガーメニュー*/
-.wrapper{
-
+/*メニューボタン*/
+/*メニュー開閉*/
+.menu-btn{
+    position: relative;
+    width: 1.75rem;
+    height: 1.5rem;
+    display: block;
 }
-
-.hum-nav{
-    
+.menu-btn i {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    display: block;
+    background-color: #333;
+    transition: transform .5s, opasity .5s;
+}
+.menu-btn i :nth-child(1) {
+    top: 0;
+}
+.menu-btn i :nth-child(2) {
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+.menu-btn i :nth-child(3) {
+    bottom: 0;
+}
+/**/
+.menu-btn.is-active i :nth-child(1) {
+    transform: translateY(10px); rotate: (-45deg);
+}
+.menu-btn.is-active i :nth-child(2) {
+    opacity: 0;
+}
+.menu-btn.is-active i :nth-child(3) {
+    transform: translateY(-12px); rotate: (45deg);
+}
+/**/
+.menu{
+    position: fixed;
+    top: 3rem;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 1rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .5s, visibility .5s;
+}
+.menu.is-active{
+    opacity: 1;
+    visibility: visible;
 }
