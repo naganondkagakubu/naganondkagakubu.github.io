@@ -90,6 +90,7 @@ a{
     transform: translateY(-9px) rotate(45deg);
 }
 /*メニューの中身のうごき*/
+/*ドロワーメニュー*/
 .menu{
     position: absolute;
     top: 0px;
@@ -112,6 +113,17 @@ a{
 .menu_item_ul{
     padding: 2rem;
 }
+/*アコーディオンメニュー*/
+.submenu_item_ul{
+    background-color: rgba(255,255,255,0.7);
+    display: none;
+}
+.submenu_item_li{
+    border-bottom: 1px solid #5200b7;
+    color: #222222;
+    padding: 1rem;
+}
+
 /*bodyの位置調整*/
 .body1{
     position: relative;
