@@ -1,0 +1,116 @@
+/*文字コード宣言*/
+@charset "UTF-8";
+
+/* 設定の初期化*/
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", メイリオ, Meiryo, "ＭＳ Ｐゴシック", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: #e6e6e6;
+}
+
+/*headerの調整*/
+.nav-menu {
+    width: 100%;
+    padding: 30px 4% 10px;
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+}
+
+/*リンクの色替え*/
+a{
+    text-decoration: none;
+    color: #4b4b4b;
+}
+/*リンク(普通)の位置*/
+.nav-ul{
+    list-style: none;
+    margin: 0;
+    display: flex0;
+}
+
+.nav-li{
+    margin: 0 0 0 15px;
+}
+
+.pc-nav{
+    margin: auto;
+}
+
+/*ハンバーガーメニュー*/
+/*メニューボタン*/
+/*メニュー開閉*/
+.menu-btn{
+    display: block;
+    position: absolute;
+    width: 2rem;
+    height: 1.80rem;
+    top: 20px;
+    right: 25px;
+    left: auto;
+    background-color: #333;
+}
+.menu-btn i {
+    display: block;
+    position: absolute;
+    width: 65%;
+    height: 2px;
+    left: 5px;
+    background-color: #fff;
+    transition: transform .5s, opacity .5s;
+}
+.menu-btn i:nth-child(1) {
+    top: 5px;
+}
+.menu-btn i:nth-child(2) {
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+.menu-btn i:nth-child(3) {
+    bottom: 5px;
+}
+/**/
+.menu-btn.is-active i:nth-child(1) {
+    transform: translateY(8px) rotate(-45deg);
+}
+.menu-btn.is-active i:nth-child(2) {
+    opacity: 0;
+}
+.menu-btn.is-active i:nth-child(3) {
+    transform: translateY(-9px) rotate(45deg);
+}
+/**/
+.menu{
+    position: absolute;
+    top: 3rem;
+    left: auto;
+    right: 30px;
+    bottom: 0;
+    padding: 1rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .5s, visibility .5s;
+}
+.menu.is-active{
+    opacity: 1;
+    visibility: visible;
+}
+
+body{
+    position: relative;
+    top: 120px;
+    left: 10px;
+}
+
+p{
+    position: relative;
+    left: 20px;
+}
