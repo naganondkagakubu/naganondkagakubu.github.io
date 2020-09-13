@@ -3,3 +3,9 @@ jQuery(function(){
         jQuery(".menu-btn, .menu").toggleClass("is-active");
     });
 }());
+
+jQuery(function(){
+    jQuery(document).on("click", function(){
+        
+    })
+});

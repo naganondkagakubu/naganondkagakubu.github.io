@@ -91,7 +91,7 @@ a{
 .menu-btn.is-active i:nth-child(3) {
     transform: translateY(-9px) rotate(45deg);
 }
-/**/
+/*メニューの中身の動き*/
 .menu{
     position: absolute;
     top: 3rem;
@@ -110,7 +110,8 @@ a{
 /*bodyの位置調整*/
 .body1{
     position: relative;
-    top: 140px;
+    padding-top: 140px;
+    padding-bottom: 0px;
 }
 .body-tytle{
     padding-left: 10px;
@@ -120,4 +121,12 @@ a{
 }
 .body-sub{
     padding-left: 30px;
+}
+/*フッターの設定*/
+footer{
+    width: 100%;
+    background-color: #c3c3c3;
+    color: #000000;
+    text-align: center;
+    padding: 30px 0;
 }
