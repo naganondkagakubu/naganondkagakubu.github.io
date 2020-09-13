@@ -5,6 +5,7 @@
 * {
     box-sizing: border-box;
 }
+
 body {
     margin: 0;
     padding: 0;
@@ -103,16 +104,17 @@ a{
     opacity: 1;
     visibility: visible;
 }
-
-body{
+/*bodyの位置調整*/
+.body1{
     position: relative;
-    max-width: 100%;
     top: 120px;
-    left: 10px;
-    word-break: break-all;
 }
-
-p{
-    position: relative;
-    left: 20px;
+.body-tytle{
+    padding-left: 10px;
+}
+.body-main{
+    padding-left: 20px;
+}
+.body-sub{
+    padding-left: 30px;
 }

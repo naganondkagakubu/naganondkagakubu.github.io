@@ -33,7 +33,7 @@ a{
 .nav-ul{
     list-style: none;
     margin: 0;
-    display: flex0;
+    display: flex;
 }
 
 .nav-li{
@@ -103,14 +103,17 @@ a{
     opacity: 1;
     visibility: visible;
 }
-
-body{
+/*bodyの位置調整*/
+.body1{
     position: relative;
     top: 120px;
-    left: 10px;
 }
-
-p{
-    position: relative;
-    left: 20px;
+.body-tytle{
+    padding-left: 10px;
+}
+.body-main{
+    padding-left: 20px;
+}
+.body-sub{
+    padding-left: 30px;
 }

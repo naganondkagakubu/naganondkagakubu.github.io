@@ -19,7 +19,7 @@ body {
     background-color: #fff;
     position: fixed;
     top: 0;
-    display: flex;
+    display: block;
     align-items: center;
     z-index: 1;
 }
@@ -35,7 +35,7 @@ a{
     right: 80px;
     list-style: none;
     margin: 0;
-    display: flex0;
+    display: flex;
 }
 
 .nav-li{
@@ -43,6 +43,8 @@ a{
 }
 
 .pc-nav{
+    position: relative;
+    left: 20px;
     margin: auto;
 }
 
@@ -105,14 +107,17 @@ a{
     opacity: 1;
     visibility: visible;
 }
-
-body{
+/*bodyの位置調整*/
+.body1{
     position: relative;
-    top: 120px;
-    left: 10px;
+    top: 140px;
 }
-
-p{
-    position: relative;
-    left: 20px;
+.body-tytle{
+    padding-left: 10px;
+}
+.body-main{
+    padding-left: 20px;
+}
+.body-sub{
+    padding-left: 30px;
 }
