@@ -1,27 +1,53 @@
 <!DOCTYPE html>
 <html>
+    <div class="whole">
 <head>
     <meta charset="UTF-8">
     <meta name="google-site-verification" content="3jJ3Cu6MYFQcsBY9a1hj3Rijx8SNO53Qd5GnkyEjrDc" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
     <link rel="stylesheet" href="css\style-pc.css">
+    <link rel="stylesheet" href="css\testtest\testtest-pc.css">
     <title>kagakubu</title>
 </head>
-<header class="site-header">
-    <h1 class="site-logo"><img src="images\header 2.jpg" alt="logo"></h1>
-    <nav class="gnav">
-        <ul class="gmav__menu">
-            <li class="gnav__menu__item"><a href=""></a>AIUEO</li>
-            <li class="gnav__menu__item"><a href=""></a>AIUEO</li>
-            <li class="gnav__menu__item"><a href=""></a>AIUEO</li>
-            <li class="gnav__menu__item"><a href=""></a>AIUEO</li>
-        </ul>
-    </nav>
+<header>
+    <div class="nav-menu">
+        <h1>
+            <a href="index.html">Kagakubu</a>
+        </h1>
+
+        <nav class="pc-nav">
+            <ul class="nav-ul">
+                <li class="nav-li"><a href="..//index.html">HOME</a></li>
+                <li class="nav-li"><a href="https://www.nagano-nichidai.ed.jp/">SCHOOL</a></li>
+                <li class="nav-li"><a href="https://www.nagano-nichidai.ed.jp/club-activities/">CLUBs</a></li>
+            </ul>
+        </nav>
+<!--ハンバーガーメニュー-->
+    <span class="menu-btn">
+        <i></i>
+        <i></i>
+        <i></i>
+    </span>
+<!--メニューの中身-->
+        <nav class="menu">
+            <ul class="menu_item_ul">
+                <li class="menu_item_li">HOME</li>
+                    <ul class="submenu_item_ul">
+                        <li class="submenu_item_li"><a href="..//index.html">HOME</a></li>
+                    </ul>
+                <li class="menu_item_li">SCHOOL</li>
+                    <ul class="submenu_item_ul">
+                        <li class="submenu_item_li"><a href="https://www.nagano-nichidai.ed.jp/">SCHOOL</a></li>
+                    </ul>
+                <li class="menu_item_li">CLUBs</li>
+                    <ul class="submenu_item_ul">
+                        <li class="submenu_item_li"><a href="https://www.nagano-nichidai.ed.jp/club-activities/">CLUBs</a></li>
+                </ul>
+            </ul>
+        </nav>
+        </div>
 </header>
-<div class="hero"><img src="images\header 1.webp" alt="kotei"></div>
-<div class="content">
-    <!--省略-->
-    <body>
+
     <h1>科学部</h1>
     <div class="wrapper">
     <p>9/3(木) 勉強しました。今日はもう終わりです。</p>
@@ -39,12 +65,14 @@
         <li><a href= "testtest/index.html" >TEST</a></li>
     </ul>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
-    </script>
-    <script src="JavaScript/style.js">
-    </script>
-</body>
+
 <footer class="site-footer">
     <p class="copyright">@2020 NAGANICHIkagakubu</p>
 </footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+</script>
+<script src="../JavaScript/style.js">
+</script>
+</body>
 </html>
