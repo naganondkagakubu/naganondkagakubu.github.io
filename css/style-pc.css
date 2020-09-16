@@ -12,7 +12,7 @@ body {
 }
 
 
-p {color:red;}
+p {color:rgb(44, 22, 22);}
 
 .wrapper {
     display: -webkit-flex;
@@ -74,7 +74,7 @@ body{
     margin-bottom: 40px;
 }
 .site-footer{
-    background: #00ffff;
+    background: #acc7c7;
     padding: 80px 0;
 }
 .copyright{
