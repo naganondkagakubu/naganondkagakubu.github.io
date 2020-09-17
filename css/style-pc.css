@@ -82,3 +82,8 @@ body{
     font-size: 12px;
     text-align: center;
 }
+body {
+    background-image: url("../images/haikei1.png");
+    background-size: cover;
+    background-attachment: fixed;
+}
