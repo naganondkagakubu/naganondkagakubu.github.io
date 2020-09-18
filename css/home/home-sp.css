@@ -96,7 +96,7 @@ body{
     background-image:url("../../images/haikei1.png");
     background-repeat: no-repeat;
     background-size:cover;
-    background-position: 40% 50%;
+    background-position: 40% 50%; /*通常は50%50%*/
 }
 /*
     通常は
