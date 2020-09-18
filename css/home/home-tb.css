@@ -83,7 +83,12 @@ body{
     text-align: center;
 }
 body{
+    /*背景設定*/
     background-image: url("../../images/haikei1.png");
     background-size: cover;
     background-attachment: fixed;
+    /*背景を繰り返さない*/
+    background-repeat: no-repeat;
+    /*左右に余白を取る*/
+    background-position: 40% 50%;/*普通は50%50%*/
 }
