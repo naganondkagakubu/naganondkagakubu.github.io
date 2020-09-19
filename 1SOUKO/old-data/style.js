@@ -4,7 +4,15 @@ jQuery(function(){
         jQuery(".menu-btn, .menu").toggleClass("is-active");
     });
 }());
-
+// サブメニューのON/OFF
+jQuery(function(){
+    jQuery('.menu_item_li').each(function(){
+        jQuery(this).on('click',function(){
+            jQuery("+.submenu_item_ul",this).slideToggle();
+            return false;
+        });
+    });
+});
 //領域外クリックでメニューを閉じる
 jQuery(function(){
     jQuery(".whole").on("click", function(event){
