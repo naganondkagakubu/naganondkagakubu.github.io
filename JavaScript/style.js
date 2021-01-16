@@ -32,6 +32,6 @@ function PW(){
         location.href="https://naganonkagakubu.github.io\HAL_TS\index.html";
         
     else if(PW1=="HAL")
-        location.href="http://naganonkagakubu.github.io\HAL_TS\TS14789632147898452.html";
+        location.href="https://naganonkagakubu.github.io\HAL_TS\TS14789632147898452.html";
     
 }
