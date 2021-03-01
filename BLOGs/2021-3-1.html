@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="../css/blog/blog-sp.css" media="screen and (max-width: 479px)">
     <title>kagakubu</title>
 </head>
+<body>
 <header>
     <div class="body1">
     <div class="nav-menu">
@@ -40,26 +41,147 @@
 <nav class="menu">
     <ul class="menu_item_ul">
         <li class="menu_item_li"><a href="../index.html">HOME</a></li>
-        <li class="menu_item_li"><a href="https://www.nagano-nichidai.ed.jp/">SCHOOL</li>
+        <li class="menu_item_li"><a href="https://www.nagano-nichidai.ed.jp/">学校HP</a></li>
         <li class="menu_item_li"><a href="https://www.nagano-nichidai.ed.jp/club-activities/">CLUBs</a></li>
         <li class="menu_item_li"><a href="../Wikipedia/index.html">Wiki</a></li>
         <button type="button" onclick="PW()"></button>
     </ul>
 </nav>
-        </div>
+    </div>
+</div>
 </header>
-<body>
 <!--body回避-->
 <div class="body1">
-    <h1>ユーグリッドの互除法をpythonでやってみよう</h1>
-    <h2<>科学部が教えるわかりやすいプログラミング</h2>
+    <h1>ユーグリッドの互除法をPythonでやってみよう</h1>
+    <h2>科学部が教えるわかりやすいプログラミング講座</h2>
     <p>
         まずはユーグリッドの互除法のアルゴリズムを考えてみます。<br>
         ～～～<br>
-        以下がpythonでのコードです。<br>
+        Pythonに限らずループといえばfor文ですが、Pythonでのfor文は以下のように使われて柔軟な条件設定ができません。<br>
+        <pre class="prettyprint">
+        <code>
+for w in "Hello":
+    print(w)
+        </code>
+        </pre>
+        <pre class="prettyprint">
+        <code>
+H
+e
+l
+l
+o
+        </code>
+            </pre>
+        とこのようにPythonでfor文はリストからデータを出すときに使います。<br>
+        しかしwhile文では次のように設定できます。<br>
+        <pre class="prettyprint">
+        <code>
+while 条件:
+    条件が正しいときに実行する文
+else:
+    条件が正しくないときに実行する文
+        </code>
+        </pre>
+        これをユーグリッドの互除法に当てはめると<br>
+        <pre class="prettyprint">
+        <code>
+while a % b != 0:
+    c = a
+    b = a % b
+    a = c
+        </code>
+        </pre>
+    となります。<br>
+    ここで<br>
+    !=は左辺と右辺が等しくない、<br>
+    a % bはaをbで割った余りを表します。<br>
+    また<br>
+    <pre>
+a = b
+b = a % b
+    </pre>
+    ではなく
+    <pre>
+c = a
+b = a % b
+a = c
+    </pre>
+    としているのはa = b としてしまうとa % b のaもbになり常に1となるためです。<br><br>
+    おまけの話<br><br>
+    whileだけでも十分ですがこれだけだととても使いにくいです。<br>
+    まずはじめに扱いやすいように関数として実装しましょう。<br>
+    <pre class="prettyprint">
+        <code>
+def gcd(a,b):
+    while a % b != 0:
+        c = a
+        b = a % b
+        a = c
+    return b
+        </code>
+        </pre>
+次に関数の引数の大きさが逆でも正常に動作するようにします。<br>
+    <pre class="prettyprint">
+        <code>
+def gcd(a,b):
+#aとbの大きさを揃える
+    if a &gt; b:
+        c = b
+        d = a
+    else:
+        c = a
+        d = b
+    a = c
+    b = d
+#while文でのループ
+while a % b != 0:
+    c = a
+    b = a % b
+    a = c
+return b
+    </code>
+    </pre>
+    後は入力ウィンドウと最大公約数を表示出来るようにします。<br>
+    input()はintではない点にも注意しましょう。<br>
+    以下がPythonでのコードです。<br>
+        <pre class="prettyprint linenums">
+        <code>
+#最大公約数を求める関数
+def gcd(a,b):
+#aとbの大きさを揃える
+    if a &gt; b:
+        c = b
+        d = a
+    else:
+        c = a
+        d = b
+    a = c
+    b = d
+#while文でのループ
+    while a % b != 0:
+        c = a
+        b = a % b
+        a = c
+    return b
+
+#入力ウィンドウ
+a = input("数字を入力してください>>>")
+b = input("数字を入力してください>>>")
+
+#字体を整える
+a = int(a)
+b = int(b)
+
+#最大公約数を表示
+print(gcd(a,b))
+
+#ウィンドウを閉じさせない
+input("何かボタンを押してください")
+        </code>
+        </pre>
     </p>
 </div>
-</body>
 
 <footer class="site-footer">
     <p class="copyright">@2020 NAGANICHIkagakubu</p>
@@ -69,5 +191,8 @@
 </script>
 <script src="../JavaScript/style.js">
 </script>
+<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?lang=css&skin=sons-of-obsidian">
+</script>
 </body>
+</div>
 </html>
