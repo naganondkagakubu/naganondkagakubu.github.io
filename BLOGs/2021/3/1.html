@@ -52,9 +52,9 @@
 </header>
 <!--body回避-->
 <div class="body1">
-    <h1>ユーグリッドの互除法をPythonでやってみよう</h1>
-    <h2>科学部が教えるわかりやすいプログラミング講座</h2>
-    <p>
+    <h1 class="body-tytle">ユーグリッドの互除法をPythonでやってみよう</h1>
+    <h2 class="body-tytle">科学部が教えるわかりやすいプログラミング講座</h2>
+    <p class="body-main">
         まずはユーグリッドの互除法のアルゴリズムを考えてみます。<br>
         ～～～<br>
         Pythonに限らずループといえばfor文ですが、Pythonでのfor文は以下のように使われて柔軟な条件設定ができません。<br>
@@ -97,16 +97,12 @@ while a % b != 0:
     !=は左辺と右辺が等しくない、<br>
     a % bはaをbで割った余りを表します。<br>
     また<br>
-    <pre>
-a = b
-b = a % b
-    </pre>
-    ではなく
-    <pre>
-c = a
-b = a % b
-a = c
-    </pre>
+a = b<br>
+b = a % b<br>
+    ではなく<br>
+c = a<br>
+b = a % b<br>
+a = c<br>
     としているのはa = b としてしまうとa % b のaもbになり常に1となるためです。<br><br>
     おまけの話<br><br>
     whileだけでも十分ですがこれだけだととても使いにくいです。<br>
