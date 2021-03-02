@@ -122,7 +122,7 @@ def gcd(a,b):
         <code>
 def gcd(a,b):
 #aとbの大きさを揃える
-    if a &gt; b:
+    if a &lt; b:
         c = b
         d = a
     else:
@@ -146,7 +146,7 @@ return b
 #最大公約数を求める関数
 def gcd(a,b):
 #aとbの大きさを揃える
-    if a &gt; b:
+    if a &lt; b:
         c = b
         d = a
     else:
@@ -175,7 +175,39 @@ print(gcd(a,b))
 #ウィンドウを閉じさせない
 input("何かボタンを押してください")
         </code>
-        </pre>
+        </pre><br>
+        おまけのおまけ<br>
+        再帰関数を使えば疑似的にwhileと同じようにでき更にみじかむできます。<br>
+    <pre class="prettyprint linenums">
+        <code>
+#最大公約数を求める関数
+def gcd(a,b):
+#aとbの大きさを揃える
+    if a &lt; b:
+        c = b
+        d = a
+    else:
+        c = a
+        d = b
+    a = c
+    b = d
+
+    if a % b = 0:
+        return b
+    else:
+        return gcd(a,a % b)
+
+#入力ウィンドウ
+a = int(input("数字を入力してください&gt;&gt;&gt;"))
+b = int(input("数字を入力してください&gt;&gt;&gt;"))
+
+#最大公約数を表示
+print(gcd(a,b))
+
+#ウィンドウを閉じさせない
+input("何かボタンを押してください")
+        </code>
+    </pre>
     </p>
 </div>
 
