@@ -6,5 +6,7 @@ function PW(){
         location.href="https://naganonkagakubu.github.io/HAL_TS/TS14789632147898452.html";
     else if(PW1=="TEST")
         location.href="https://naganonkagakubu.github.io/testtest/index.html";
+    else
+        console.log("パスワードが違うﾖ")
 
 }
