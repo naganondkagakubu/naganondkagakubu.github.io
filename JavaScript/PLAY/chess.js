@@ -8,13 +8,13 @@ for (let i = 1; i<=8; i++){
 
 function changeImage(n){
     if(eval("img_" + n).alt == 1){
-        eval("img_" + n).src = "../images/PLAY/chasspieces/bB.png"
+        eval("img_" + n).src = ../images/PLAY/chasspieces/bB.png
     }
     else if(eval("img_" + n).alt == 2){
-        eval("img_" + n).src = "../../images/PLAY/chasspieces/bK.png"
+        eval("img_" + n).src = ../images/PLAY/chasspieces/bK.png
     }
     else if(eval("img_" + n).alt == 3){
-        eval("img_" + n).src = "../images/PLAY/chasspieces/bN.png"
+        eval("img_" + n).src = ../images/PLAY/chasspieces/bN.png
     }
     else if(eval("img_" + n).alt == 4){
         eval("img_" + n).src = "../images/PLAY/chasspieces/bP.png"
