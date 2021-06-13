@@ -37,5 +37,5 @@ function PW(){
     else if(PW1=="TEST")
         location.href="https://naganonkagakubu.github.io/testtest/index.html";
     else
-        alert("パスワードが違うﾖ")
+        alert("まだ対応してないﾖ")
 }
