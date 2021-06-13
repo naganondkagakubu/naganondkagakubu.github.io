@@ -7,44 +7,44 @@ for (let i = 1; i<=8; i++){
 }
 
 function changeImage(n){
-    if(eval("img_" + n).alt = 1){
-        eval("img_" + n).src = "../images/PLAY/chasspieces/bB.png"
+    if(eval("img_" + n + ".alt") == 1){
+        eval("img_" + n + ".src") = "../images/PLAY/chasspieces/bB.png"
     }
-    else if(eval("img_" + n).alt = 2){
-        eval("img_" + n).src = "../images/PLAY/chasspieces/bK.png"
+    else if(eval("img_" + n + ".alt") == 2){
+        eval("img_" + n + ".src") = "../images/PLAY/chasspieces/bK.png"
     }
-    else if(eval("img_" + n).alt = 3){
-        eval("img_" + n).src = "../images/PLAY/chasspieces/bN.png"
+    else if(eval("img_" + n + ".alt") == 3){
+        eval("img_" + n + ".src") = "../images/PLAY/chasspieces/bN.png"
     }
-    else if(eval("img_" + n).alt = 4){
-        eval("img_" + n).src = "../images/PLAY/chasspieces/bP.png"
+    else if(eval("img_" + n + ".alt") == 4){
+        eval("img_" + n + ".src") = "../images/PLAY/chasspieces/bP.png"
     }
-    else if(eval("img_" + n).alt = 5){
-        eval("img_" + n).src = "../images/PLAY/chasspieces/bQ.png"
+    else if(eval("img_" + n + ".alt") == 5){
+        eval("img_" + n + ".src")= "../images/PLAY/chasspieces/bQ.png"
     }
-    else if(eval("img_" + n).alt = 6){
-        eval("img_" + n).src = "../images/PLAY/chasspieces/bR.png"
+    else if(eval("img_" + n + ".alt") == 6){
+        eval("img_" + n + ".src") = "../images/PLAY/chasspieces/bR.png"
     }
-    else if(eval("img_" + n).alt = -1){
-        eval("img_" + n).src = "../images/PLAY/chasspieces/wB.png"
+    else if(eval("img_" + n + ".alt") == -1){
+        eval("img_" + n + ".src") = "../images/PLAY/chasspieces/wB.png"
     }
-    else if(eval("img_" + n).alt = -2){
-        eval("img_" + n).src = "../images/PLAY/chasspieces/wK.png"
+    else if(eval("img_" + n + ".alt") == -2){
+        eval("img_" + n + ".src") = "../images/PLAY/chasspieces/wK.png"
     }
-    else if(eval("img_" + n).alt = -3){
-        eval("img_" + n).src = "../images/PLAY/chasspieces/wN.png"
+    else if(eval("img_" + n + ".alt") == -3){
+        eval("img_" + n + ".src") = "../images/PLAY/chasspieces/wN.png"
     }
-    else if(eval("img_" + n).alt = -4){
-        eval("img_" + n).src = "../images/PLAY/chasspieces/wP.png"
+    else if(eval("img_" + n + ".alt") == -4){
+        eval("img_" + n + ".src") = "../images/PLAY/chasspieces/wP.png"
     }
-    else if(eval("img_" + n).alt = -5){
-        eval("img_" + n).src = "../images/PLAY/chasspieces/wQ.png"
+    else if(eval("img_" + n + ".alt") == -5){
+        eval("img_" + n + ".src") = "../images/PLAY/chasspieces/wQ.png"
     }
-    else if(eval("img_" + n).alt = -6){
-        img_n.src = "../images/PLAY/chasspieces/wR.png"
+    else if(eval("img_" + n + ".alt") == -6){
+        eval("img_" + n + ".src") = "../images/PLAY/chasspieces/wR.png"
     }
     else{
-        eval("img_" + n).src = "" , eval("img_" + n).alt = "";
+        eval("img_" + n + ".src") = "" , eval("img_" + n + ".alt") = "";
     }
 };
 
@@ -56,5 +56,5 @@ function Chess(){
 
 function check(){
     img_18.alt = 2;
-    changeImage();
+    changeImage(18);
 };
