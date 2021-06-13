@@ -56,5 +56,5 @@ function Chess(){
 
 function check(){
     img_18.alt = 2;
-    changeImage(18);
+    img_18.src = "../images/PLAY/chasspieces/bK.png";
 };
