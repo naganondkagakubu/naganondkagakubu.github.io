@@ -1,14 +1,14 @@
-let numin = document.getElementById("numin")
-let set_buttun = document.getElementById("set")
-let start_buttun = document.getElementById("start")
-let numout = document.getElementById("numout")
-let reset_buttun = document.getElementById("reset")
-let back_buttun = document.getElementById("back")
-let numback = document.getElementById("numback")
+let numin = document.getElementById("numin");
+let set_buttun = document.getElementById("set");
+let start_buttun = document.getElementById("start");
+let numout = document.getElementById("numout");
+let reset_buttun = document.getElementById("reset");
+let back_buttun = document.getElementById("back");
+let numback = document.getElementById("numback");
 
-let n = 0
-let m = 0
-let ramdoms = []
+let n = 0;
+let m = 0;
+let ramdoms = [];
 
 function Ramdom(M){
     if(ramdoms.length < M){

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../css/style/style-tb.css" media="screen and (max-width: 767px)">
     <link rel="stylesheet" href="../css/style/style-sp.css" media="screen and (max-width: 479px)">
 
-    <link rel="stylesheet" href="../css/" media="screen and (min-width: 767px)">
+    <link rel="stylesheet" href="../css/PLAY/chess/chess-pc.css" media="screen and (min-width: 767px)">
     <link rel="stylesheet" href="../css/" media="screen and (max-width: 767px)">
     <link rel="stylesheet" href="../css/" media="screen and (max-width: 479px)">
     <title>kagakubu</title>
@@ -54,6 +54,91 @@
 <div class="body1">
 <p class="body-main">
     未実装です
+    <br>
+    <button type="button" onclick="check()"></button>
+    <br>
+<table class="chess-board">
+    <tr class="8r">
+        <td id="18" onclick="Chess()"><img id="img18" src="../images/PLAY/chesspieces/bR.png" alt = "6"></td>
+        <td id="28"></td>
+        <td id="38"></td>
+        <td id="48"></td>
+        <td id="58"></td>
+        <td id="68"></td>
+        <td id="78"></td>
+        <td id="88"></td>
+    </tr>
+    <tr class="7r">
+        <td id="17"></td>
+        <td id="27"></td>
+        <td id="37"></td>
+        <td id="47"></td>
+        <td id="57"></td>
+        <td id="67"></td>
+        <td id="77"></td>
+        <td id="87"></td>
+    </tr>
+    <tr class="6r">
+        <td id="16"></td>
+        <td id="26"></td>
+        <td id="36"></td>
+        <td id="46"></td>
+        <td id="56"></td>
+        <td id="66"></td>
+        <td id="76"></td>
+        <td id="86"></td>
+    </tr>
+    <tr class="5r">
+        <td id="15"></td>
+        <td id="25"></td>
+        <td id="35"></td>
+        <td id="45"></td>
+        <td id="55"></td>
+        <td id="65"></td>
+        <td id="75"></td>
+        <td id="85"></td>
+    </tr>
+    <tr class="4r">
+        <td id="14"></td>
+        <td id="24"></td>
+        <td id="34"></td>
+        <td id="44"></td>
+        <td id="54"></td>
+        <td id="64"></td>
+        <td id="74"></td>
+        <td id="84"></td>
+    </tr>
+    <tr class="3r">
+        <td id="13"></td>
+        <td id="23"></td>
+        <td id="33"></td>
+        <td id="43"></td>
+        <td id="53"></td>
+        <td id="63"></td>
+        <td id="73"></td>
+        <td id="83"></td>
+    </tr>
+    <tr class="2r">
+        <td id="12"></td>
+        <td id="22"></td>
+        <td id="32"></td>
+        <td id="42"></td>
+        <td id="52"></td>
+        <td id="62"></td>
+        <td id="72"></td>
+        <td id="82"></td>
+    </tr>
+    <tr class="1r">
+        <td id="11"></td>
+        <td id="21"></td>
+        <td id="31"></td>
+        <td id="41"></td>
+        <td id="51"></td>
+        <td id="61"></td>
+        <td id="71"></td>
+        <td id="81"></td>
+    </tr>
+</table>
 </p>
 </div>
 
@@ -64,6 +149,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
 </script>
 <script src="../JavaScript/style.js">
+</script>
+<script src="../JavaScript/PLAY/chess.js">
 </script>
 </body>
 </div>
