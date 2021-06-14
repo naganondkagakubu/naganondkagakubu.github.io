@@ -28,3 +28,7 @@ body {
     font-size: 3.8vw;
     cursor: pointer;
 }
+
+.komaMove {
+    background-color: rgba(255, 0, 0, 0.5);
+}

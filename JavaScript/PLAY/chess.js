@@ -6,6 +6,15 @@ for (let i = 1; i<=8; i++){
     }
 }
 
+let mode = 0;
+let turn = 1;   //1が自分、-1が相手の手番
+let turnsum = 0;
+let old_P = 11; //駒を動かす前の位置
+let flag1 = 0;  //kingと左の黒luke
+let flag2 = 0;  //kingと右の黒luke
+let flag3 = 0;  //kingと左の白luke
+let flag4 = 0;  //kingと右の白luke
+
 function changeImage(n){
     if(eval("img_" + n).alt == 1){
         eval("img_" + n).src = "../images/PLAY/chesspieces/bB.png"
@@ -48,13 +57,70 @@ function changeImage(n){
     }
 };
 
-function Chess(){
-    if(a){
+//渡した座標の背景を変える
+function Color_change(n){
+    eval("img_" + n).classList.add("komaMove")
+};
 
+function Move_V(m,n){
+    //ビショップの動き
+    if(m == 1){
+        //左上
+        for(let i = n; (1 <= Math.floor(i/10) && Math.floor(i/10) <= 8) && (1 <= Math.floor(i%10) && Math.floor(i%10) <= 8);){
+            Color_change(i);
+            i = i + 11;
+        };
+        //右上
+        for(let i = n; (1 <= Math.floor(i/10) && Math.floor(i/10) <= 8) && (1 <= Math.floor(i%10) && Math.floor(i%10) <= 8);){
+            Color_change(i);
+            i = i - 11;
+        };
+        //左下
+        for(let i = n; (1 <= Math.floor(i/10) && Math.floor(i/10) <= 8) && (1 <= Math.floor(i%10) && Math.floor(i%10) <= 8);){
+            Color_change(i);
+            i = i - 9;
+        };
+        //右下
+        for(let i = n; (1 <= Math.floor(i/10) && Math.floor(i/10) <= 8) && (1 <= Math.floor(i%10) && Math.floor(i%10) <= 8);){
+            Color_change(i);
+            i = i + 9;
+        };
+    }
+    else if(m == 2){
+
+    }
+
+};
+
+function Chess(n){
+    if(turn * eval("img_" + n).alt > 0){
+        if(mode == 0){
+            Move_V(eval("img_" + n).alt,n);
+            old_P = n;
+            mode = 1;
+        }
+        else if(mode == 1){
+            if(eval("img_" + n).classList.contains("komaMove")){
+                eval("img_" + n).alt = eval("img_" + old_P).alt;
+                eval("img_" + old_P).alt = 0;
+                changeImage(n);
+                changeImage(old_P);
+                
+            }
+            else{
+                mode =0;
+            };
+        };
     };
 };
 
+function Reset(){
+    let mode = 0;
+    let turn = 0;
+    let turnsum = 0;
+    let flag1 = 0;
+};
+
 function check(){
-    img_18.alt = 2;
-    changeImage(18);
+    Move_V(1,55)
 };

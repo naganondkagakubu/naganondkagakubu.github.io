@@ -55,11 +55,15 @@
 <p class="body-main">
     未実装です
     <br>
+    キャスリングする時にはキングを選択してください。
+    <br>
     <button type="button" onclick="check()"></button>
+    <br>
+    <input type="button" value="リセット" onclick="Reset()" id="reset">
     <br>
 <table class="chess-board">
     <tr class="8r">
-        <td id="18" onclick="Chess()"><img id="img18" src="../images/PLAY/chesspieces/bR.png" alt = "6"></td>
+        <td id="18" onclick="Chess(18)"><img id="img18" src="../images/PLAY/chesspieces/bR.png" alt = "6"></td>
         <td id="28"><img id="img28" src="../images/PLAY/chesspieces/bN.png" alt = "3"></td>
         <td id="38"><img id="img38" src="../images/PLAY/chesspieces/bB.png" alt = "1"></td>
         <td id="48"><img id="img48" src="../images/PLAY/chesspieces/bQ.png" alt = "5"></td>
@@ -69,17 +73,17 @@
         <td id="88"><img id="img88" src="../images/PLAY/chesspieces/bR.png" alt = "6"></td>
     </tr>
     <tr class="7r">
-        <td id="17"></td>
-        <td id="27"></td>
-        <td id="37"></td>
-        <td id="47"></td>
-        <td id="57"></td>
-        <td id="67"></td>
-        <td id="77"></td>
-        <td id="87"></td>
+        <td id="17"><img id="img17" src="../images/PLAY/chesspieces/bP.png" alt = "4"></td>
+        <td id="27"><img id="img27" src="../images/PLAY/chesspieces/bP.png" alt = "4"></td>
+        <td id="37"><img id="img37" src="../images/PLAY/chesspieces/bP.png" alt = "4"></td>
+        <td id="47"><img id="img47" src="../images/PLAY/chesspieces/bP.png" alt = "4"></td>
+        <td id="57"><img id="img57" src="../images/PLAY/chesspieces/bP.png" alt = "4"></td>
+        <td id="67"><img id="img67" src="../images/PLAY/chesspieces/bP.png" alt = "4"></td>
+        <td id="77"><img id="img77" src="../images/PLAY/chesspieces/bP.png" alt = "4"></td>
+        <td id="87"><img id="img87" src="../images/PLAY/chesspieces/bP.png" alt = "4"></td>
     </tr>
     <tr class="6r">
-        <td id="16"></td>
+        <td id="16"><img id="img16" src="../images/PLAY/chesspieces/bN.png" alt = "0"></td>
         <td id="26"></td>
         <td id="36"></td>
         <td id="46"></td>
@@ -119,24 +123,24 @@
         <td id="83"></td>
     </tr>
     <tr class="2r">
-        <td id="12"></td>
-        <td id="22"></td>
-        <td id="32"></td>
-        <td id="42"></td>
-        <td id="52"></td>
-        <td id="62"></td>
-        <td id="72"></td>
-        <td id="82"></td>
+        <td id="12"><img id="img12" src="../images/PLAY/chesspieces/wP.png" alt = "-4"></td>
+        <td id="22"><img id="img22" src="../images/PLAY/chesspieces/wP.png" alt = "-4"></td>
+        <td id="32"><img id="img32" src="../images/PLAY/chesspieces/wP.png" alt = "-4"></td>
+        <td id="42"><img id="img42" src="../images/PLAY/chesspieces/wP.png" alt = "-4"></td>
+        <td id="52"><img id="img52" src="../images/PLAY/chesspieces/wP.png" alt = "-4"></td>
+        <td id="62"><img id="img62" src="../images/PLAY/chesspieces/wP.png" alt = "-4"></td>
+        <td id="72"><img id="img72" src="../images/PLAY/chesspieces/wP.png" alt = "-4"></td>
+        <td id="82"><img id="img82" src="../images/PLAY/chesspieces/wP.png" alt = "-4"></td>
     </tr>
     <tr class="1r">
-        <td id="11"></td>
-        <td id="21"></td>
-        <td id="31"></td>
-        <td id="41"></td>
-        <td id="51"></td>
-        <td id="61"></td>
-        <td id="71"></td>
-        <td id="81"></td>
+        <td id="11"><img id="img11" src="../images/PLAY/chesspieces/wR.png" alt = "-6"></td>
+        <td id="21"><img id="img21" src="../images/PLAY/chesspieces/wN.png" alt = "-3"></td>
+        <td id="31"><img id="img31" src="../images/PLAY/chesspieces/wB.png" alt = "-1"></td>
+        <td id="41"><img id="img41" src="../images/PLAY/chesspieces/wQ.png" alt = "-5"></td>
+        <td id="51"><img id="img51" src="../images/PLAY/chesspieces/wK.png" alt = "-2"></td>
+        <td id="61"><img id="img61" src="../images/PLAY/chesspieces/wB.png" alt = "-1"></td>
+        <td id="71"><img id="img71" src="../images/PLAY/chesspieces/wN.png" alt = "-3"></td>
+        <td id="81"><img id="img81" src="../images/PLAY/chesspieces/wR.png" alt = "-6"></td>
     </tr>
 </table>
 </p>
