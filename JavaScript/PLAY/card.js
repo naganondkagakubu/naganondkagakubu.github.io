@@ -1,40 +1,105 @@
 let numin = document.getElementById("numin");
 let set_buttun = document.getElementById("set");
-let start_buttun = document.getElementById("start");
+let draw_r_buttun = document.getElementById("draw_r");
 let numout = document.getElementById("numout");
 let reset_buttun = document.getElementById("reset");
+let back_U_f = document.getElementById("back_U");
+let back_R_f = document.getElementById("back_R");
+let back_D_f = document.getElementById("back_D");
 let back_buttun = document.getElementById("back");
 let numback = document.getElementById("numback");
+let numdraw = document.getElementById("numdraw");
+let draw_a_buttun = document.getElementById("draw_a");
 
 let n = 0;
 let m = 0;
-let ramdoms = [];
+let flag = 0;
+let yamafuda = [];
 
-function Ramdom(M){
-    if(ramdoms.length < M){
+function isNumber(numVal){
+    let pattern = /^[-]?([1-9]\d*|0)(\.\d+)?$/;
+    return pattern.test(numVal);
+};
+
+function Newshuffle(M){
+    yamafuda = [];
+    for(let i = 1;i <= M; i++){
         while(true){
             n  = Math.floor(1 + Math.random() * M);
-            if(!ramdoms.includes(n)){
-                ramdoms.push(n);
+            if(!yamafuda.includes(n)){
+                yamafuda.push(n);
                 break;
-            }
-        }
-        return n;
+            };
+        };
+    };
+    console.log(yamafuda);
+};
+
+function Draw_r(){
+    if(yamafuda.length > 0){
+        let a = yamafuda[0];
+        yamafuda.shift();
+        return a;
     }
     else{
         return "全部引きました";
     }
-}
+};
 
-function Reset(n){
-    let idx = ramdoms.indexOf(n);
+function Draw_a(n){
+    let idx = yamafuda.indexOf(n);
     if(idx >= 0){
-        ramdoms.splice(idx, 1);
+        yamafuda.splice(idx, 1);
     }
-}
+};
 
-set_buttun.onclick = function(){m = numin.value};
-start_buttun.onclick = function(){numout.value = Ramdom(m)};
-reset_buttun.onclick = function(){ramdoms.length = 0;};
-back_buttun.onclick = function(){Reset(parseInt(numback.value))};
+function F_change(){
+    if(back_U_f.checked == true){
+        flag = 1;
+    }else if(back_R_f.checked == true){
+        flag = 0;
+    }else if(back_D_f.checked == true){
+        flag = -1;
+    };
+};
+
+function shuffle(){
+    if(yamafuda.length > 1){
+        let old_yama = yamafuda.slice(0, yamafuda.length);
+        yamafuda = [];
+        for(let j = 0; j < old_yama.length;){
+            let idx = Math.floor(Math.random() * old_yama.length);
+            yamafuda.unshift(old_yama.slice(idx,idx + 1));
+            old_yama.splice(idx,1);
+        };
+    };
+    console.log(yamafuda);
+};
+
+function Back(n){
+    if(isNumber(numback.value)){        //元々ない数字を戻される可能性あり
+        if(flag == 1){
+            if(!yamafuda.includes(n)){
+                yamafuda.unshift(n)
+            };
+        }
+        else if(flag == 0){
+            if(!yamafuda.includes(n)){
+                yamafuda.unshift(n)
+                shuffle();
+            };
+        }
+        else if(flag == -1){
+            if(!yamafuda.includes(n)){
+                yamafuda.push(n)
+            };
+        };
+    };
+};
+
+set_buttun.onclick = function(){Newshuffle(numin.value)};
+draw_r_buttun.onclick = function(){numout.value = Draw_r()};
+reset_buttun.onclick = function(){Newshuffle(numin.value)};
+back_buttun.onclick = function(){Back(parseInt(numback.value))};
+draw_a_buttun.onclick = function(){Draw_a(parseInt(numdraw.value))};
 

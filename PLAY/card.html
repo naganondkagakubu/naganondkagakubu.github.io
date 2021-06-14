@@ -56,12 +56,21 @@
     トランプの山の代わりになります。
     <br>
     <input type="text" id="numin">
-    <input type="button" value="set" id="set">
-    <input type="button" value="スタート" id="start">
+    <input type="button" value="山札セット" id="set">
+    <br>
     <input type="text" id="numout">
-    <input type="button" value="リセット" id="reset">
+    <input type="button" value="ドロー" id="draw_r">
+    <br>
     <input type="text" id="numback">
+    <label><input type="radio" name="BACK" value="back_U" onchange="F_change()" id="back_U" >上に戻す</label>
+    <label><input type="radio" name="BACK" value="back_R" onchange="F_change()" id="back_R" checked>戻す+シャッフル</label>
+    <label><input type="radio" name="BACK" value="back_D" onchange="F_change()" id="back_D" >下に戻す</label>
     <input type="button" value="戻す" id="back">
+    <br>
+    <input type="text" id="numdraw">
+    <input type="button" value="指定ドロー" id="draw_a">
+    <br>
+    <input type="button" value="リセット" id="reset">
 </p>
 </div>
 
