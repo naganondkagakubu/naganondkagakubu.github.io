@@ -1,3 +1,4 @@
+//変数宣言
 let numin = document.getElementById("numin");
 let set_buttun = document.getElementById("set");
 let draw_r_buttun = document.getElementById("draw_r");
@@ -16,11 +17,14 @@ let m = 0;
 let flag = 0;
 let yamafuda = [];
 
+//関数の定義
+//数字か判定する関数
 function isNumber(numVal){
     let pattern = /^[-]?([1-9]\d*|0)(\.\d+)?$/;
     return pattern.test(numVal);
 };
 
+//山札のセットアップ
 function Newshuffle(M){
     yamafuda = [];
     for(let i = 1;i <= M; i++){
@@ -35,6 +39,7 @@ function Newshuffle(M){
     console.log(yamafuda);
 };
 
+//ランダムにカードを引く関数
 function Draw_r(){
     if(yamafuda.length > 0){
         let a = yamafuda[0];
@@ -46,6 +51,7 @@ function Draw_r(){
     }
 };
 
+//指定してカードを引く関数
 function Draw_a(n){
     let idx = yamafuda.indexOf(n);
     if(idx >= 0){
@@ -53,6 +59,7 @@ function Draw_a(n){
     }
 };
 
+//フラグの変更
 function F_change(){
     if(back_U_f.checked == true){
         flag = 1;
@@ -63,6 +70,8 @@ function F_change(){
     };
 };
 
+
+//山札をシャッフルする関数
 function shuffle(){
     if(yamafuda.length > 1){
         let old_yama = yamafuda.slice(0, yamafuda.length);
@@ -76,6 +85,7 @@ function shuffle(){
     console.log(yamafuda);
 };
 
+//山札にカードを戻す関数
 function Back(n){
     if(isNumber(numback.value)){        //元々ない数字を戻される可能性あり
         if(flag == 1){
@@ -97,6 +107,7 @@ function Back(n){
     };
 };
 
+//ボタンが押されたときの挙動
 set_buttun.onclick = function(){Newshuffle(numin.value)};
 draw_r_buttun.onclick = function(){numout.value = Draw_r()};
 reset_buttun.onclick = function(){Newshuffle(numin.value)};
