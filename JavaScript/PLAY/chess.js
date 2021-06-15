@@ -10,10 +10,13 @@ let mode = 0;
 let turn = -1;   //1が黒、-1が白の手番 (白が先手)
 let turnsum = 0;
 let old_P = 0; //駒を動かす前の位置
+let flag_B = 0; //B_kingが動いたかどうか
+let flag_W = 0; //W_kingが動いたかどうか
 let flag1 = 0;  //kingと左の黒luke
 let flag2 = 0;  //kingと右の黒luke
 let flag3 = 0;  //kingと左の白luke
 let flag4 = 0;  //kingと右の白luke
+let Cas_F = 0; //Castlingしようとしているか
 
 function changeImage(n){
     if(eval("img_" + n).alt == 1){
@@ -53,7 +56,7 @@ function changeImage(n){
         eval("img_" + n).src = "../images/PLAY/chesspieces/wR.png"
     }
     else{
-        eval("img_" + n).src = "../images/PLAY/chesspieces/empty.png" , eval("img_" + n).alt = "0";
+        eval("img_" + n).src = "../images/PLAY/chesspieces/empty.png" , eval("img_" + n).alt = ""
     }
 };
 
@@ -209,6 +212,33 @@ function Move_V(m,n){
     else if(Math.abs(m) == 2){
         Saltire(n);
         Cross(n);
+        //キャスリング
+        //黒キング
+        if(m == 2){
+            //左側のルークと
+            if(flag_B + flag1 + img_28.alt + img_38.alt + img_48.alt == 0){
+                Color_change(38);
+                Cas_F = 1;
+            }
+            //右側のルークと
+            else if(flag_B + flag2 + img_68.alt + img_78.alt == 0){
+                Color_change(78);
+                Cas_F = 1;
+            };
+        }
+        //白キング
+        else if(m == -2){
+            //左側のルークと
+            if(flag_W + flag3 + img_21.alt + img_31.alt + img_41.alt == 0){
+                Color_change(31);
+                Cas_F = 1;
+            }
+            //右側のルークと
+            else if(flag_W + flag4 + img_61.alt + img_71.alt == 0){
+                Color_change(71);
+                Cas_F = 1;
+            };
+        };
     }
     //ナイトの動き
     else if(Math.abs(m) == 3){
@@ -271,17 +301,6 @@ function Move_V(m,n){
             };
         };
     }
-    //クイーンの動き
-    else if(Math.abs(m) == 5){
-        Saltire_I(n);
-        Cross_I(n);
-        eval("img_" + n).classList.remove("komaMove")
-    }
-    //ルークの動き
-    else if(Math.abs(m) == 6){
-        Cross_I(n);
-        eval("img_" + n).classList.remove("komaMove")
-    }
     //白ポーンの動き
     else if(m == -4){
         //最初の2マス
@@ -311,9 +330,22 @@ function Move_V(m,n){
                 Color_change(n - 9);
             };
         };
+    }
+    //クイーンの動き
+    else if(Math.abs(m) == 5){
+        Saltire_I(n);
+        Cross_I(n);
+        eval("img_" + n).classList.remove("komaMove")
+    }
+    //ルークの動き
+    else if(Math.abs(m) == 6){
+        Cross_I(n);
+        eval("img_" + n).classList.remove("komaMove")
     };
 };
 
+
+//メインの関数
 function Chess(n){
     //自分の駒を触ったとき
     if(turn * eval("img_" + n).alt > 0){
@@ -321,6 +353,8 @@ function Chess(n){
         if(n == old_P){
             mode = 0;
             old_P = 0;
+            Cas_F = 0;
+            //行動範囲のクリーニング
             for(let i = 1; i <= 8; i++){
                 for(let j = 1;j <= 8; j++){
                     let ij = (10 * i) + j
@@ -330,8 +364,10 @@ function Chess(n){
                 };
             };
         }
-        //別の自分の駒
+        //さっきと別の自分の駒
         else if(n != old_P){
+            Cas_F = 0;
+            //行動範囲のクリーニング
             for(let i = 1; i <= 8; i++){
                 for(let j = 1;j <= 8; j++){
                     let ij = (10 * i) + j
@@ -340,6 +376,7 @@ function Chess(n){
                     };
                 };
             };
+
             Move_V(eval("img_" + n).alt,n);
             old_P = n;
             mode = 1;
@@ -350,13 +387,74 @@ function Chess(n){
         //駒をうごかす
         if(mode == 1){
             if(eval("img_" + n).classList.contains("komaMove")){
-                eval("img_" + n).alt = eval("img_" + old_P).alt;
-                eval("img_" + old_P).alt = 0;
-                changeImage(n);
-                changeImage(old_P);
+                //キングとルークが動いたかどうか
+                if(old_P == 18){flag1 = 1;};
+                if(old_P == 88){flag2 = 1;};
+                if(old_P == 11){flag3 = 1;};
+                if(old_P == 81){flag4 = 1;};
+                if(old_P == 58){flag_B = 1;};
+                if(old_P == 51){flag_W = 1;};
+
+                //駒の移動
+                //キャスリング
+                //黒キング
+                if(old_P == 58){
+                    if(n == 38){
+                    img_18.alt = 0;
+                    img_38.alt = 2;
+                    img_48.alt = 6;
+                    img_58.alt = 0;
+                    changeImage(18);
+                    changeImage(38);
+                    changeImage(48);
+                    changeImage(58);
+                    }
+                    else if(n == 78){
+                    img_58.alt = 0;
+                    img_68.alt = 6;
+                    img_78.alt = 2;
+                    img_88.alt = 0;
+                    changeImage(58);
+                    changeImage(68);
+                    changeImage(78);
+                    changeImage(88);
+                    }
+                }
+                //白キング
+                else if(old_P == 51){
+                    if(n == 31){
+                        img_11.alt = 0;
+                        img_31.alt = -2;
+                        img_41.alt = -6;
+                        img_51.alt = 0;
+                        changeImage(11);
+                        changeImage(31);
+                        changeImage(41);
+                        changeImage(51);
+                    }
+                    else if(n == 71){
+                        img_51.alt = 0;
+                        img_61.alt = -6;
+                        img_71.alt = -2;
+                        img_81.alt = 0;
+                        changeImage(51);
+                        changeImage(61);
+                        changeImage(71);
+                        changeImage(81);
+                    }
+                }
+                //その他
+                else{
+                    eval("img_" + n).alt = eval("img_" + old_P).alt;
+                    eval("img_" + old_P).alt = 0;
+                    changeImage(n);
+                    changeImage(old_P);
+                };
                 mode = 0;
+                Cas_F = 0;
                 turn = turn * (-1);
                 turnsum = turnsum + 1;
+                //行動範囲のクリーニング
                 for(let i = 1; i <= 8; i++){
                     for(let j = 1;j <= 8; j++){
                         let ij = (10 * i) + j
@@ -370,6 +468,8 @@ function Chess(n){
             else{
                 mode = 0;
                 old_P =0;
+                Cas_F = 0;
+                //行動範囲のクリーニング
                 for(let i = 1; i <= 8; i++){
                     for(let j = 1;j <= 8; j++){
                         let ij = (10 * i) + j
@@ -383,13 +483,108 @@ function Chess(n){
     };
 };
 
+//リセット
 function Reset(){
-    let mode = 0;
-    let turn = 0;
-    let turnsum = 0;
-    let flag1 = 0;
-};
+    //各種数値
+    mode = 0;
+    turn = -1;
+    turnsum = 0;
+    old_P = 0;
+    flag_B = 0;
+    flag_W = 0;
+    flag1 = 0;
+    flag2 = 0;
+    flag3 = 0;
+    flag4 = 0;
+    Cas_F = 0;
 
-function check(){
-    Move_V(1,55);
+    //黒1段目
+    img_18.src = "../images/PLAY/chesspieces/bR.png";
+    img_18.alt = 6;
+    img_28.src = "../images/PLAY/chesspieces/bN.png";
+    img_28.alt = 3;
+    img_38.src = "../images/PLAY/chesspieces/bB.png";
+    img_38.alt = 1;
+    img_48.src = "../images/PLAY/chesspieces/bQ.png";
+    img_48.alt = 5;
+    img_58.src = "../images/PLAY/chesspieces/bK.png";
+    img_58.alt = 2;
+    img_68.src = "../images/PLAY/chesspieces/bB.png";
+    img_68.alt = 1;
+    img_78.src = "../images/PLAY/chesspieces/bN.png";
+    img_78.alt = 3;
+    img_88.src = "../images/PLAY/chesspieces/bR.png";
+    img_88.alt = 6;
+
+    //黒2段目
+    img_17.src = "../images/PLAY/chesspieces/bP.png";
+    img_17.alt = 4;
+    img_27.src = "../images/PLAY/chesspieces/bP.png";
+    img_27.alt = 4;
+    img_37.src = "../images/PLAY/chesspieces/bP.png";
+    img_37.alt = 4;
+    img_47.src = "../images/PLAY/chesspieces/bP.png";
+    img_47.alt = 4;
+    img_57.src = "../images/PLAY/chesspieces/bP.png";
+    img_57.alt = 4;
+    img_67.src = "../images/PLAY/chesspieces/bP.png";
+    img_67.alt = 4;
+    img_77.src = "../images/PLAY/chesspieces/bP.png";
+    img_77.alt = 4;
+    img_87.src = "../images/PLAY/chesspieces/bP.png";
+    img_87.alt = 4;
+
+    //白2段目
+    img_12.src = "../images/PLAY/chesspieces/wP.png";
+    img_12.alt = -4;
+    img_22.src = "../images/PLAY/chesspieces/wP.png";
+    img_22.alt = -4;
+    img_32.src = "../images/PLAY/chesspieces/wP.png";
+    img_32.alt = -4;
+    img_42.src = "../images/PLAY/chesspieces/wP.png";
+    img_42.alt = -4;
+    img_52.src = "../images/PLAY/chesspieces/wP.png";
+    img_52.alt = -4;
+    img_62.src = "../images/PLAY/chesspieces/wP.png";
+    img_62.alt = -4;
+    img_72.src = "../images/PLAY/chesspieces/wP.png";
+    img_72.alt = -4;
+    img_82.src = "../images/PLAY/chesspieces/wP.png";
+    img_82.alt = -4;
+
+    //白1段目
+    img_11.src = "../images/PLAY/chesspieces/wR.png";
+    img_11.alt = -6;
+    img_21.src = "../images/PLAY/chesspieces/wN.png";
+    img_21.alt = -3;
+    img_31.src = "../images/PLAY/chesspieces/wB.png";
+    img_31.alt = -1;
+    img_41.src = "../images/PLAY/chesspieces/wQ.png";
+    img_41.alt = -5;
+    img_51.src = "../images/PLAY/chesspieces/wK.png";
+    img_51.alt = -2;
+    img_61.src = "../images/PLAY/chesspieces/wB.png";
+    img_61.alt = -1;
+    img_71.src = "../images/PLAY/chesspieces/wN.png";
+    img_71.alt = -3;
+    img_81.src = "../images/PLAY/chesspieces/wR.png";
+    img_81.alt = -6;
+
+    //残りのマス
+    for(let i = 1; i <= 8; i++){
+        for(let j = 3; j <= 6; j++){
+            let ij = (10 * i) + j
+            eval("img_" + ij).src = "../images/PLAY/chesspieces/empty.png";
+            eval("img_" + ij).alt = 0;
+        };
+    };
+    //行動範囲のクリーニング
+    for(let i = 1; i <= 8; i++){
+        for(let j = 1;j <= 8; j++){
+            let ij = (10 * i) + j
+            if(eval("img_" + ij).classList.contains("komaMove")){
+                eval("img_" + ij).classList.remove("komaMove");
+            };
+        };
+    };
 };
