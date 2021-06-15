@@ -39,3 +39,15 @@ function PW(){
     else
         alert("まだ対応してないﾖ")
 }
+
+//ヘッダー隠し
+function header_A(){
+    let header = document.getElementsByTagName("header");
+    let flag1 = 0;
+    if(flag1 == 0){
+    header.classList.add("header_A_0")
+    }
+    else{
+        header.classList.remove("header_A_0")
+    };
+};

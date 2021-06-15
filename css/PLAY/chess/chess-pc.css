@@ -14,10 +14,9 @@ body {
 
 .chess-board{
     position: relative;
-    top: 50%;
-    left: 50%;
-    margin-top: 50px;
-    margin-left: -300px;
+    text-align: center;
+    left: 10%;
+    transform: scale(0.7,0.7);
 }
 
 .chess-board td{

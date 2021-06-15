@@ -14,10 +14,8 @@ body {
 
 .chess-board{
     position: relative;
-    top: 50%;
-    left: 50%;
-    margin-top: 50px;
-    margin-left: -300px;
+    text-align: center;
+    transform: scale(0.6,0.6);
 }
 
 .chess-board td{
@@ -27,4 +25,8 @@ body {
     text-align: center;
     font-size: 3.8vw;
     cursor: pointer;
+}
+
+.komaMove {
+    background-color: rgba(255, 0, 0, 0.5);
 }

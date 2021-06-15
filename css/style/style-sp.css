@@ -25,6 +25,11 @@ body {
     z-index: 1;
 }
 
+/*headerの透明化*/
+.header_A_0 {
+    opacity: 0;
+}
+
 /*リンクの色替え*/
 a{
     text-decoration: none;

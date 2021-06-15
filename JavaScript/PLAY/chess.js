@@ -7,7 +7,7 @@ for (let i = 1; i<=8; i++){
 }
 
 let mode = 0;
-let turn = 1;   //1が自分、-1が相手の手番
+let turn = -1;   //1が黒、-1が白の手番 (白が先手)
 let turnsum = 0;
 let old_P = 0; //駒を動かす前の位置
 let flag1 = 0;  //kingと左の黒luke
@@ -285,7 +285,7 @@ function Move_V(m,n){
     //白ポーンの動き
     else if(m == -4){
         //最初の2マス
-        if(n%10 == 7){
+        if(n%10 == 2){
             if((1 <= Math.floor((n + 1)/10) && Math.floor((n + 1)/10) <= 8) && (1 <= Math.floor((n + 1)%10) && Math.floor((n + 1)%10) <= 8) && (eval("img_" + n).alt * eval("img_" + (n + 1)).alt) == 0){
                 Color_change(n + 1);
                 if((1 <= Math.floor((n + 2)/10) && Math.floor((n + 2)/10) <= 8) && (1 <= Math.floor((n + 2)%10) && Math.floor((n + 2)%10) <= 8) && (eval("img_" + n).alt * eval("img_" + (n + 2)).alt) == 0){
@@ -355,6 +355,8 @@ function Chess(n){
                 changeImage(n);
                 changeImage(old_P);
                 mode = 0;
+                turn = turn * (-1);
+                turnsum = turnsum + 1;
                 for(let i = 1; i <= 8; i++){
                     for(let j = 1;j <= 8; j++){
                         let ij = (10 * i) + j
@@ -367,6 +369,7 @@ function Chess(n){
             //モードを戻す
             else{
                 mode = 0;
+                old_P =0;
                 for(let i = 1; i <= 8; i++){
                     for(let j = 1;j <= 8; j++){
                         let ij = (10 * i) + j
