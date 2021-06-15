@@ -63,7 +63,7 @@ function Color_change(n){
 };
 
 //駒の大まかな動き
-//斜め十字
+//斜め十字(角)
 function Saltire_I(n){
         //左上
         for(let i = n; (1 <= Math.floor(i/10) && Math.floor(i/10) <= 8) && (1 <= Math.floor(i%10) && Math.floor(i%10) <= 8) && (eval("img_" + n).alt * eval("img_" + i).alt) <= 0;){
@@ -107,7 +107,7 @@ function Saltire_I(n){
         };
 };
 
-//十字
+//十字(飛車)
 function Cross_I(n){
     //上
     for(let i = n; (1 <= Math.floor(i/10) && Math.floor(i/10) <= 8) && (1 <= Math.floor(i%10) && Math.floor(i%10) <= 8);){
@@ -151,16 +151,80 @@ function Cross_I(n){
     };
 };
 
+//斜め十字(1マス)
+function Saltire(){
+    //左上
+    if((1 <= Math.floor((n + 11)/10) && Math.floor((n + 11)/10) <= 8) && (1 <= Math.floor((n + 11)%10) && Math.floor((n + 11)%10) <= 8) && (eval("img_" + n).alt * eval("img_" + (n + 11)).alt) <= 0){
+        Color_change(n + 11);
+    };
+    //右上
+    if((1 <= Math.floor((n - 11)/10) && Math.floor((n - 11)/10) <= 8) && (1 <= Math.floor((n - 11)%10) && Math.floor((n - 11)%10) <= 8) && (eval("img_" + n).alt * eval("img_" + (n - 11)).alt) <= 0){
+        Color_change(n - 11);
+    };
+    //左下
+    if((1 <= Math.floor((n + 9)/10) && Math.floor((n + 9)/10) <= 8) && (1 <= Math.floor((n + 9)%10) && Math.floor((n + 9)%10) <= 8) && (eval("img_" + n).alt * eval("img_" + (n + 9)).alt) <= 0){
+        Color_change(n + 9);
+    };
+    //右下
+    if((1 <= Math.floor((n - 9)/10) && Math.floor((n - 9)/10) <= 8) && (1 <= Math.floor((n - 9)%10) && Math.floor((n - 9)%10) <= 8) && (eval("img_" + n).alt * eval("img_" + (n - 9)).alt) <= 0){
+        Color_change(n - 9);
+    };
+};
+//十字(1マス)
+function Cross(){
+    //上
+    if((1 <= Math.floor((n + 10)/10) && Math.floor((n + 10)/10) <= 8) && (1 <= Math.floor((n + 10)%10) && Math.floor((n + 10)%10) <= 8) && (eval("img_" + n).alt * eval("img_" + (n + 10)).alt) <= 0){
+        Color_change(n + 10);
+    };
+    //右
+    if((1 <= Math.floor((n - 1)/10) && Math.floor((n - 1)/10) <= 8) && (1 <= Math.floor((n - 1)%10) && Math.floor((n - 1)%10) <= 8) && (eval("img_" + n).alt * eval("img_" + (n - 1)).alt) <= 0){
+        Color_change(n - 1);
+    };
+    //下
+    if((1 <= Math.floor((n - 10)/10) && Math.floor((n - 10)/10) <= 8) && (1 <= Math.floor((n - 10)%10) && Math.floor((n - 10)%10) <= 8) && (eval("img_" + n).alt * eval("img_" + (n - 10)).alt) <= 0){
+        Color_change(n - 10);
+    };
+    //左
+    if((1 <= Math.floor((n + 1)/10) && Math.floor((n + 1)/10) <= 8) && (1 <= Math.floor((n + 1)%10) && Math.floor((n + 1)%10) <= 8) && (eval("img_" + n).alt * eval("img_" + (n + 1)).alt) <= 0){
+        Color_change(n + 1);
+    };
+};
+
+//駒の細かな動き
 function Move_V(m,n){
     //ビショップの動き
-    if(m == 1){
+    if(Math.abs(m) == 1){
         Saltire_I(n);
         eval("img_" + n).classList.remove("komaMove")
     }
-    else if(m == 2){
+    //キングの動き
+    else if(Math.abs(m) == 2){
+        Saltire(n);
+        Cross(n);
+    }
+    //ナイトの動き
+    else if(Math.abs(m) == 3){
 
     }
+    //黒ポーンの動き
+    else if(m == 4){
 
+    }
+    //クイーンの動き
+    else if(Math.abs(m) == 5){
+        Saltire_I(n);
+        Cross_I(n);
+        eval("img_" + n).classList.remove("komaMove")
+    }
+    //ルークの動き
+    else if(Math.abs(m) == 6){
+        Cross_I(n);
+        eval("img_" + n).classList.remove("komaMove")
+    }
+    //白ポーンの動き
+    else if(m == -4){
+
+    }
 };
 
 function Chess(n){
