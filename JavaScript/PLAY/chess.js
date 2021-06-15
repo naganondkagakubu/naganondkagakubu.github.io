@@ -17,6 +17,7 @@ let flag2 = 0;  //kingと右の黒luke
 let flag3 = 0;  //kingと左の白luke
 let flag4 = 0;  //kingと右の白luke
 let Cas_F = 0; //Castlingしようとしているか
+let kifu = []; //棋譜
 
 function changeImage(n){
     if(eval("img_" + n).alt == 1){
@@ -55,8 +56,11 @@ function changeImage(n){
     else if(eval("img_" + n).alt == -6){
         eval("img_" + n).src = "../images/PLAY/chesspieces/wR.png"
     }
+    else if(eval("img_" + n).alt == 0){
+        eval("img_" + n).src = "../images/PLAY/chesspieces/empty.png"
+    }
     else{
-        eval("img_" + n).src = "../images/PLAY/chesspieces/empty.png" , eval("img_" + n).alt = ""
+        eval("img_" + n).src = "../images/PLAY/chesspieces/empty.png" , eval("img_" + n).alt = 0
     }
 };
 
@@ -344,6 +348,10 @@ function Move_V(m,n){
     };
 };
 
+//プロモーションの選択
+function prom_choice(){
+    return 5;
+};
 
 //メインの関数
 function Chess(n){
@@ -384,9 +392,31 @@ function Chess(n){
         }
     //自分の駒以外に触ったとき
     else if(turn * eval("img_" + n).alt <= 0){
-        //駒をうごかす
+        //駒を動かせるとき
         if(mode == 1){
+            //駒を動す
             if(eval("img_" + n).classList.contains("komaMove")){
+                //棋譜の記録
+                let Ki = [];
+                //各種数値
+                Ki.push(turn);
+                Ki.push(turnsum);
+                Ki.push(flag_B);
+                Ki.push(flag_W);
+                Ki.push(flag1);
+                Ki.push(flag2);
+                Ki.push(flag3);
+                Ki.push(flag4);
+                //駒の位置
+                for(let i = 1; i <= 8; i++){
+                    for (let j = 1; j <= 8; j++){
+                        let ij = (10 * i) + j;
+                        Ki.push(eval("img_" + ij).alt)
+                    };
+                };
+
+                kifu.push(Ki)
+
                 //キングとルークが動いたかどうか
                 if(old_P == 18){flag1 = 1;};
                 if(old_P == 88){flag2 = 1;};
@@ -395,8 +425,8 @@ function Chess(n){
                 if(old_P == 58){flag_B = 1;};
                 if(old_P == 51){flag_W = 1;};
 
-                //駒の移動
-                //キャスリング
+        //駒の移動
+            //キャスリング
                 //黒キング
                 if(old_P == 58){
                     if(n == 38){
@@ -443,17 +473,34 @@ function Chess(n){
                         changeImage(81);
                     }
                 }
-                //その他
+                //黒ポーンのプロモーション
+                else if(eval("img_" + old_P).alt == 4 && n%10 == 1){
+                    eval("img_" + n).alt = prom_choice();
+                    eval("img_" + old_P).alt = 0;
+                    changeImage(n);
+                    changeImage(old_P);
+                }
+                //白ポーンのプロモーション
+                else if(eval("img_" + old_P).alt == -4 && n%10 == 8){
+                    eval("img_" + n).alt = prom_choice() * (-1);
+                    eval("img_" + old_P).alt = 0;
+                    changeImage(n);
+                    changeImage(old_P);
+                }
+            //その他
                 else{
+                    //駒の画像の入れ替え
                     eval("img_" + n).alt = eval("img_" + old_P).alt;
                     eval("img_" + old_P).alt = 0;
                     changeImage(n);
                     changeImage(old_P);
                 };
+
                 mode = 0;
                 Cas_F = 0;
                 turn = turn * (-1);
                 turnsum = turnsum + 1;
+
                 //行動範囲のクリーニング
                 for(let i = 1; i <= 8; i++){
                     for(let j = 1;j <= 8; j++){
@@ -497,6 +544,7 @@ function Reset(){
     flag3 = 0;
     flag4 = 0;
     Cas_F = 0;
+    kifu = [];
 
     //黒1段目
     img_18.src = "../images/PLAY/chesspieces/bR.png";
