@@ -214,6 +214,7 @@ function Move_V(m,n){
     }
     //キングの動き
     else if(Math.abs(m) == 2){
+        //メイン
         Saltire(n);
         Cross(n);
         //キャスリング
@@ -428,8 +429,7 @@ function Chess(n){
         //駒の移動
             //キャスリング
                 //黒キング
-                if(old_P == 58){
-                    if(n == 38){
+                if(old_P == 58 && n== 38){
                     img_18.alt = 0;
                     img_38.alt = 2;
                     img_48.alt = 6;
@@ -438,8 +438,8 @@ function Chess(n){
                     changeImage(38);
                     changeImage(48);
                     changeImage(58);
-                    }
-                    else if(n == 78){
+                }
+                else if(old_P == 58 && n == 78){
                     img_58.alt = 0;
                     img_68.alt = 6;
                     img_78.alt = 2;
@@ -448,30 +448,27 @@ function Chess(n){
                     changeImage(68);
                     changeImage(78);
                     changeImage(88);
-                    }
                 }
                 //白キング
-                else if(old_P == 51){
-                    if(n == 31){
-                        img_11.alt = 0;
-                        img_31.alt = -2;
-                        img_41.alt = -6;
-                        img_51.alt = 0;
-                        changeImage(11);
-                        changeImage(31);
-                        changeImage(41);
-                        changeImage(51);
-                    }
-                    else if(n == 71){
-                        img_51.alt = 0;
-                        img_61.alt = -6;
-                        img_71.alt = -2;
-                        img_81.alt = 0;
-                        changeImage(51);
-                        changeImage(61);
-                        changeImage(71);
-                        changeImage(81);
-                    }
+                else if(old_P == 51 && n == 31){
+                    img_11.alt = 0;
+                    img_31.alt = -2;
+                    img_41.alt = -6;
+                    img_51.alt = 0;
+                    changeImage(11);
+                    changeImage(31);
+                    changeImage(41);
+                    changeImage(51);
+                }
+                else if(old_P == 51 && n == 71){
+                    img_51.alt = 0;
+                    img_61.alt = -6;
+                    img_71.alt = -2;
+                    img_81.alt = 0;
+                    changeImage(51);
+                    changeImage(61);
+                    changeImage(71);
+                    changeImage(81);
                 }
                 //黒ポーンのプロモーション
                 else if(eval("img_" + old_P).alt == 4 && n%10 == 1){
