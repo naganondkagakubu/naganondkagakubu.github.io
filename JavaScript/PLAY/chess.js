@@ -62,29 +62,100 @@ function Color_change(n){
     eval("img_" + n).classList.add("komaMove")
 };
 
-function Move_V(m,n){
-    //ビショップの動き
-    if(m == 1){
+//駒の大まかな動き
+//斜め十字
+function Saltire_I(n){
         //左上
-        for(let i = n; (1 <= Math.floor(i/10) && Math.floor(i/10) <= 8) && (1 <= Math.floor(i%10) && Math.floor(i%10) <= 8);){
-            Color_change(i);
-            i = i + 11;
+        for(let i = n; (1 <= Math.floor(i/10) && Math.floor(i/10) <= 8) && (1 <= Math.floor(i%10) && Math.floor(i%10) <= 8) && (eval("img_" + n).alt * eval("img_" + i).alt) <= 0;){
+            if((eval("img_" + n).alt * eval("img_" + i).alt) = 0){
+                Color_change(i);
+                i = i + 11;
+            }
+            else if((eval("img_" + n).alt * eval("img_" + i).alt) < 0){
+                break;
+            };
         };
         //右上
         for(let i = n; (1 <= Math.floor(i/10) && Math.floor(i/10) <= 8) && (1 <= Math.floor(i%10) && Math.floor(i%10) <= 8);){
-            Color_change(i);
-            i = i - 11;
+            if((eval("img_" + n).alt * eval("img_" + i).alt) = 0){
+                Color_change(i);
+                i = i - 11;
+            }
+            else if((eval("img_" + n).alt * eval("img_" + i).alt) < 0){
+                break;
+            };
         };
         //左下
         for(let i = n; (1 <= Math.floor(i/10) && Math.floor(i/10) <= 8) && (1 <= Math.floor(i%10) && Math.floor(i%10) <= 8);){
-            Color_change(i);
-            i = i - 9;
+            if((eval("img_" + n).alt * eval("img_" + i).alt) = 0){
+                Color_change(i);
+                i = i - 9;
+            }
+            else if((eval("img_" + n).alt * eval("img_" + i).alt) < 0){
+                break;
+            };
         };
         //右下
         for(let i = n; (1 <= Math.floor(i/10) && Math.floor(i/10) <= 8) && (1 <= Math.floor(i%10) && Math.floor(i%10) <= 8);){
-            Color_change(i);
-            i = i + 9;
+            if((eval("img_" + n).alt * eval("img_" + i).alt) = 0){
+                Color_change(i);
+                i = i + 9;
+            }
+            else if((eval("img_" + n).alt * eval("img_" + i).alt) < 0){
+                break;
+            };
         };
+};
+
+//十字
+function Cross_I(n){
+    //上
+    for(let i = n; (1 <= Math.floor(i/10) && Math.floor(i/10) <= 8) && (1 <= Math.floor(i%10) && Math.floor(i%10) <= 8);){
+        if((eval("img_" + n).alt * eval("img_" + i).alt) = 0){
+            Color_change(i);
+            i = i + 10;
+        }
+        else if((eval("img_" + n).alt * eval("img_" + i).alt) < 0){
+            break;
+        };
+    };
+    //右
+    for(let i = n; (1 <= Math.floor(i/10) && Math.floor(i/10) <= 8) && (1 <= Math.floor(i%10) && Math.floor(i%10) <= 8);){
+        if((eval("img_" + n).alt * eval("img_" + i).alt) = 0){
+            Color_change(i);
+            i = i - 1;
+        }
+        else if((eval("img_" + n).alt * eval("img_" + i).alt) < 0){
+            break;
+        };
+    };
+    //下
+    for(let i = n; (1 <= Math.floor(i/10) && Math.floor(i/10) <= 8) && (1 <= Math.floor(i%10) && Math.floor(i%10) <= 8);){
+        if((eval("img_" + n).alt * eval("img_" + i).alt) = 0){
+            Color_change(i);
+            i = i - 10;
+        }
+        else if((eval("img_" + n).alt * eval("img_" + i).alt) < 0){
+            break;
+        };
+    };
+    //左
+    for(let i = n; (1 <= Math.floor(i/10) && Math.floor(i/10) <= 8) && (1 <= Math.floor(i%10) && Math.floor(i%10) <= 8);){
+        if((eval("img_" + n).alt * eval("img_" + i).alt) = 0){
+            Color_change(i);
+            i = i + 1;
+        }
+        else if((eval("img_" + n).alt * eval("img_" + i).alt) < 0){
+            break;
+        };
+    };
+};
+
+function Move_V(m,n){
+    //ビショップの動き
+    if(m == 1){
+        Saltire_I(n);
+        eval("img_" + n).classList.remove("komaMove")
     }
     else if(m == 2){
 
@@ -122,5 +193,5 @@ function Reset(){
 };
 
 function check(){
-    Move_V(1,55)
+    Move_V(1,55);
 };
