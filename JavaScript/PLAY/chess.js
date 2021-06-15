@@ -9,7 +9,7 @@ for (let i = 1; i<=8; i++){
 let mode = 0;
 let turn = 1;   //1が自分、-1が相手の手番
 let turnsum = 0;
-let old_P = 11; //駒を動かす前の位置
+let old_P = 0; //駒を動かす前の位置
 let flag1 = 0;  //kingと左の黒luke
 let flag2 = 0;  //kingと右の黒luke
 let flag3 = 0;  //kingと左の白luke
@@ -53,7 +53,7 @@ function changeImage(n){
         eval("img_" + n).src = "../images/PLAY/chesspieces/wR.png"
     }
     else{
-        eval("img_" + n).src = "../images/PLAY/chesspieces/bN.png" , eval("img_" + n).alt = "0";
+        eval("img_" + n).src = "../images/PLAY/chesspieces/empty.png" , eval("img_" + n).alt = "0";
     }
 };
 
@@ -259,9 +259,9 @@ function Move_V(m,n){
             };
         };
         //右下に敵の駒
-        if((1 <= Math.floor((n - 9)/10) && Math.floor((n - 9)/10) <= 8) && (1 <= Math.floor((n - 9)%10) && Math.floor((n - 9)%10) <= 8)){
-            if(eval("img_" + (n - 9)).alt < 0){
-                Color_change(n - 9);
+        if((1 <= Math.floor((n + 9)/10) && Math.floor((n + 9)/10) <= 8) && (1 <= Math.floor((n + 9)%10) && Math.floor((n + 9)%10) <= 8)){
+            if(eval("img_" + (n + 9)).alt < 0){
+                Color_change(n + 9);
             };
         };
         //左下に敵の駒
@@ -306,9 +306,9 @@ function Move_V(m,n){
             };
         };
         //左上に敵の駒
-        if((1 <= Math.floor((n + 9)/10) && Math.floor((n + 9)/10) <= 8) && (1 <= Math.floor((n + 9)%10) && Math.floor((n + 9)%10) <= 8)){
-            if(eval("img_" + (n + 9)).alt > 0){
-                Color_change(n + 9);
+        if((1 <= Math.floor((n - 9)/10) && Math.floor((n - 9)/10) <= 8) && (1 <= Math.floor((n - 9)%10) && Math.floor((n - 9)%10) <= 8)){
+            if(eval("img_" + (n - 9)).alt > 0){
+                Color_change(n - 9);
             };
         };
     };
@@ -320,6 +320,7 @@ function Chess(n){
         //さっきと同じ駒なら
         if(n == old_P){
             mode = 0;
+            old_P = 0;
             for(let i = 1; i <= 8; i++){
                 for(let j = 1;j <= 8; j++){
                     let ij = (10 * i) + j
