@@ -43,11 +43,10 @@ function PW(){
 //ヘッダー隠し
 function header_A(){
     let header = document.getElementsByTagName("header");
-    let flag1 = 0;
-    if(flag1 == 0){
-    header.classList.add("header_A_0")
+    if(header[0].classList.contains("header_A_0")){
+        header[0].classList.remove("header_A_0")
     }
-    else{
-        header.classList.remove("header_A_0")
+    else if(!header[0].classList.contains("header_A_0")){
+        header[0].classList.add("header_A_0")
     };
 };
