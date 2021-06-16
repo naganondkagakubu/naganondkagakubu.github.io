@@ -513,7 +513,9 @@ function Chess(n){
                 if(localStorage.getItem("kifu_H") !== null){
                     localStorage.removeItem("kifu_H");
                     try{
-                        localStorage.setItem("kifu_H", JSON.stringify(kifu.push(N_kifu)));
+                        let kifu_H = kifu.concat();
+                        kifu_H.push(N_kifu);
+                        localStorage.setItem("kifu_H", JSON.stringify(kifu_H));
                     }
                     catch(e){
                         console.log(e);
@@ -586,11 +588,27 @@ function Matta(){
             };
         };
     };
+    //N_kifuの更新
+    S_kifu_N();
+
+    if(localStorage.getItem("kifu_H") !== null){
+        localStorage.removeItem("kifu_H");
+        try{
+            let kifu_H = kifu.concat();
+            kifu_H.push(N_kifu);
+            localStorage.setItem("kifu_H", JSON.stringify(kifu_H));
+        }
+        catch(e){
+            console.log(e);
+        };
     };
+    };
+    
 };
 
 //現在の盤面を保存
 function S_kifu_N(){
+    N_kifu = [];
     //各種数値
     N_kifu.push(turn);
     N_kifu.push(turnsum);
@@ -715,11 +733,19 @@ function Reset(){
             };
         };
     };
-    try{
-        localStorage.setItem("kifu_H", JSON.stringify(kifu.push(N_kifu)));
-    }
-    catch(e){
-        console.log(e);
+    //N_kifuの更新
+    S_kifu_N();
+
+    if(localStorage.getItem("kifu_H") !== null){
+        localStorage.removeItem("kifu_H");
+        try{
+            let kifu_H = kifu.concat();
+            kifu_H.push(N_kifu);
+            localStorage.setItem("kifu_H", JSON.stringify(kifu_H));
+        }
+        catch(e){
+            console.log(e);
+        };
     };
 };
 
@@ -755,11 +781,6 @@ window.onload = function(){
             for(let j = 1; j <= 8; j++){
                 let ij = (10 * i) + j;
                 eval("img_" + ij).alt = parseInt(N_kifu.slice(ij - 10,ij - 9));
-            };
-        };
-        for(let i = 1; i <= 8; i++){
-            for(let j = 1; j <= 8; j++){
-                let ij = (10 * i) + j;
                 changeImage(ij);
             };
         };
