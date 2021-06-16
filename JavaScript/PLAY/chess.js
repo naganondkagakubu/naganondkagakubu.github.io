@@ -18,6 +18,7 @@ let flag3 = 0;  //kingと左の白luke
 let flag4 = 0;  //kingと右の白luke
 let Cas_F = 0; //Castlingしようとしているか
 let kifu = [[-1, 0, 0, 0, 0, 0, 0, 0, "-6", "-4", "0", "0", "0", "0", "4", "6", "-3", "-4", "0", "0", "0", "0", "4", "3", "-1", "-4", "0", "0", "0", "0", "4", "1", "-5", "-4", "0", "0", "0", "0", "4", "5", "-2", "-4", "0", "0", "0", "0", "4", "2", "-1", "-4", "0", "0", "0", "0", "4", "1", "-3", "-4", "0", "0", "0", "0", "4", "3", "-6", "-4", "0", "0", "0", "0", "4", "6"]]; //棋譜
+let N_kifu = [-1, 0, 0, 0, 0, 0, 0, 0, "-6", "-4", "0", "0", "0", "0", "4", "6", "-3", "-4", "0", "0", "0", "0", "4", "3", "-1", "-4", "0", "0", "0", "0", "4", "1", "-5", "-4", "0", "0", "0", "0", "4", "5", "-2", "-4", "0", "0", "0", "0", "4", "2", "-1", "-4", "0", "0", "0", "0", "4", "1", "-3", "-4", "0", "0", "0", "0", "4", "3", "-6", "-4", "0", "0", "0", "0", "4", "6"]; //現在の盤面
 
 function changeImage(n){
     if(eval("img_" + n).alt == 1){
@@ -418,7 +419,6 @@ function Chess(n){
                 };
                 
                 kifu.push(Ki);
-                console.log(kifu)
                 //キングとルークが動いたかどうか
                 if(old_P == 18){flag1 = 1;};
                 if(old_P == 88){flag2 = 1;};
@@ -507,6 +507,18 @@ function Chess(n){
                         };
                     };
                 };
+                //N_kifuの更新
+                S_kifu_N();
+
+                if(localStorage.getItem("kifu_H") !== null){
+                    localStorage.removeItem("kifu_H");
+                    try{
+                        localStorage.setItem("kifu_H", JSON.stringify(kifu.push(N_kifu)));
+                    }
+                    catch(e){
+                        console.log(e);
+                    };
+                }
             }
             //モードを戻す
             else{
@@ -577,6 +589,26 @@ function Matta(){
     };
 };
 
+//現在の盤面を保存
+function S_kifu_N(){
+    //各種数値
+    N_kifu.push(turn);
+    N_kifu.push(turnsum);
+    N_kifu.push(flag_B);
+    N_kifu.push(flag_W);
+    N_kifu.push(flag1);
+    N_kifu.push(flag2);
+    N_kifu.push(flag3);
+    N_kifu.push(flag4);
+    //駒の位置
+    for(let i = 1; i <= 8; i++){
+        for (let j = 1; j <= 8; j++){
+            let ij = (10 * i) + j;
+            N_kifu.push(eval("img_" + ij).alt);
+        };
+    };
+};
+
 //リセット
 function Reset(){
     //各種数値
@@ -592,6 +624,7 @@ function Reset(){
     flag4 = 0;
     Cas_F = 0;
     kifu = [[-1, 0, 0, 0, 0, 0, 0, 0, "-6", "-4", "0", "0", "0", "0", "4", "6", "-3", "-4", "0", "0", "0", "0", "4", "3", "-1", "-4", "0", "0", "0", "0", "4", "1", "-5", "-4", "0", "0", "0", "0", "4", "5", "-2", "-4", "0", "0", "0", "0", "4", "2", "-1", "-4", "0", "0", "0", "0", "4", "1", "-3", "-4", "0", "0", "0", "0", "4", "3", "-6", "-4", "0", "0", "0", "0", "4", "6"]];
+    N_kifu = [-1, 0, 0, 0, 0, 0, 0, 0, "-6", "-4", "0", "0", "0", "0", "4", "6", "-3", "-4", "0", "0", "0", "0", "4", "3", "-1", "-4", "0", "0", "0", "0", "4", "1", "-5", "-4", "0", "0", "0", "0", "4", "5", "-2", "-4", "0", "0", "0", "0", "4", "2", "-1", "-4", "0", "0", "0", "0", "4", "1", "-3", "-4", "0", "0", "0", "0", "4", "3", "-6", "-4", "0", "0", "0", "0", "4", "6"];
 
     //黒1段目
     img_18.src = "../images/PLAY/chesspieces/bR.png";
@@ -679,6 +712,55 @@ function Reset(){
             let ij = (10 * i) + j
             if(eval("img_" + ij).classList.contains("komaMove")){
                 eval("img_" + ij).classList.remove("komaMove");
+            };
+        };
+    };
+    try{
+        localStorage.setItem("kifu_H", JSON.stringify(kifu.push(N_kifu)));
+    }
+    catch(e){
+        console.log(e);
+    };
+};
+
+//ウィンドウが読み込まれたとき
+window.onload = function(){
+    if(localStorage.getItem("kifu_H") !== null){
+        let KiFu = JSON.parse(localStorage.getItem("kifu_H"));
+        N_kifu = KiFu[KiFu.length - 1];
+        KiFu.pop();
+        kifu = [].concat(KiFu);
+        //棋譜から盤面を再現
+        turn = parseInt(N_kifu.slice(0,1));
+        N_kifu.splice(0,1);
+        turnsum = parseInt(N_kifu.slice(0,1));
+        N_kifu.splice(0,1);
+        flag_B = parseInt(N_kifu.slice(0,1));
+        N_kifu.splice(0,1);
+        flag_W = parseInt(N_kifu.slice(0,1));
+        N_kifu.splice(0,1);
+        flag1 = parseInt(N_kifu.slice(0,1));
+        N_kifu.splice(0,1);
+        flag2 = parseInt(N_kifu.slice(0,1));
+        N_kifu.splice(0,1);
+        flag3 = parseInt(N_kifu.slice(0,1));
+        N_kifu.splice(0,1);
+        flag4 = parseInt(N_kifu.slice(0,1));
+        N_kifu.splice(0,1);
+        for(let i = 0; i <= 7; i++){
+            N_kifu.splice((10 * i),0,0);
+            N_kifu.splice(((10 * i) + 9),0,0);
+        };
+        for(let i = 1; i <= 8; i++){
+            for(let j = 1; j <= 8; j++){
+                let ij = (10 * i) + j;
+                eval("img_" + ij).alt = parseInt(N_kifu.slice(ij - 10,ij - 9));
+            };
+        };
+        for(let i = 1; i <= 8; i++){
+            for(let j = 1; j <= 8; j++){
+                let ij = (10 * i) + j;
+                changeImage(ij);
             };
         };
     };
