@@ -17,7 +17,7 @@ let flag2 = 0;  //kingと右の黒luke
 let flag3 = 0;  //kingと左の白luke
 let flag4 = 0;  //kingと右の白luke
 let Cas_F = 0; //Castlingしようとしているか
-let kifu = []; //棋譜
+let kifu = [[-1, 0, 0, 0, 0, 0, 0, 0, "-6", "-4", "0", "0", "0", "0", "4", "6", "-3", "-4", "0", "0", "0", "0", "4", "3", "-1", "-4", "0", "0", "0", "0", "4", "1", "-5", "-4", "0", "0", "0", "0", "4", "5", "-2", "-4", "0", "0", "0", "0", "4", "2", "-1", "-4", "0", "0", "0", "0", "4", "1", "-3", "-4", "0", "0", "0", "0", "4", "3", "-6", "-4", "0", "0", "0", "0", "4", "6"]]; //棋譜
 
 function changeImage(n){
     if(eval("img_" + n).alt == 1){
@@ -60,7 +60,7 @@ function changeImage(n){
         eval("img_" + n).src = "../images/PLAY/chesspieces/empty.png"
     }
     else{
-        eval("img_" + n).src = "../images/PLAY/chesspieces/empty.png" , eval("img_" + n).alt = 0
+        eval("img_" + n).src = "../images/PLAY/chesspieces/empty.png" , eval("img_" + n).alt = 0;
     }
 };
 
@@ -397,6 +397,7 @@ function Chess(n){
         if(mode == 1){
             //駒を動す
             if(eval("img_" + n).classList.contains("komaMove")){
+                turnsum = turnsum + 1;
                 //棋譜の記録
                 let Ki = [];
                 //各種数値
@@ -412,12 +413,12 @@ function Chess(n){
                 for(let i = 1; i <= 8; i++){
                     for (let j = 1; j <= 8; j++){
                         let ij = (10 * i) + j;
-                        Ki.push(eval("img_" + ij).alt)
+                        Ki.push(eval("img_" + ij).alt);
                     };
                 };
-
-                kifu.push(Ki)
-
+                
+                kifu.push(Ki);
+                console.log(kifu)
                 //キングとルークが動いたかどうか
                 if(old_P == 18){flag1 = 1;};
                 if(old_P == 88){flag2 = 1;};
@@ -496,7 +497,6 @@ function Chess(n){
                 mode = 0;
                 Cas_F = 0;
                 turn = turn * (-1);
-                turnsum = turnsum + 1;
 
                 //行動範囲のクリーニング
                 for(let i = 1; i <= 8; i++){
@@ -527,6 +527,56 @@ function Chess(n){
     };
 };
 
+//待った
+function Matta(){
+    if(turnsum >= 1){
+        let Ki = [].concat(kifu[turnsum]);
+        turn = parseInt(Ki.slice(0,1));
+        Ki.splice(0,1);
+        turnsum = parseInt(Ki.slice(0,1));
+        Ki.splice(0,1);
+        flag_B = parseInt(Ki.slice(0,1));
+        Ki.splice(0,1);
+        flag_W = parseInt(Ki.slice(0,1));
+        Ki.splice(0,1);
+        flag1 = parseInt(Ki.slice(0,1));
+        Ki.splice(0,1);
+        flag2 = parseInt(Ki.slice(0,1));
+        Ki.splice(0,1);
+        flag3 = parseInt(Ki.slice(0,1));
+        Ki.splice(0,1);
+        flag4 = parseInt(Ki.slice(0,1));
+        Ki.splice(0,1);
+    for(let i = 0; i <= 7; i++){
+        Ki.splice((10 * i),0,0);
+        Ki.splice(((10 * i) + 9),0,0);
+    };
+    for(let i = 1; i <= 8; i++){
+        for(let j = 1; j <= 8; j++){
+            let ij = (10 * i) + j;
+            eval("img_" + ij).alt = parseInt(Ki.slice(ij - 10,ij - 9));
+        };
+    };
+    for(let i = 1; i <= 8; i++){
+        for(let j = 1; j <= 8; j++){
+            let ij = (10 * i) + j;
+            changeImage(ij);
+        };
+    };
+    turnsum = turnsum - 1;
+    kifu.pop();
+    //行動範囲のクリーニング
+    for(let i = 1; i <= 8; i++){
+        for(let j = 1;j <= 8; j++){
+            let ij = (10 * i) + j
+            if(eval("img_" + ij).classList.contains("komaMove")){
+                eval("img_" + ij).classList.remove("komaMove");
+            };
+        };
+    };
+    };
+};
+
 //リセット
 function Reset(){
     //各種数値
@@ -541,7 +591,7 @@ function Reset(){
     flag3 = 0;
     flag4 = 0;
     Cas_F = 0;
-    kifu = [];
+    kifu = [[-1, 0, 0, 0, 0, 0, 0, 0, "-6", "-4", "0", "0", "0", "0", "4", "6", "-3", "-4", "0", "0", "0", "0", "4", "3", "-1", "-4", "0", "0", "0", "0", "4", "1", "-5", "-4", "0", "0", "0", "0", "4", "5", "-2", "-4", "0", "0", "0", "0", "4", "2", "-1", "-4", "0", "0", "0", "0", "4", "1", "-3", "-4", "0", "0", "0", "0", "4", "3", "-6", "-4", "0", "0", "0", "0", "4", "6"]];
 
     //黒1段目
     img_18.src = "../images/PLAY/chesspieces/bR.png";
