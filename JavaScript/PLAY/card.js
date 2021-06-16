@@ -36,6 +36,12 @@ function Newshuffle(M){
             };
         };
     };
+    try{
+        localStorage.setItem("yama_H", JSON.stringify(yamafuda));
+    }
+    catch(e){
+        console.log(e);
+    };
     console.log(yamafuda);
 };
 
@@ -44,11 +50,20 @@ function Draw_r(){
     if(yamafuda.length > 0){
         let a = yamafuda[0];
         yamafuda.shift();
+        if(localStorage.getItem("yama_H") !== null){
+            localStorage.removeItem("yama_H");
+            try{
+                localStorage.setItem("yama_H", JSON.stringify(yamafuda));
+            }
+            catch(e){
+                console.log(e);
+            };
+        }
         return a;
     }
     else{
         return "全部引きました";
-    }
+    };
 };
 
 //指定してカードを引く関数
@@ -56,6 +71,15 @@ function Draw_a(n){
     let idx = yamafuda.indexOf(n);
     if(idx >= 0){
         yamafuda.splice(idx, 1);
+        if(localStorage.getItem("yama_H") !== null){
+            localStorage.removeItem("yama_H");
+            try{
+                localStorage.setItem("yama_H", JSON.stringify(yamafuda));
+            }
+            catch(e){
+                console.log(e);
+            };
+        }
     }
 };
 
@@ -104,6 +128,13 @@ function Back(n){
                 yamafuda.push(n)
             };
         };
+    };
+};
+
+//ウィンドウが読み込まれたとき
+window.onload = function(){
+    if(localStorage.getItem("yama_H") !== null){
+        yamafuda = JSON.parse(localStorage.getItem("yama_H"));
     };
 };
 
