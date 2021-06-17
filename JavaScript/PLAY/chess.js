@@ -424,6 +424,18 @@ function Check_check(n){
     };
 };
 
+//ターン表示
+function turn_E(){
+    if(turn == 1){
+        document.getElementById("W_turn_E").innerHTML = "黒の手番です";
+        document.getElementById("B_turn_E").innerHTML = "黒の手番です";
+    }
+    else if(turn == -1){
+        document.getElementById("W_turn_E").innerHTML = "白の手番です";
+        document.getElementById("B_turn_E").innerHTML = "白の手番です";
+    };
+};
+
 //メインの関数
 function Chess(n){
     //自分の駒を触ったとき
@@ -569,6 +581,9 @@ function Chess(n){
                 mode = 0;
                 Cas_F = 0;
                 turn = turn * (-1);
+
+                //ターン表示
+                turn_E();
 
                 //行動範囲のクリーニング
                 for(let i = 1; i <= 8; i++){
