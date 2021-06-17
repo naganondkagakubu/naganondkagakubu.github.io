@@ -355,6 +355,30 @@ function prom_choice(){
     return 5;
 };
 
+//チェックのチェック
+function Check_check(n){
+    if(n == -1){
+        for(let i = 1; i <= 8; i++){
+            for(let j = 1; j <= 8; j++){
+                let ij = (10 * i) + j;
+                if(eval("img_" + ij).alt < 0){
+                    eval("img_" + ij).classList("Check_check")
+                };
+            };
+        };
+    }
+    else if(n == 1){
+        for(let i = 1; i <= 8; i++){
+            for(let j = 1; j <= 8; j++){
+                let ij = (10 * i) + j;
+                if(eval("img_" + ij).alt > 0){
+                    eval("img_" + ij).classList("Check_check")
+                };
+            };
+        };
+    };
+};
+
 //メインの関数
 function Chess(n){
     //自分の駒を触ったとき
@@ -494,6 +518,9 @@ function Chess(n){
                     changeImage(old_P);
                 };
 
+                //チェックチェック
+                Check_check(turn);
+
                 mode = 0;
                 Cas_F = 0;
                 turn = turn * (-1);
@@ -507,6 +534,7 @@ function Chess(n){
                         };
                     };
                 };
+
                 //N_kifuの更新
                 S_kifu_N();
 
@@ -625,7 +653,6 @@ function S_kifu_N(){
             N_kifu.push(eval("img_" + ij).alt);
         };
     };
-    console.log(N_kifu);
 };
 
 //リセット
@@ -751,13 +778,12 @@ function Reset(){
 };
 
 //ウィンドウが読み込まれたとき
-window.onload = function(){
+window.addEventListener("load", function(){
     if(localStorage.getItem("kifu_H") !== null){
         let KiFu = JSON.parse(localStorage.getItem("kifu_H"));
         N_kifu = KiFu[KiFu.length - 1];
         KiFu.pop();
         kifu = [].concat(KiFu);
-        console.log(N_kifu);
         //棋譜から盤面を再現
         turn = parseInt(N_kifu.slice(0,1));
         N_kifu.splice(0,1);
@@ -787,4 +813,4 @@ window.onload = function(){
             };
         };
     };
-};
+});

@@ -132,11 +132,11 @@ function Back(n){
 };
 
 //ウィンドウが読み込まれたとき
-window.onload = function(){
+window.addEventListener("load", function(){
     if(localStorage.getItem("yama_H") !== null){
         yamafuda = JSON.parse(localStorage.getItem("yama_H"));
     };
-};
+});
 
 //ボタンが押されたときの挙動
 set_buttun.onclick = function(){Newshuffle(numin.value)};
