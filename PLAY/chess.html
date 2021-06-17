@@ -63,10 +63,17 @@
     <br>
     <input type="button" value="1手戻す" onclick="Matta()">
     <br>
-<table class="B_komadai">
-
-</table>
-<table class="chess-board">
+<div id="chess">
+    <div id="W_W">
+        <p class="turn_E">白の手番です</p>
+        <br>
+        <p id="W_check_E"></p>
+        <br>
+        <div id="W_prom_E">
+        
+        </div>
+    </div>
+    <table class="chess-board">
     <tr class="8r">
         <td id="18" onclick="Chess(18)"><img id="img18" src="../images/PLAY/chesspieces/bR.png" alt = "6"></td>
         <td id="28" onclick="Chess(28)"><img id="img28" src="../images/PLAY/chesspieces/bN.png" alt = "3"></td>
@@ -147,11 +154,17 @@
         <td id="71" onclick="Chess(71)"><img id="img71" src="../images/PLAY/chesspieces/wN.png" alt = "-3"></td>
         <td id="81" onclick="Chess(81)"><img id="img81" src="../images/PLAY/chesspieces/wR.png" alt = "-6"></td>
     </tr>
-</table>
+    </table>
+    <div id="B_W">
+        <p class="turn_E">白の手番です</p>
+        <br>
+        <p id="B_check_E"></p>
+        <br>
+        <div id="B_prom_E">
 
-<table class="W_komadai">
-
-</table>
+        </div>
+    </div>
+</div>
 </p>
 </div>
 
