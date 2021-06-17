@@ -17,6 +17,8 @@ let flag2 = 0;  //kingと右の黒luke
 let flag3 = 0;  //kingと左の白luke
 let flag4 = 0;  //kingと右の白luke
 let Cas_F = 0; //Castlingしようとしているか
+let B_check = 0; 
+let W_check = 0;
 let kifu = [[-1, 0, 0, 0, 0, 0, 0, 0, "-6", "-4", "0", "0", "0", "0", "4", "6", "-3", "-4", "0", "0", "0", "0", "4", "3", "-1", "-4", "0", "0", "0", "0", "4", "1", "-5", "-4", "0", "0", "0", "0", "4", "5", "-2", "-4", "0", "0", "0", "0", "4", "2", "-1", "-4", "0", "0", "0", "0", "4", "1", "-3", "-4", "0", "0", "0", "0", "4", "3", "-6", "-4", "0", "0", "0", "0", "4", "6"]]; //棋譜
 let N_kifu = [-1, 0, 0, 0, 0, 0, 0, 0, "-6", "-4", "0", "0", "0", "0", "4", "6", "-3", "-4", "0", "0", "0", "0", "4", "3", "-1", "-4", "0", "0", "0", "0", "4", "1", "-5", "-4", "0", "0", "0", "0", "4", "5", "-2", "-4", "0", "0", "0", "0", "4", "2", "-1", "-4", "0", "0", "0", "0", "4", "1", "-3", "-4", "0", "0", "0", "0", "4", "3", "-6", "-4", "0", "0", "0", "0", "4", "6"]; //現在の盤面
 
@@ -66,143 +68,148 @@ function changeImage(n){
 };
 
 //渡した座標の背景を変える
-function Color_change(n){
-    eval("img_" + n).classList.add("komaMove")
+function Color_change(n,m){
+    if(m == 0){
+        eval("img_" + n).classList.add("komaMove")
+    }
+    else if(m == 1){
+        eval("img_" + n).classList.add("Check_check")
+    };
 };
 
 //駒の大まかな動き
 //斜め十字(角)
-function Saltire_I(n){
+function Saltire_I(n,m){
         //左上
         for(let i = n + 11; (1 <= Math.floor(i/10) && Math.floor(i/10) <= 8) && (1 <= Math.floor(i%10) && Math.floor(i%10) <= 8) && ((eval("img_" + n).alt) * eval("img_" + i).alt) <= 0;){
             if((eval("img_" + n).alt * eval("img_" + i).alt) == 0){
-                Color_change(i);
+                Color_change(i,m);
                 i = i + 11;
             }
             else if((eval("img_" + n).alt * eval("img_" + i).alt) < 0){
-                Color_change(i);
+                Color_change(i,m);
                 break;
             };
         };
         //右上
         for(let i = n - 11; ((1 <= Math.floor(i/10) && Math.floor(i/10) <= 8) && (1 <= Math.floor(i%10) && Math.floor(i%10) <= 8)) && (eval("img_" + n).alt * eval("img_" + i).alt) <= 0;){
             if((eval("img_" + n).alt * eval("img_" + i).alt) == 0){
-                Color_change(i);
+                Color_change(i,m);
                 i = i - 11;
             }
             else if((eval("img_" + n).alt * eval("img_" + i).alt) < 0){
-                Color_change(i);
+                Color_change(i,m);
                 break;
             };
         };
         //左下
         for(let i = n - 9; ((1 <= Math.floor(i/10) && Math.floor(i/10) <= 8) && (1 <= Math.floor(i%10) && Math.floor(i%10) <= 8)) && (eval("img_" + n).alt * eval("img_" + i).alt) <= 0;){
             if((eval("img_" + n).alt * eval("img_" + i).alt) == 0){
-                Color_change(i);
+                Color_change(i,m);
                 i = i - 9;
             }
             else if((eval("img_" + n).alt * eval("img_" + i).alt) < 0){
-                Color_change(i);
+                Color_change(i,m);
                 break;
             };
         };
         //右下
         for(let i = n + 9; ((1 <= Math.floor(i/10) && Math.floor(i/10) <= 8) && (1 <= Math.floor(i%10) && Math.floor(i%10) <= 8)) && (eval("img_" + n).alt * eval("img_" + i).alt) <= 0;){
             if((eval("img_" + n).alt * eval("img_" + i).alt) == 0){
-                Color_change(i);
+                Color_change(i,m);
                 i = i + 9;
             }
             else if((eval("img_" + n).alt * eval("img_" + i).alt) < 0){
-                Color_change(i);
+                Color_change(i,m);
                 break;
             };
         };
 };
 
 //十字(飛車)
-function Cross_I(n){
+function Cross_I(n,m){
     //上
     for(let i = n + 10; (1 <= Math.floor(i/10) && Math.floor(i/10) <= 8) && (1 <= Math.floor(i%10) && Math.floor(i%10) <= 8) && (eval("img_" + n).alt * eval("img_" + i).alt) <= 0;){
         if((eval("img_" + n).alt * eval("img_" + i).alt) == 0){
-            Color_change(i);
+            Color_change(i,m);
             i = i + 10;
         }
         else if((eval("img_" + n).alt * eval("img_" + i).alt) < 0){
-            Color_change(i);
+            Color_change(i,m);
             break;
         };
     };
     //右
     for(let i = n - 1; (1 <= Math.floor(i/10) && Math.floor(i/10) <= 8) && (1 <= Math.floor(i%10) && Math.floor(i%10) <= 8) && (eval("img_" + n).alt * eval("img_" + i).alt) <= 0;){
         if((eval("img_" + n).alt * eval("img_" + i).alt) == 0){
-            Color_change(i);
+            Color_change(i,m);
             i = i - 1;
         }
         else if((eval("img_" + n).alt * eval("img_" + i).alt) < 0){
-            Color_change(i);
+            Color_change(i,m);
             break;
         };
     };
     //下
     for(let i = n - 10; (1 <= Math.floor(i/10) && Math.floor(i/10) <= 8) && (1 <= Math.floor(i%10) && Math.floor(i%10) <= 8) && (eval("img_" + n).alt * eval("img_" + i).alt) <= 0;){
         if((eval("img_" + n).alt * eval("img_" + i).alt) == 0){
-            Color_change(i);
+            Color_change(i,m);
             i = i - 10;
         }
         else if((eval("img_" + n).alt * eval("img_" + i).alt) < 0){
-            Color_change(i);
+            Color_change(i,m);
             break;
         };
     };
     //左
     for(let i = n + 1; (1 <= Math.floor(i/10) && Math.floor(i/10) <= 8) && (1 <= Math.floor(i%10) && Math.floor(i%10) <= 8) && (eval("img_" + n).alt * eval("img_" + i).alt) <= 0;){
         if((eval("img_" + n).alt * eval("img_" + i).alt) == 0){
-            Color_change(i);
+            Color_change(i,m);
             i = i + 1;
         }
         else if((eval("img_" + n).alt * eval("img_" + i).alt) < 0){
-            Color_change(i);
+            Color_change(i,m);
             break;
         };
     };
 };
 
 //斜め十字(1マス)
-function Saltire(n){
+function Saltire(n,m){
     //左上
     if((1 <= Math.floor((n + 11)/10) && Math.floor((n + 11)/10) <= 8) && (1 <= Math.floor((n + 11)%10) && Math.floor((n + 11)%10) <= 8) && (eval("img_" + n).alt * eval("img_" + (n + 11)).alt) <= 0){
-        Color_change(n + 11);
+        Color_change(n + 11,m);
     };
     //右上
     if((1 <= Math.floor((n - 11)/10) && Math.floor((n - 11)/10) <= 8) && (1 <= Math.floor((n - 11)%10) && Math.floor((n - 11)%10) <= 8) && (eval("img_" + n).alt * eval("img_" + (n - 11)).alt) <= 0){
-        Color_change(n - 11);
+        Color_change(n - 11,m);
     };
     //左下
     if((1 <= Math.floor((n + 9)/10) && Math.floor((n + 9)/10) <= 8) && (1 <= Math.floor((n + 9)%10) && Math.floor((n + 9)%10) <= 8) && (eval("img_" + n).alt * eval("img_" + (n + 9)).alt) <= 0){
-        Color_change(n + 9);
+        Color_change(n + 9,m);
     };
     //右下
     if((1 <= Math.floor((n - 9)/10) && Math.floor((n - 9)/10) <= 8) && (1 <= Math.floor((n - 9)%10) && Math.floor((n - 9)%10) <= 8) && (eval("img_" + n).alt * eval("img_" + (n - 9)).alt) <= 0){
-        Color_change(n - 9);
+        Color_change(n - 9,m);
     };
 };
 //十字(1マス)
 function Cross(n){
     //上
     if((1 <= Math.floor((n + 10)/10) && Math.floor((n + 10)/10) <= 8) && (1 <= Math.floor((n + 10)%10) && Math.floor((n + 10)%10) <= 8) && (eval("img_" + n).alt * eval("img_" + (n + 10)).alt) <= 0){
-        Color_change(n + 10);
+        Color_change(n + 10,m);
     };
     //右
     if((1 <= Math.floor((n - 1)/10) && Math.floor((n - 1)/10) <= 8) && (1 <= Math.floor((n - 1)%10) && Math.floor((n - 1)%10) <= 8) && (eval("img_" + n).alt * eval("img_" + (n - 1)).alt) <= 0){
-        Color_change(n - 1);
+        Color_change(n - 1,m);
     };
     //下
     if((1 <= Math.floor((n - 10)/10) && Math.floor((n - 10)/10) <= 8) && (1 <= Math.floor((n - 10)%10) && Math.floor((n - 10)%10) <= 8) && (eval("img_" + n).alt * eval("img_" + (n - 10)).alt) <= 0){
-        Color_change(n - 10);
+        Color_change(n - 10,m);
     };
     //左
     if((1 <= Math.floor((n + 1)/10) && Math.floor((n + 1)/10) <= 8) && (1 <= Math.floor((n + 1)%10) && Math.floor((n + 1)%10) <= 8) && (eval("img_" + n).alt * eval("img_" + (n + 1)).alt) <= 0){
-        Color_change(n + 1);
+        Color_change(n + 1,m);
     };
 };
 
@@ -210,25 +217,25 @@ function Cross(n){
 function Move_V(m,n){
     //ビショップの動き
     if(Math.abs(m) == 1){
-        Saltire_I(n);
+        Saltire_I(n,0);
         eval("img_" + n).classList.remove("komaMove");
     }
     //キングの動き
     else if(Math.abs(m) == 2){
         //メイン
-        Saltire(n);
-        Cross(n);
+        Saltire(n,0);
+        Cross(n,0);
         //キャスリング
         //黒キング
         if(m == 2){
             //左側のルークと
             if(flag_B + flag1 + img_28.alt + img_38.alt + img_48.alt == 0){
-                Color_change(38);
+                Color_change(38,0);
                 Cas_F = 1;
             }
             //右側のルークと
             else if(flag_B + flag2 + img_68.alt + img_78.alt == 0){
-                Color_change(78);
+                Color_change(78,0);
                 Cas_F = 1;
             };
         }
@@ -236,12 +243,12 @@ function Move_V(m,n){
         else if(m == -2){
             //左側のルークと
             if(flag_W + flag3 + img_21.alt + img_31.alt + img_41.alt == 0){
-                Color_change(31);
+                Color_change(31,0);
                 Cas_F = 1;
             }
             //右側のルークと
             else if(flag_W + flag4 + img_61.alt + img_71.alt == 0){
-                Color_change(71);
+                Color_change(71,0);
                 Cas_F = 1;
             };
         };
@@ -250,31 +257,31 @@ function Move_V(m,n){
     else if(Math.abs(m) == 3){
         //上開きY
         if((1 <= Math.floor((n - 8)/10) && Math.floor((n - 8)/10) <= 8) && (1 <= Math.floor((n - 8)%10) && Math.floor((n - 8)%10) <= 8) && (eval("img_" + n).alt * eval("img_" + (n - 8)).alt) <= 0){
-            Color_change(n - 8);
+            Color_change(n - 8,0);
         };
         if((1 <= Math.floor((n + 12)/10) && Math.floor((n + 12)/10) <= 8) && (1 <= Math.floor((n + 12)%10) && Math.floor((n + 12)%10) <= 8) && (eval("img_" + n).alt * eval("img_" + (n + 12)).alt) <= 0){
-            Color_change(n + 12);
+            Color_change(n + 12,0);
         };
         //右開きY
         if((1 <= Math.floor((n + 21)/10) && Math.floor((n + 21)/10) <= 8) && (1 <= Math.floor((n + 21)%10) && Math.floor((n + 21)%10) <= 8) && (eval("img_" + n).alt * eval("img_" + (n + 21)).alt) <= 0){
-            Color_change(n + 21);
+            Color_change(n + 21,0);
         };
         if((1 <= Math.floor((n + 19)/10) && Math.floor((n + 19)/10) <= 8) && (1 <= Math.floor((n + 19)%10) && Math.floor((n + 19)%10) <= 8) && (eval("img_" + n).alt * eval("img_" + (n + 19)).alt) <= 0){
-            Color_change(n + 19);
+            Color_change(n + 19,0);
         };
         //下開きY
         if((1 <= Math.floor((n + 8)/10) && Math.floor((n + 8)/10) <= 8) && (1 <= Math.floor((n + 8)%10) && Math.floor((n + 8)%10) <= 8) && (eval("img_" + n).alt * eval("img_" + (n + 8)).alt) <= 0){
-            Color_change(n + 8);
+            Color_change(n + 8,0);
         };
         if((1 <= Math.floor((n - 12)/10) && Math.floor((n - 12)/10) <= 8) && (1 <= Math.floor((n - 12)%10) && Math.floor((n - 12)%10) <= 8) && (eval("img_" + n).alt * eval("img_" + (n - 12)).alt) <= 0){
-            Color_change(n - 12);
+            Color_change(n - 12,0);
         };
         //左開きY
         if((1 <= Math.floor((n - 19)/10) && Math.floor((n - 19)/10) <= 8) && (1 <= Math.floor((n - 19)%10) && Math.floor((n - 19)%10) <= 8) && (eval("img_" + n).alt * eval("img_" + (n - 19)).alt) <= 0){
-            Color_change(n - 19);
+            Color_change(n - 19,0);
         };
         if((1 <= Math.floor((n - 21)/10) && Math.floor((n - 21)/10) <= 8) && (1 <= Math.floor((n - 21)%10) && Math.floor((n - 21)%10) <= 8) && (eval("img_" + n).alt * eval("img_" + (n - 21)).alt) <= 0){
-            Color_change(n - 21);
+            Color_change(n - 21,0);
         };
     }
     //黒ポーンの動き
@@ -282,28 +289,28 @@ function Move_V(m,n){
         //最初の2マス
         if(n%10 == 7){
             if((1 <= Math.floor((n - 1)/10) && Math.floor((n - 1)/10) <= 8) && (1 <= Math.floor((n - 1)%10) && Math.floor((n - 1)%10) <= 8) && (eval("img_" + n).alt * eval("img_" + (n - 1)).alt) == 0){
-                Color_change(n - 1);
+                Color_change(n - 1,0);
                 if((1 <= Math.floor((n - 2)/10) && Math.floor((n - 2)/10) <= 8) && (1 <= Math.floor((n - 2)%10) && Math.floor((n - 2)%10) <= 8) && (eval("img_" + n).alt * eval("img_" + (n - 2)).alt) == 0){
-                    Color_change(n - 2);
+                    Color_change(n - 2,0);
                 };
             };
         }
         //通常の1マス
         else{
             if((1 <= Math.floor((n - 1)/10) && Math.floor((n - 1)/10) <= 8) && (1 <= Math.floor((n - 1)%10) && Math.floor((n - 1)%10) <= 8) && (eval("img_" + n).alt * eval("img_" + (n - 1)).alt) == 0){
-            Color_change(n - 1);
+            Color_change(n - 1,0);
             };
         };
         //右下に敵の駒
         if((1 <= Math.floor((n + 9)/10) && Math.floor((n + 9)/10) <= 8) && (1 <= Math.floor((n + 9)%10) && Math.floor((n + 9)%10) <= 8)){
             if(eval("img_" + (n + 9)).alt < 0){
-                Color_change(n + 9);
+                Color_change(n + 9,0);
             };
         };
         //左下に敵の駒
         if((1 <= Math.floor((n - 11)/10) && Math.floor((n - 11)/10) <= 8) && (1 <= Math.floor((n - 11)%10) && Math.floor((n - 11)%10) <= 8)){
             if(eval("img_" + (n - 11)).alt < 0){
-                Color_change(n - 11);
+                Color_change(n - 11,0);
             };
         };
     }
@@ -312,40 +319,40 @@ function Move_V(m,n){
         //最初の2マス
         if(n%10 == 2){
             if((1 <= Math.floor((n + 1)/10) && Math.floor((n + 1)/10) <= 8) && (1 <= Math.floor((n + 1)%10) && Math.floor((n + 1)%10) <= 8) && (eval("img_" + n).alt * eval("img_" + (n + 1)).alt) == 0){
-                Color_change(n + 1);
+                Color_change(n + 1,0);
                 if((1 <= Math.floor((n + 2)/10) && Math.floor((n + 2)/10) <= 8) && (1 <= Math.floor((n + 2)%10) && Math.floor((n + 2)%10) <= 8) && (eval("img_" + n).alt * eval("img_" + (n + 2)).alt) == 0){
-                    Color_change(n + 2);
+                    Color_change(n + 2,0);
                 };
             };
         }
         //通常の1マス
         else{
             if((1 <= Math.floor((n + 1)/10) && Math.floor((n + 1)/10) <= 8) && (1 <= Math.floor((n + 1)%10) && Math.floor((n + 1)%10) <= 8) && (eval("img_" + n).alt * eval("img_" + (n + 1)).alt) == 0){
-            Color_change(n + 1);
+            Color_change(n + 1,0);
             };
         };
         //右上に敵の駒
         if((1 <= Math.floor((n + 11)/10) && Math.floor((n + 11)/10) <= 8) && (1 <= Math.floor((n + 11)%10) && Math.floor((n + 11)%10) <= 8)){
             if(eval("img_" + (n + 11)).alt > 0){
-                Color_change(n + 11);
+                Color_change(n + 11,0);
             };
         };
         //左上に敵の駒
         if((1 <= Math.floor((n - 9)/10) && Math.floor((n - 9)/10) <= 8) && (1 <= Math.floor((n - 9)%10) && Math.floor((n - 9)%10) <= 8)){
             if(eval("img_" + (n - 9)).alt > 0){
-                Color_change(n - 9);
+                Color_change(n - 9,0);
             };
         };
     }
     //クイーンの動き
     else if(Math.abs(m) == 5){
-        Saltire_I(n);
-        Cross_I(n);
+        Saltire_I(n,0);
+        Cross_I(n,0);
         eval("img_" + n).classList.remove("komaMove")
     }
     //ルークの動き
     else if(Math.abs(m) == 6){
-        Cross_I(n);
+        Cross_I(n,0);
         eval("img_" + n).classList.remove("komaMove")
     };
 };
@@ -358,23 +365,39 @@ function prom_choice(){
 //チェックのチェック
 function Check_check(n){
     if(n == -1){
+        let B_king_P;
         for(let i = 1; i <= 8; i++){
             for(let j = 1; j <= 8; j++){
                 let ij = (10 * i) + j;
                 if(eval("img_" + ij).alt < 0){
-                    eval("img_" + ij).classList("Check_check")
+                    Color_change(ij,1)
+                };
+                if(eval("img_" + ij).alt == 2){
+                    B_king_P = ij;
                 };
             };
         };
+        if(eval("img_" + B_king_P).classList.contains("Check_check")){
+            B_check = 1;
+            alert("chee")
+        };
     }
     else if(n == 1){
+        let W_king_P
         for(let i = 1; i <= 8; i++){
             for(let j = 1; j <= 8; j++){
                 let ij = (10 * i) + j;
                 if(eval("img_" + ij).alt > 0){
-                    eval("img_" + ij).classList("Check_check")
+                    Color_change(ij,1)
+                };
+                if(eval("img_" + ij).alt == 2){
+                    W_king_P = ij;
                 };
             };
+        };
+        if(eval("img_" + W_king_P).classList.contains("Check_check")){
+            W_check = 1;
+            alert("chee")
         };
     };
 };
