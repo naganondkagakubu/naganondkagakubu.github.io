@@ -1003,6 +1003,75 @@ function S_kifu_N(){
     };
 };
 
+//盤面データの出力
+function N_kifu_D_E(){
+    S_kifu_N();
+    document.getElementsByClassName("data_E")[0].value = "[" + N_kifu + "]";
+}
+
+//盤面データの復元
+function kifu_D_R(){
+    if(document.getElementsByClassName("data_E")[1].value !== null){
+        N_kifu = eval(document.getElementsByClassName("data_E")[1].value);
+        //棋譜から盤面を再現
+        turn = parseInt(N_kifu.slice(0,1));
+        N_kifu.splice(0,1);
+        turnsum = parseInt(N_kifu.slice(0,1));
+        N_kifu.splice(0,1);
+        flag_B = parseInt(N_kifu.slice(0,1));
+        N_kifu.splice(0,1);
+        flag_W = parseInt(N_kifu.slice(0,1));
+        N_kifu.splice(0,1);
+        flag1 = parseInt(N_kifu.slice(0,1));
+        N_kifu.splice(0,1);
+        flag2 = parseInt(N_kifu.slice(0,1));
+        N_kifu.splice(0,1);
+        flag3 = parseInt(N_kifu.slice(0,1));
+        N_kifu.splice(0,1);
+        flag4 = parseInt(N_kifu.slice(0,1));
+        N_kifu.splice(0,1);
+        for(let i = 0; i <= 7; i++){
+            N_kifu.splice((10 * i),0,0);
+            N_kifu.splice(((10 * i) + 9),0,0);
+        };
+        for(let i = 1; i <= 8; i++){
+            for(let j = 1; j <= 8; j++){
+                let ij = (10 * i) + j;
+                eval("img_" + ij).alt = parseInt(N_kifu.slice(ij - 10,ij - 9));
+                changeImage(ij);
+            };
+        };
+        
+        if(turn == 0){
+            for(let i = 1; i <= 8; i++){
+                if(eval("img_" + (10 * i) + 8).alt == -4){
+                    prom_P = (10 * i) + 8;
+                    prom_W(-4);
+                }
+            }
+            for(let i = 1; i <= 8; i++){
+                if(eval("img_" + (10 * i) + 1).alt == 4){
+                    prom_P = (10 * i) + 1;
+                    prom_W(4);
+                }
+            }
+        };
+        //ターン表示
+        turn_E();
+    
+        Check_check();
+        //行動範囲のクリーニング
+        for(let i = 1; i <= 8; i++){
+            for(let j = 1;j <= 8; j++){
+                let ij = (10 * i) + j
+                if(eval("img_" + ij).classList.contains("komaMove")){
+                    eval("img_" + ij).classList.remove("komaMove");
+                };
+            };
+        };
+    };
+}
+
 //リセット
 function Reset(){
     //各種数値
@@ -1168,7 +1237,18 @@ function Reset(){
             };
             
             if(turn == 0){
-                prom_W(0);
+                for(let i = 1; i <= 8; i++){
+                    if(eval("img_" + (10 * i) + 8).alt == -4){
+                        prom_P = (10 * i) + 8;
+                        prom_W(-4);
+                    }
+                }
+                for(let i = 1; i <= 8; i++){
+                    if(eval("img_" + (10 * i) + 1).alt == 4){
+                        prom_P = (10 * i) + 1;
+                        prom_W(4);
+                    }
+                }
             };
             Check_check();
             //行動範囲のクリーニング

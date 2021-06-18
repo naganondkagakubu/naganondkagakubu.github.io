@@ -59,7 +59,9 @@
     <br>
     <input type="button" value="ヘッダーの透明化" onclick="header_A()">
     <br>
+    <br>
     <input type="button" value="リセット" onclick="Reset()">
+    <br>
     <br>
     <input type="button" value="1手戻す" onclick="Matta()">
     <br>
@@ -170,6 +172,13 @@
         <button id = "W_Q_B" onclick="prom_choice(-5)"><img src="../images/PLAY/chesspieces/wQ.png"></button>
         </div>
     </div>
+</div>
+<br>
+<div>
+    <textarea class="data_E" cols="20" rows="5" wrap="soft"></textarea>
+    <button onclick="N_kifu_D_E()" class="data_E_B">盤面のデータを出力</button>
+    <textarea class="data_E" cols="20" rows="5" wrap="soft"></textarea>
+    <button onclick="kifu_D_R()" class="data_E_B">盤面を復元</button>
 </div>
 </p>
 </div>
