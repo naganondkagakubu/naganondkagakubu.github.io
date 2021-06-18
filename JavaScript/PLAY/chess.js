@@ -844,6 +844,7 @@ window.addEventListener("load", function(){
         N_kifu = KiFu[KiFu.length - 1];
         KiFu.pop();
         kifu = [].concat(KiFu);
+        console.log("ok")
         //棋譜から盤面を再現
         turn = parseInt(N_kifu.slice(0,1));
         N_kifu.splice(0,1);
