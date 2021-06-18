@@ -1132,8 +1132,7 @@ function Reset(){
 };
 
 //ウィンドウが読み込まれたとき
-jQuery(function(){
-    jQuery(window).on("load", function(){
+    window.addEventListener("load", function(){
         if(localStorage.getItem("kifu_H") !== null){
             let KiFu = JSON.parse(localStorage.getItem("kifu_H"));
             N_kifu = KiFu[KiFu.length - 1];
@@ -1182,6 +1181,5 @@ jQuery(function(){
                 };
             };
         };
-    })
-});
+    });
 
