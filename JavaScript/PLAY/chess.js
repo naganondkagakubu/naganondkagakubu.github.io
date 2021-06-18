@@ -370,6 +370,18 @@ function prom_choice(){
 
 //チェックのチェック
 function Check_check(n){
+    //クリーニング
+    for(let i = 1; i <= 8; i++){
+        for(let j = 1;j <= 8; j++){
+            let ij = (10 * i) + j
+            if(eval("img_" + ij).classList.contains("Check_checkforB")){
+                eval("img_" + ij).classList.remove("Check_checkforB");
+            };
+            if(eval("img_" + ij).classList.contains("Check_checkforW")){
+                eval("img_" + ij).classList.remove("Check_checkforW");
+            };
+        };
+    };
     let B_king_P;
     let W_king_P
     for(let i = 1; i <= 8; i++){
@@ -394,6 +406,7 @@ function Check_check(n){
             };
         };
     };
+    //チェックの確認
     if(eval("img_" + B_king_P).classList.contains("Check_checkforB")){
         B_check = 1;
         document.getElementById("B_check_E").innerHTML = "チェックされています"
@@ -410,18 +423,7 @@ function Check_check(n){
         W_check = 0;
         document.getElementById("W_check_E").innerHTML = ""
     };
-    //クリーニング
-    for(let i = 1; i <= 8; i++){
-        for(let j = 1;j <= 8; j++){
-            let ij = (10 * i) + j
-            if(eval("img_" + ij).classList.contains("Check_checkforB")){
-                eval("img_" + ij).classList.remove("Check_checkforB");
-            };
-            if(eval("img_" + ij).classList.contains("Check_checkforW")){
-                eval("img_" + ij).classList.remove("Check_checkforW");
-            };
-        };
-    };
+    //チェックメイトの確認
 };
 
 //ターン表示
@@ -844,7 +846,7 @@ window.addEventListener("load", function(){
         N_kifu = KiFu[KiFu.length - 1];
         KiFu.pop();
         kifu = [].concat(KiFu);
-        console.log("ok")
+        alert("ok")
         //棋譜から盤面を再現
         turn = parseInt(N_kifu.slice(0,1));
         N_kifu.splice(0,1);
