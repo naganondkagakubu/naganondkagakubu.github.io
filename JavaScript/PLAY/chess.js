@@ -23,6 +23,7 @@ let Cas_F = 0; //Castlingしようとしているか
 let B_check = 0; 
 let W_check = 0;
 let prom_F = 0;
+let prom_P = 0;
 let kifu = [[-1, 0, 0, 0, 0, 0, 0, 0, "-6", "-4", "0", "0", "0", "0", "4", "6", "-3", "-4", "0", "0", "0", "0", "4", "3", "-1", "-4", "0", "0", "0", "0", "4", "1", "-5", "-4", "0", "0", "0", "0", "4", "5", "-2", "-4", "0", "0", "0", "0", "4", "2", "-1", "-4", "0", "0", "0", "0", "4", "1", "-3", "-4", "0", "0", "0", "0", "4", "3", "-6", "-4", "0", "0", "0", "0", "4", "6"]]; //棋譜
 let N_kifu = [-1, 0, 0, 0, 0, 0, 0, 0, "-6", "-4", "0", "0", "0", "0", "4", "6", "-3", "-4", "0", "0", "0", "0", "4", "3", "-1", "-4", "0", "0", "0", "0", "4", "1", "-5", "-4", "0", "0", "0", "0", "4", "5", "-2", "-4", "0", "0", "0", "0", "4", "2", "-1", "-4", "0", "0", "0", "0", "4", "1", "-3", "-4", "0", "0", "0", "0", "4", "3", "-6", "-4", "0", "0", "0", "0", "4", "6"]; //現在の盤面
 
@@ -519,10 +520,33 @@ function Move_V(m,n,l){
 };
 
 //プロモーションの選択
-function prom_W(){
+function prom_W(n){
     turn = 0;
-
+    if(n == 4){
+        document.getElementById("B_prom_E").classList.remove("is-act");
+    }
+    else if(n == -4){
+        document.getElementById("W_prom_E").classList.remove("is-act");
+    }
+    else{
+        document.getElementById("B_prom_E").classList.remove("is-act");
+        document.getElementById("W_prom_E").classList.remove("is-act");
+    };
 };
+
+function prom_choice(n){
+    prom_F = n;
+    if(!document.getElementById("B_prom_E").classList.contains("is-act")){
+        document.getElementById("B_prom_E").classList.add("is-act");
+    };
+    if(!document.getElementById("W_prom_E").classList.contains("is-act")){
+        document.getElementById("W_prom_E").classList.add("is-act");
+    };
+    mode = 1;
+    old_P.alt = 0;
+    eval("img_" + prom_P).classList.add("komaMove")
+    Chess(prom_P);
+}
 
 //チェックのチェック
 function Check_check(){
@@ -744,11 +768,14 @@ function Chess(n){
                 };
                 
         //駒の移動
-                if(prom_F == 0 && eval("img_" + n).alt == 4 && n%10 == 8){
-                    prom_W();
+            //プロモーション
+                if(prom_F == 0 && eval("img_" + old_P).alt == -4 && 7 < n%10 && n%10 <= 8){
+                    prom_W(eval("img_" + old_P).alt);
+                    prom_P = n;
                 }
-                else if(prom_F == 0 && eval("img_" + n).alt == -4 && n%10 == 1){
-                    prom_W;
+                else if(prom_F == 0 && eval("img_" + old_P).alt == 4 && 1 <= n%10 && n%10 < 2){
+                    prom_W(eval("img_" + old_P).alt);
+                    prom_P = n;
                 }
             //キャスリング
                 //黒キング
@@ -795,11 +822,19 @@ function Chess(n){
                 }
                 //黒ポーンのプロモーション
                 else if(prom_F > 0){
+                    console.log("a")
                     eval("img_" + n).alt = prom_F;
                     eval("img_" + old_P).alt = 0;
                     changeImage(n);
                     changeImage(old_P);
                     turn = -1;
+                    prom_F = 0;
+                    if(!document.getElementById("B_prom_E").classList.contains("is-act")){
+                        document.getElementById("B_prom_E").classList.add("is-act");
+                    };
+                    if(!document.getElementById("W_prom_E").classList.contains("is-act")){
+                        document.getElementById("W_prom_E").classList.add("is-act");
+                    };
                 }
                 //白ポーンのプロモーション
                 else if(prom_F < 0){
@@ -808,6 +843,13 @@ function Chess(n){
                     changeImage(n);
                     changeImage(old_P);
                     turn = 1;
+                    prom_F = 0;
+                    if(!document.getElementById("B_prom_E").classList.contains("is-act")){
+                        document.getElementById("B_prom_E").classList.add("is-act");
+                    };
+                    if(!document.getElementById("W_prom_E").classList.contains("is-act")){
+                        document.getElementById("W_prom_E").classList.add("is-act");
+                    };
                 }
             //その他
                 else{
@@ -918,6 +960,10 @@ function Matta(){
             };
         };
     };
+
+    //ターン表示
+    turn_E();
+
     //N_kifuの更新
     S_kifu_N();
 
@@ -972,6 +1018,7 @@ function Reset(){
     flag4 = 0;
     Cas_F = 0;
     prom_F = 0;
+    prom_P = 0;
     kifu = [[-1, 0, 0, 0, 0, 0, 0, 0, "-6", "-4", "0", "0", "0", "0", "4", "6", "-3", "-4", "0", "0", "0", "0", "4", "3", "-1", "-4", "0", "0", "0", "0", "4", "1", "-5", "-4", "0", "0", "0", "0", "4", "5", "-2", "-4", "0", "0", "0", "0", "4", "2", "-1", "-4", "0", "0", "0", "0", "4", "1", "-3", "-4", "0", "0", "0", "0", "4", "3", "-6", "-4", "0", "0", "0", "0", "4", "6"]];
     N_kifu = [-1, 0, 0, 0, 0, 0, 0, 0, "-6", "-4", "0", "0", "0", "0", "4", "6", "-3", "-4", "0", "0", "0", "0", "4", "3", "-1", "-4", "0", "0", "0", "0", "4", "1", "-5", "-4", "0", "0", "0", "0", "4", "5", "-2", "-4", "0", "0", "0", "0", "4", "2", "-1", "-4", "0", "0", "0", "0", "4", "1", "-3", "-4", "0", "0", "0", "0", "4", "3", "-6", "-4", "0", "0", "0", "0", "4", "6"];
 
@@ -1064,6 +1111,10 @@ function Reset(){
             };
         };
     };
+
+    //ターン表示
+    turn_E();
+    
     //N_kifuの更新
     S_kifu_N();
 
@@ -1116,8 +1167,9 @@ jQuery(function(){
                     changeImage(ij);
                 };
             };
+            
             if(turn == 0){
-                prom_W();
+                prom_W(0);
             };
             Check_check();
             //行動範囲のクリーニング
@@ -1130,7 +1182,6 @@ jQuery(function(){
                 };
             };
         };
-        alert("ok")
     })
 });
 

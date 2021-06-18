@@ -24,6 +24,9 @@ body {
     height: 20vw;
 }
 
+.is-act{
+    opacity: 0;
+}
 
 .chess-board{
     float: left;
