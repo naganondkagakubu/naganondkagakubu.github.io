@@ -48,6 +48,15 @@ body {
     float: left;
 }
 
+.data_E{
+    width: 200px;
+    height: 150px;
+}
+
 .komaMove {
     background-color: rgba(255, 0, 0, 0.5);
+}
+
+.enemy{
+    transform: rotate(180deg);
 }
