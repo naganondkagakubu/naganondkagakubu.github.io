@@ -63,9 +63,11 @@
     <br>
     <input type="button" value="待った" onclick="Matta()">
     <br>
+    <input type="button" value="as" onclick="check()">
+    <br>
 <div id = "syougi">
 <div id="G_W">
-    <p id="G_turn_E">白の手番です</p>
+    <p id="G_turn_E">先手の手番です</p>
         <br>
         <p id="G_check_E"></p>
         <br>
@@ -86,81 +88,81 @@
         <td id="11" onclick="Syougi(11)"><img id = "img_11" class="enemy" src = "../images/PLAY/syougi koma/kyou.png" alt = "-8"></td>
     </tr>
     <tr>
-        <td id="29"><img id = "img_29" class="enemy" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
-        <td id="28"><img id = "img_28" class="enemy" src = "../images/PLAY/syougi koma/hi.png" alt = "-4"></td>
-        <td id="27"><img id = "img_27" class="enemy" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
-        <td id="26"><img id = "img_26" class="enemy" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
-        <td id="25"><img id = "img_25" class="enemy" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
-        <td id="24"><img id = "img_24" class="enemy" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
-        <td id="23"><img id = "img_23" class="enemy" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
-        <td id="22"><img id = "img_22" class="enemy" src = "../images/PLAY/syougi koma/kaku.png" alt = "-5"></td>
-        <td id="21"><img id = "img_21" class="enemy" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
+        <td id="29" onclick="Syougi(29)"><img id = "img_29" class="enemy" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
+        <td id="28" onclick="Syougi(28)"><img id = "img_28" class="enemy" src = "../images/PLAY/syougi koma/hi.png" alt = "-4"></td>
+        <td id="27" onclick="Syougi(27)"><img id = "img_27" class="enemy" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
+        <td id="26" onclick="Syougi(26)"><img id = "img_26" class="enemy" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
+        <td id="25" onclick="Syougi(25)"><img id = "img_25" class="enemy" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
+        <td id="24" onclick="Syougi(24)"><img id = "img_24" class="enemy" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
+        <td id="23" onclick="Syougi(23)"><img id = "img_23" class="enemy" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
+        <td id="22" onclick="Syougi(22)"><img id = "img_22" class="enemy" src = "../images/PLAY/syougi koma/kaku.png" alt = "-5"></td>
+        <td id="21" onclick="Syougi(21)"><img id = "img_21" class="enemy" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
     </tr>
     <tr>
-        <td id="39"><img id = "img_39" class="enemy" src = "../images/PLAY/syougi koma/fu.png" alt = "-1"></td>
-        <td id="38"><img id = "img_38" class="enemy" src = "../images/PLAY/syougi koma/fu.png" alt = "-1"></td>
-        <td id="37"><img id = "img_37" class="enemy" src = "../images/PLAY/syougi koma/fu.png" alt = "-1"></td>
-        <td id="36"><img id = "img_36" class="enemy" src = "../images/PLAY/syougi koma/fu.png" alt = "-1"></td>
-        <td id="35"><img id = "img_35" class="enemy" src = "../images/PLAY/syougi koma/fu.png" alt = "-1"></td>
-        <td id="34"><img id = "img_34" class="enemy" src = "../images/PLAY/syougi koma/fu.png" alt = "-1"></td>
-        <td id="33"><img id = "img_33" class="enemy" src = "../images/PLAY/syougi koma/fu.png" alt = "-1"></td>
-        <td id="32"><img id = "img_32" class="enemy" src = "../images/PLAY/syougi koma/fu.png" alt = "-1"></td>
-        <td id="31"><img id = "img_31" class="enemy" src = "../images/PLAY/syougi koma/fu.png" alt = "-1"></td>
+        <td id="39" onclick="Syougi(39)"><img id = "img_39" class="enemy" src = "../images/PLAY/syougi koma/fu.png" alt = "-1"></td>
+        <td id="38" onclick="Syougi(38)"><img id = "img_38" class="enemy" src = "../images/PLAY/syougi koma/fu.png" alt = "-1"></td>
+        <td id="37" onclick="Syougi(37)"><img id = "img_37" class="enemy" src = "../images/PLAY/syougi koma/fu.png" alt = "-1"></td>
+        <td id="36" onclick="Syougi(36)"><img id = "img_36" class="enemy" src = "../images/PLAY/syougi koma/fu.png" alt = "-1"></td>
+        <td id="35" onclick="Syougi(35)"><img id = "img_35" class="enemy" src = "../images/PLAY/syougi koma/fu.png" alt = "-1"></td>
+        <td id="34" onclick="Syougi(34)"><img id = "img_34" class="enemy" src = "../images/PLAY/syougi koma/fu.png" alt = "-1"></td>
+        <td id="33" onclick="Syougi(33)"><img id = "img_33" class="enemy" src = "../images/PLAY/syougi koma/fu.png" alt = "-1"></td>
+        <td id="32" onclick="Syougi(32)"><img id = "img_32" class="enemy" src = "../images/PLAY/syougi koma/fu.png" alt = "-1"></td>
+        <td id="31" onclick="Syougi(31)"><img id = "img_31" class="enemy" src = "../images/PLAY/syougi koma/fu.png" alt = "-1"></td>
     </tr>
     <tr>
-        <td id="49"><img id = "img_49" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
-        <td id="48"><img id = "img_48" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
-        <td id="47"><img id = "img_47" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
-        <td id="46"><img id = "img_46" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
-        <td id="45"><img id = "img_45" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
-        <td id="44"><img id = "img_44" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
-        <td id="43"><img id = "img_43" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
-        <td id="42"><img id = "img_42" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
-        <td id="41"><img id = "img_41" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
+        <td id="49" onclick="Syougi(49)"><img id = "img_49" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
+        <td id="48" onclick="Syougi(48)"><img id = "img_48" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
+        <td id="47" onclick="Syougi(47)"><img id = "img_47" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
+        <td id="46" onclick="Syougi(46)"><img id = "img_46" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
+        <td id="45" onclick="Syougi(45)"><img id = "img_45" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
+        <td id="44" onclick="Syougi(44)"><img id = "img_44" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
+        <td id="43" onclick="Syougi(43)"><img id = "img_43" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
+        <td id="42" onclick="Syougi(42)"><img id = "img_42" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
+        <td id="41" onclick="Syougi(41)"><img id = "img_41" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
     </tr>
     <tr>
-        <td id="59"><img id = "img_59" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
-        <td id="58"><img id = "img_58" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
-        <td id="57"><img id = "img_57" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
-        <td id="56"><img id = "img_56" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
-        <td id="55"><img id = "img_55" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
-        <td id="54"><img id = "img_54" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
-        <td id="53"><img id = "img_53" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
-        <td id="52"><img id = "img_52" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
-        <td id="51"><img id = "img_51" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
+        <td id="59" onclick="Syougi(59)"><img id = "img_59" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
+        <td id="58" onclick="Syougi(58)"><img id = "img_58" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
+        <td id="57" onclick="Syougi(57)"><img id = "img_57" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
+        <td id="56" onclick="Syougi(56)"><img id = "img_56" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
+        <td id="55" onclick="Syougi(55)"><img id = "img_55" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
+        <td id="54" onclick="Syougi(54)"><img id = "img_54" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
+        <td id="53" onclick="Syougi(53)"><img id = "img_53" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
+        <td id="52" onclick="Syougi(52)"><img id = "img_52" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
+        <td id="51" onclick="Syougi(51)"><img id = "img_51" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
     </tr>
     <tr>
-        <td id="69"><img id = "img_69" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
-        <td id="68"><img id = "img_68" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
-        <td id="67"><img id = "img_67" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
-        <td id="66"><img id = "img_66" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
-        <td id="65"><img id = "img_65" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
-        <td id="64"><img id = "img_64" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
-        <td id="63"><img id = "img_63" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
-        <td id="62"><img id = "img_62" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
-        <td id="61"><img id = "img_61" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
+        <td id="69" onclick="Syougi(69)"><img id = "img_69" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
+        <td id="68" onclick="Syougi(68)"><img id = "img_68" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
+        <td id="67" onclick="Syougi(67)"><img id = "img_67" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
+        <td id="66" onclick="Syougi(66)"><img id = "img_66" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
+        <td id="65" onclick="Syougi(65)"><img id = "img_65" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
+        <td id="64" onclick="Syougi(64)"><img id = "img_64" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
+        <td id="63" onclick="Syougi(63)"><img id = "img_63" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
+        <td id="62" onclick="Syougi(62)"><img id = "img_62" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
+        <td id="61" onclick="Syougi(61)"><img id = "img_61" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
     </tr>
     <tr>
-        <td id="79"><img id = "img_79" src = "../images/PLAY/syougi koma/fu.png" alt = "1"></td>
-        <td id="78"><img id = "img_78" src = "../images/PLAY/syougi koma/fu.png" alt = "1"></td>
-        <td id="77"><img id = "img_77" src = "../images/PLAY/syougi koma/fu.png" alt = "1"></td>
-        <td id="76"><img id = "img_76" src = "../images/PLAY/syougi koma/fu.png" alt = "1"></td>
-        <td id="75"><img id = "img_75" src = "../images/PLAY/syougi koma/fu.png" alt = "1"></td>
-        <td id="74"><img id = "img_74" src = "../images/PLAY/syougi koma/fu.png" alt = "1"></td>
-        <td id="73"><img id = "img_73" src = "../images/PLAY/syougi koma/fu.png" alt = "1"></td>
-        <td id="72"><img id = "img_72" src = "../images/PLAY/syougi koma/fu.png" alt = "1"></td>
-        <td id="71"><img id = "img_71" src = "../images/PLAY/syougi koma/fu.png" alt = "1"></td>
+        <td id="79" onclick="Syougi(79)"><img id = "img_79" src = "../images/PLAY/syougi koma/fu.png" alt = "1"></td>
+        <td id="78" onclick="Syougi(78)"><img id = "img_78" src = "../images/PLAY/syougi koma/fu.png" alt = "1"></td>
+        <td id="77" onclick="Syougi(77)"><img id = "img_77" src = "../images/PLAY/syougi koma/fu.png" alt = "1"></td>
+        <td id="76" onclick="Syougi(76)"><img id = "img_76" src = "../images/PLAY/syougi koma/fu.png" alt = "1"></td>
+        <td id="75" onclick="Syougi(75)"><img id = "img_75" src = "../images/PLAY/syougi koma/fu.png" alt = "1"></td>
+        <td id="74" onclick="Syougi(74)"><img id = "img_74" src = "../images/PLAY/syougi koma/fu.png" alt = "1"></td>
+        <td id="73" onclick="Syougi(73)"><img id = "img_73" src = "../images/PLAY/syougi koma/fu.png" alt = "1"></td>
+        <td id="72" onclick="Syougi(72)"><img id = "img_72" src = "../images/PLAY/syougi koma/fu.png" alt = "1"></td>
+        <td id="71" onclick="Syougi(71)"><img id = "img_71" src = "../images/PLAY/syougi koma/fu.png" alt = "1"></td>
     </tr>
     <tr>
-        <td id="89"><img id = "img_89" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
-        <td id="88"><img id = "img_88" src = "../images/PLAY/syougi koma/kaku.png" alt = "5"></td>
-        <td id="87"><img id = "img_87" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
-        <td id="86"><img id = "img_86" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
-        <td id="85"><img id = "img_85" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
-        <td id="84"><img id = "img_84" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
-        <td id="83"><img id = "img_83" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
-        <td id="82"><img id = "img_82" src = "../images/PLAY/syougi koma/hi.png" alt = "4"></td>
-        <td id="81"><img id = "img_81" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
+        <td id="89" onclick="Syougi(89)"><img id = "img_89" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
+        <td id="88" onclick="Syougi(88)"><img id = "img_88" src = "../images/PLAY/syougi koma/kaku.png" alt = "5"></td>
+        <td id="87" onclick="Syougi(87)"><img id = "img_87" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
+        <td id="86" onclick="Syougi(86)"><img id = "img_86" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
+        <td id="85" onclick="Syougi(85)"><img id = "img_85" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
+        <td id="84" onclick="Syougi(84)"><img id = "img_84" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
+        <td id="83" onclick="Syougi(83)"><img id = "img_83" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
+        <td id="82" onclick="Syougi(82)"><img id = "img_82" src = "../images/PLAY/syougi koma/hi.png" alt = "4"></td>
+        <td id="81" onclick="Syougi(81)"><img id = "img_81" src = "../images/PLAY/syougi koma/empty.png" alt = "0"></td>
     </tr>
     <tr>
         <td id="99" onclick="Syougi(99)"><img id = "img_99" src = "../images/PLAY/syougi koma/kyou.png" alt = "8"></td>
@@ -175,7 +177,7 @@
     </tr>
 </table>
 <div id ="S_W">
-    <p id="S_turn_E">白の手番です</p>
+    <p id="S_turn_E">先手の手番です</p>
         <br>
         <p id="S_check_E"></p>
         <br>
