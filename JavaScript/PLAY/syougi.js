@@ -904,6 +904,8 @@ function Syougi(n){
                     //各種数値
                     Ki.push(turn);
                     Ki.push(turnsum);
+                    Ki.push(S_get);
+                    Ki.push(G_get);
                     //駒の位置
                     for(let i = 1; i <= 8; i++){
                         for (let j = 1; j <= 8; j++){
@@ -921,6 +923,7 @@ function Syougi(n){
                 
                 
             //その他
+            console.log(S_get)
                     Moti(n);
                     //駒の画像の入れ替え
                     eval("img_" + n).alt = eval("img_" + old_P).alt;
@@ -1039,6 +1042,7 @@ function N_kifu_D_E(){
 function kifu_D_R(){
     if(document.getElementsByClassName("data_E")[1].value !== null){
         N_kifu = eval(document.getElementsByClassName("data_E")[1].value);
+        console.log(N_kifu)
         //棋譜から盤面を再現
         turn = parseInt(N_kifu.slice(0,1));
         N_kifu.splice(0,1);
@@ -1080,7 +1084,7 @@ function Reset(){
     old_P = 0;
     prom_F = 0;
     prom_P = 0;
-    kifu = [[1,0,[],[]-8,-6,-2,-7,-3,-7,-2,-6,-8,0,-5,0,0,0,0,0,-4,0,-1,-1,-1,-1,-1,-1,-1,-1,-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,4,0,0,0,0,0,5,0,8,6,2,7,9,7,2,6,8]];
+    kifu = [[1,0,[],[],-8,-6,-2,-7,-3,-7,-2,-6,-8,0,-5,0,0,0,0,0,-4,0,-1,-1,-1,-1,-1,-1,-1,-1,-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,4,0,0,0,0,0,5,0,8,6,2,7,9,7,2,6,8]];
     N_kifu = [1,0,[],[],-8,-6,-2,-7,-3,-7,-2,-6,-8,0,-5,0,0,0,0,0,-4,0,-1,-1,-1,-1,-1,-1,-1,-1,-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,4,0,0,0,0,0,5,0,8,6,2,7,9,7,2,6,8];
 
     //棋譜から盤面を再現
@@ -1126,7 +1130,7 @@ function Reset(){
 };
 
 //ウィンドウが読み込まれたとき
-window.addEventListener("load", function(){
+window.addEventListener("", function(){
     if(localStorage.getItem("kifu_H") !== null){
         let KiFu = JSON.parse(localStorage.getItem("kifu_H"));
         N_kifu = KiFu[KiFu.length - 1];
