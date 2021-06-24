@@ -19,8 +19,8 @@ let prom_F = 0;
 let prom_P = 0;
 let S_get = []; //先手が取った駒
 let G_get = []; //後手が取った駒
-let kifu = [[1,0,[],[],-8,-6,-2,-7,-3,-7,-2,-6,-8,0,-5,0,0,0,0,0,-4,0,-1,-1,-1,-1,-1,-1,-1,-1,-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,4,0,0,0,0,0,5,0,8,6,2,7,9,7,2,6,8]]; //棋譜
-let N_kifu = [1,0,[],[],-8,-6,-2,-7,-3,-7,-2,-6,-8,0,-5,0,0,0,0,0,-4,0,-1,-1,-1,-1,-1,-1,-1,-1,-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,4,0,0,0,0,0,5,0,8,6,2,7,9,7,2,6,8]; //現在の盤面
+let kifu = [[1,0,[],[],-8,-6,-2,-7,-3,-7,-2,-6,-8,-5,0,0,0,0,0,-4,0,-1,-1,-1,-1,-1,-1,-1,-1,-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,4,0,0,0,0,0,5,0,8,6,2,7,9,7,2,6,8]]; //棋譜
+let N_kifu = [1,0,[],[],-8,-6,-2,-7,-3,-7,-2,-6,-8,-5,0,0,0,0,0,-4,0,-1,-1,-1,-1,-1,-1,-1,-1,-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,4,0,0,0,0,0,5,0,8,6,2,7,9,7,2,6,8]; //現在の盤面
 
 function changeImage(n){
     if(Math.abs(eval("img_" + n).alt) == 1){
@@ -923,7 +923,6 @@ function Syougi(n){
                 
                 
             //その他
-            console.log(S_get)
                     Moti(n);
                     //駒の画像の入れ替え
                     eval("img_" + n).alt = eval("img_" + old_P).alt;
@@ -976,41 +975,43 @@ function Matta(){
         Ki.splice(0,1);
         turnsum = parseInt(Ki.slice(0,1));
         Ki.splice(0,1);
-        S_get = parseInt(N_kifu.slice(0,1));
+        S_get = N_kifu.slice(0,1);
         Ki.splice(0,1)
-        G_get = parseInt(N_kifu.slice(0,1));
+        G_get = N_kifu.slice(0,1);
         Ki.splice(0,1)
-    for(let i = 0; i <= 8; i++){
-        Ki.splice((10 * i),0,0);
-    };
-    for(let i = 1; i <= 9; i++){
-        for(let j = 1; j <= 9; j++){
-            let ij = (10 * i) + j;
-            eval("img_" + ij).alt = parseInt(Ki.slice(ij - 10,ij - 9));
-            changeImage(ij);
+        for(let i = 0; i <= 8; i++){
+            Ki.splice((10 * i),0,0);
         };
-    };
-    turnsum = turnsum - 1;
-    kifu.pop();
-    Cleaning();
+        console.log(Ki)
 
-    //ターン表示
-    turn_E();
-
-    //N_kifuの更新
-    S_kifu_N();
-
-    if(localStorage.getItem("kifu_H") !== null){
-        localStorage.removeItem("kifu_H");
-        try{
-            let kifu_H = kifu.concat();
-            kifu_H.push(N_kifu);
-            localStorage.setItem("kifu_H", JSON.stringify(kifu_H));
-        }
-        catch(e){
-            console.log(e);
+        for(let i = 1; i <= 9; i++){
+            for(let j = 1; j <= 9; j++){
+                let ij = (10 * i) + j;
+                eval("img_" + ij).alt = parseInt(Ki.slice(ij - 10,ij - 9));
+                changeImage(ij);
+            };
         };
-    };
+        turnsum = turnsum - 1;
+        kifu.pop();
+        Cleaning();
+
+        //ターン表示
+        turn_E();
+
+        //N_kifuの更新
+        S_kifu_N();
+
+        if(localStorage.getItem("kifu_H") !== null){
+            localStorage.removeItem("kifu_H");
+            try{
+                let kifu_H = kifu.concat();
+                kifu_H.push(N_kifu);
+                localStorage.setItem("kifu_H", JSON.stringify(kifu_H));
+            }
+            catch(e){
+                console.log(e);
+            };
+        };
     };
     
 };
@@ -1035,22 +1036,25 @@ function S_kifu_N(){
 //盤面データの出力
 function N_kifu_D_E(){
     S_kifu_N();
-    document.getElementsByClassName("data_E")[0].value = "[" + N_kifu + "]";
+    let N_kifu_C = [].concat(N_kifu)
+    N_kifu_C.splice(0,4)
+    S_get = N_kifu[2]
+    G_get = N_kifu[3]
+    document.getElementsByClassName("data_E")[0].value = "[" + N_kifu[0] + "," + N_kifu[1] + ",[" + S_get + "]" + ",[" + G_get + "]," + N_kifu_C +"]";
 }
 
 //盤面データの復元
 function kifu_D_R(){
     if(document.getElementsByClassName("data_E")[1].value !== null){
         N_kifu = eval(document.getElementsByClassName("data_E")[1].value);
-        console.log(N_kifu)
         //棋譜から盤面を再現
         turn = parseInt(N_kifu.slice(0,1));
         N_kifu.splice(0,1);
         turnsum = parseInt(N_kifu.slice(0,1));
         N_kifu.splice(0,1);
-        S_get = parseInt(N_kifu.slice(0,1));
+        S_get = N_kifu.slice(0,1);
         N_kifu.splice(0,1)
-        G_get = parseInt(N_kifu.slice(0,1));
+        G_get = N_kifu.slice(0,1);
         N_kifu.splice(0,1)
         for(let i = 0; i <= 8; i++){
             N_kifu.splice((10 * i),0,0);
@@ -1084,17 +1088,17 @@ function Reset(){
     old_P = 0;
     prom_F = 0;
     prom_P = 0;
-    kifu = [[1,0,[],[],-8,-6,-2,-7,-3,-7,-2,-6,-8,0,-5,0,0,0,0,0,-4,0,-1,-1,-1,-1,-1,-1,-1,-1,-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,4,0,0,0,0,0,5,0,8,6,2,7,9,7,2,6,8]];
-    N_kifu = [1,0,[],[],-8,-6,-2,-7,-3,-7,-2,-6,-8,0,-5,0,0,0,0,0,-4,0,-1,-1,-1,-1,-1,-1,-1,-1,-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,4,0,0,0,0,0,5,0,8,6,2,7,9,7,2,6,8];
+    kifu = [[1,0,[],[],-8,-6,-2,-7,-3,-7,-2,-6,-8,-5,0,0,0,0,0,-4,0,-1,-1,-1,-1,-1,-1,-1,-1,-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,4,0,0,0,0,0,5,0,8,6,2,7,9,7,2,6,8]];
+    N_kifu = [1,0,[],[],-8,-6,-2,-7,-3,-7,-2,-6,-8,-5,0,0,0,0,0,-4,0,-1,-1,-1,-1,-1,-1,-1,-1,-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,4,0,0,0,0,0,5,0,8,6,2,7,9,7,2,6,8];
 
     //棋譜から盤面を再現
     turn = parseInt(N_kifu.slice(0,1));
     N_kifu.splice(0,1);
     turnsum = parseInt(N_kifu.slice(0,1));
     N_kifu.splice(0,1);
-    S_get = parseInt(N_kifu.slice(0,1));
+    S_get = N_kifu.slice(0,1);
     N_kifu.splice(0,1)
-    G_get = parseInt(N_kifu.slice(0,1));
+    G_get = N_kifu.slice(0,1);
     N_kifu.splice(0,1)
     for(let i = 0; i <= 8; i++){
         N_kifu.splice((10 * i),0,0);
@@ -1130,7 +1134,7 @@ function Reset(){
 };
 
 //ウィンドウが読み込まれたとき
-window.addEventListener("", function(){
+window.addEventListener("load", function(){
     if(localStorage.getItem("kifu_H") !== null){
         let KiFu = JSON.parse(localStorage.getItem("kifu_H"));
         N_kifu = KiFu[KiFu.length - 1];
@@ -1141,9 +1145,9 @@ window.addEventListener("", function(){
         N_kifu.splice(0,1);
         turnsum = parseInt(N_kifu.slice(0,1));
         N_kifu.splice(0,1);
-        S_get = parseInt(N_kifu.slice(0,1));
+        S_get = N_kifu.slice(0,1);
         N_kifu.splice(0,1)
-        G_get = parseInt(N_kifu.slice(0,1));
+        G_get = N_kifu.slice(0,1);
         N_kifu.splice(0,1)
         for(let i = 0; i <= 8; i++){
             N_kifu.splice((10 * i),0,0);
@@ -1160,6 +1164,8 @@ window.addEventListener("", function(){
             
         };
         Oute_check();
+        //ターン表示
+        turn_E();
         //行動範囲のクリーニング
         Cleaning();
     };

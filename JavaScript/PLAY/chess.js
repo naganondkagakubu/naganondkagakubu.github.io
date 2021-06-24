@@ -822,7 +822,6 @@ function Chess(n){
                 }
                 //黒ポーンのプロモーション
                 else if(prom_F > 0){
-                    console.log("a")
                     eval("img_" + n).alt = prom_F;
                     eval("img_" + old_P).alt = 0;
                     changeImage(n);
