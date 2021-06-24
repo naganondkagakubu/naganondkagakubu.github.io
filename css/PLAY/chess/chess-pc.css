@@ -57,11 +57,13 @@ body {
     float: left;
     width: 15vw;
     height: auto;
+    transform: rotate(180deg);
 }
 
 #B_W img{
     width: 100%;
     height: auto;
+    transform: rotate(180deg);
 }
 
 .komaMove {
