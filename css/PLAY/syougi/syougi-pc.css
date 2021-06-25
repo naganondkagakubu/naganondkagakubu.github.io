@@ -18,8 +18,26 @@ body {
     height: 100%;
 }
 
+#img_0{
+    opacity: 0;
+}
+
 #G_W{
     float: left;
+    height: auto;
+    transform: rotate(180deg);
+}
+
+.G_komadai td {
+    width: 8vw;
+    height: auto;
+    text-align: center;
+    font-size: 2vw;
+    cursor: pointer;
+}
+
+#G_W img {
+    width: 40%;
 }
 
 .nari_W{
@@ -48,6 +66,17 @@ body {
     float: left;
 }
 
+.S_komadai td {
+    width: 8vw;
+    height: auto;
+    text-align: center;
+    font-size: 2vw;
+    cursor: pointer;
+}
+
+#S_W img {
+    width: 40%;
+}
 .data_E{
     width: 200px;
     height: 150px;

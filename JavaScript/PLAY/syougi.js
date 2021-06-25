@@ -8,6 +8,22 @@ for (let i = 1; i<=9; i++){
     }
 }
 
+var img_0 = document.getElementById("img_0")
+
+for (let i = -8; i<=8; i++){
+    if(i != 0){
+        if(i > 0){
+            eval("var Moti_" + i + "= document.getElementById('Moti_" + i + "');")
+            eval("var M_img_" + i + "= document.getElementById('M_img_" + i + "');")
+        }
+        else if(i < 0){
+            let j = 100 + Math.abs(i);
+            eval("var Moti_" + j + "= document.getElementById('Moti_" + j + "');")
+            eval("var M_img_" + j + "= document.getElementById('M_img_" + j + "');")
+        }
+    }
+}
+
 const G_W = document.getElementById("G_W");
 const S_W = document.getElementById("S_W");
 
@@ -17,10 +33,11 @@ let turnsum = 0;
 let old_P = 0; //駒を動かす前の位置
 let prom_F = 0;
 let prom_P = 0;
+let M_U_F = 0;
 let S_get = []; //先手が取った駒
 let G_get = []; //後手が取った駒
-let kifu = [[1,0,[],[],-8,-6,-2,-7,-3,-7,-2,-6,-8,-5,0,0,0,0,0,-4,0,-1,-1,-1,-1,-1,-1,-1,-1,-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,4,0,0,0,0,0,5,0,8,6,2,7,9,7,2,6,8]]; //棋譜
-let N_kifu = [1,0,[],[],-8,-6,-2,-7,-3,-7,-2,-6,-8,-5,0,0,0,0,0,-4,0,-1,-1,-1,-1,-1,-1,-1,-1,-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,4,0,0,0,0,0,5,0,8,6,2,7,9,7,2,6,8]; //現在の盤面
+let kifu = [[1,0,[],[],-8,-6,-2,-7,-3,-7,-2,-6,-8,0,-5,0,0,0,0,0,-4,0,-1,-1,-1,-1,-1,-1,-1,-1,-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,4,0,0,0,0,0,5,0,8,6,2,7,9,7,2,6,8]]; //棋譜
+let N_kifu = [1,0,[],[],-8,-6,-2,-7,-3,-7,-2,-6,-8,0,-5,0,0,0,0,0,-4,0,-1,-1,-1,-1,-1,-1,-1,-1,-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,4,0,0,0,0,0,5,0,8,6,2,7,9,7,2,6,8]; //現在の盤面
 
 function changeImage(n){
     if(Math.abs(eval("img_" + n).alt) == 1){
@@ -354,10 +371,10 @@ function Saltire(n,m,k){
         if(m == 0  && (eval("img_" + n).alt * eval("img_" + (n + 11)).alt) > 0){
             eval("img_" + (n + 11)).classList.remove("komaMove")
         }
-        if(eval("img_" + (n + 11)).classList.contains("Oute_checkforS") && (Math.abs(k) == 3 ||Math.abs(k) == 9) && m == 0){
+        if(eval("img_" + (n + 11)).classList.contains("Oute_checkforS") && (k == 3 || k == 9) && m == 0){
             eval("img_" + (n + 11)).classList.remove("komaMove")
         }
-        else if(eval("img_" + (n + 11)).classList.contains("Oute_checkforG") && (Math.abs(k) == -3 ||Math.abs(k) == -9) && m == 0){
+        else if(eval("img_" + (n + 11)).classList.contains("Oute_checkforG") && (k == -3 || k == -9) && m == 0){
             eval("img_" + (n + 11)).classList.remove("komaMove")
         };
     };
@@ -367,10 +384,10 @@ function Saltire(n,m,k){
         if(m == 0  && (eval("img_" + n).alt * eval("img_" + (n - 11)).alt) > 0){
             eval("img_" + (n - 11)).classList.remove("komaMove")
         }
-        if(eval("img_" + (n - 11)).classList.contains("Oute_checkforS") && (Math.abs(k) == 3 ||Math.abs(k) == 9) && m == 0){
+        if(eval("img_" + (n - 11)).classList.contains("Oute_checkforS") && (k == 3 || k == 9) && m == 0){
             eval("img_" + (n - 11)).classList.remove("komaMove")
         }
-        else if(eval("img_" + (n - 11)).classList.contains("Oute_checkforG") && (Math.abs(k) == -3 ||Math.abs(k) == -9) && m == 0){
+        else if(eval("img_" + (n - 11)).classList.contains("Oute_checkforG") && (k == -3 || k == -9) && m == 0){
             eval("img_" + (n - 11)).classList.remove("komaMove")
         };
     };
@@ -380,10 +397,10 @@ function Saltire(n,m,k){
         if(m == 0  && (eval("img_" + n).alt * eval("img_" + (n + 9)).alt) > 0){
             eval("img_" + (n + 9)).classList.remove("komaMove")
         }
-        if(eval("img_" + (n + 9)).classList.contains("Oute_checkforS") && (Math.abs(k) == 3 ||Math.abs(k) == 9) && m == 0){
+        if(eval("img_" + (n + 9)).classList.contains("Oute_checkforS") && (k == 3 || k == 9) && m == 0){
             eval("img_" + (n + 9)).classList.remove("komaMove")
         }
-        else if(eval("img_" + (n + 9)).classList.contains("Oute_checkforG") && (Math.abs(k) == -3 ||Math.abs(k) == -9) && m == 0){
+        else if(eval("img_" + (n + 9)).classList.contains("Oute_checkforG") && (k == -3 || k == -9) && m == 0){
             eval("img_" + (n + 9)).classList.remove("komaMove")
         };
     };
@@ -393,10 +410,10 @@ function Saltire(n,m,k){
         if(m == 0  && (eval("img_" + n).alt * eval("img_" + (n - 9)).alt) > 0){
             eval("img_" + (n - 9)).classList.remove("komaMove")
         }
-        if(eval("img_" + (n - 9)).classList.contains("Oute_checkforS") && (Math.abs(k) == 3 ||Math.abs(k) == 9) && m == 0){
+        if(eval("img_" + (n - 9)).classList.contains("Oute_checkforS") && (k == 3 || k == 9) && m == 0){
             eval("img_" + (n - 9)).classList.remove("komaMove")
         }
-        else if(eval("img_" + (n - 9)).classList.contains("Oute_checkforG") && (Math.abs(k) == -3 ||Math.abs(k) == -9) && m == 0){
+        else if(eval("img_" + (n - 9)).classList.contains("Oute_checkforG") && (k == -3 || k == -9) && m == 0){
             eval("img_" + (n - 9)).classList.remove("komaMove")
         };
     };
@@ -409,10 +426,10 @@ function Cross(n,m,k){
         if(m == 0  && (eval("img_" + n).alt * eval("img_" + (n + 10)).alt) > 0){
             eval("img_" + (n + 10)).classList.remove("komaMove")
         };
-        if(eval("img_" + (n + 10)).classList.contains("Oute_checkforS") && (Math.abs(k) == 3 ||Math.abs(k) == 9) && m == 0){
+        if(eval("img_" + (n + 10)).classList.contains("Oute_checkforS") && (k == 3 || k == 9) && m == 0){
             eval("img_" + (n + 10)).classList.remove("komaMove")
         }
-        else if(eval("img_" + (n + 10)).classList.contains("Oute_checkforG") && (Math.abs(k) == -3 ||Math.abs(k) == -9) && m == 0){
+        else if(eval("img_" + (n + 10)).classList.contains("Oute_checkforG") && (k == -3 || k == -9) && m == 0){
             eval("img_" + (n + 10)).classList.remove("komaMove")
         };
     };
@@ -422,10 +439,10 @@ function Cross(n,m,k){
         if(m == 0  && (eval("img_" + n).alt * eval("img_" + (n - 1)).alt) > 0){
             eval("img_" + (n - 1)).classList.remove("komaMove")
         }
-        if(eval("img_" + (n - 1)).classList.contains("Oute_checkforS") && (Math.abs(k) == 3 ||Math.abs(k) == 9) && m == 0){
+        if(eval("img_" + (n - 1)).classList.contains("Oute_checkforS") && (k == 3 || k == 9) && m == 0){
             eval("img_" + (n - 1)).classList.remove("komaMove")
         }
-        else if(eval("img_" + (n - 1)).classList.contains("Oute_checkforG") && (Math.abs(k) == -3 ||Math.abs(k) == -9) && m == 0){
+        else if(eval("img_" + (n - 1)).classList.contains("Oute_checkforG") && (k == -3 || k == -9) && m == 0){
             eval("img_" + (n - 1)).classList.remove("komaMove")
         };
     };
@@ -435,10 +452,10 @@ function Cross(n,m,k){
         if(m == 0  && (eval("img_" + n).alt * eval("img_" + (n - 10)).alt) > 0){
             eval("img_" + (n - 10)).classList.remove("komaMove")
         }
-        if(eval("img_" + (n - 10)).classList.contains("Oute_checkforS") && (Math.abs(k) == 3 ||Math.abs(k) == 9) && m == 0){
+        if(eval("img_" + (n - 10)).classList.contains("Oute_checkforS") && (k == 3 || k == 9) && m == 0){
             eval("img_" + (n - 10)).classList.remove("komaMove")
         }
-        else if(eval("img_" + (n - 10)).classList.contains("Oute_checkforG") && (Math.abs(k) == -3 ||Math.abs(k) == -9) && m == 0){
+        else if(eval("img_" + (n - 10)).classList.contains("Oute_checkforG") && (k == -3 || k == -9) && m == 0){
             eval("img_" + (n - 10)).classList.remove("komaMove")
         };
     };
@@ -448,10 +465,10 @@ function Cross(n,m,k){
         if(m == 0  && (eval("img_" + n).alt * eval("img_" + (n + 1)).alt) > 0){
             eval("img_" + (n + 1)).classList.remove("komaMove")
         }
-        if(eval("img_" + (n + 1)).classList.contains("Oute_checkforS") && (Math.abs(k) == 3 ||Math.abs(k) == 9) && m == 0){
+        if(eval("img_" + (n + 1)).classList.contains("Oute_checkforS") && (k == 3 || k == 9) && m == 0){
             eval("img_" + (n + 1)).classList.remove("komaMove")
         }
-        else if(eval("img_" + (n + 1)).classList.contains("Oute_checkforG") && (Math.abs(k) == -3 ||Math.abs(k) == -9) && m == 0){
+        else if(eval("img_" + (n + 1)).classList.contains("Oute_checkforG") && (k == -3 || k == -9) && m == 0){
             eval("img_" + (n + 1)).classList.remove("komaMove")
         };
     };
@@ -461,13 +478,13 @@ function Cross(n,m,k){
 function Move_V(m,n,l){
     //先手歩の動き
     if(m == 1){
-        if((1 <= Math.floor((n - 10)/10) && Math.floor((n - 10)/10) <= 9) && (1 <= Math.floor((n - 10)%10) && Math.floor((n - 10)%10) <= 9) && (eval("img_" + n).alt * eval("img_" + (n + 10)).alt) == 0){
+        if((1 <= Math.floor((n - 10)/10) && Math.floor((n - 10)/10) <= 9) && (1 <= Math.floor((n - 10)%10) && Math.floor((n - 10)%10) <= 9) && (eval("img_" + n).alt * eval("img_" + (n - 10)).alt) <= 0){
             Color_change(n - 10,l);
             };
     }
     //後手歩の動き
     else if(m == -1){
-        if((1 <= Math.floor((n + 10)/10) && Math.floor((n + 10)/10) <= 9) && (1 <= Math.floor((n + 10)%10) && Math.floor((n + 10)%10) <= 9) && (eval("img_" + n).alt * eval("img_" + (n - 10)).alt) == 0){
+        if((1 <= Math.floor((n + 10)/10) && Math.floor((n + 10)/10) <= 9) && (1 <= Math.floor((n + 10)%10) && Math.floor((n + 10)%10) <= 9) && (eval("img_" + n).alt * eval("img_" + (n + 10)).alt) <= 0){
             Color_change(n + 10,l);
             };
     }
@@ -855,19 +872,150 @@ function Oute_check(){
 function Moti(n){
     if((turn * (-1)) == 1){
         if((turn * (-1)) * eval("img_" + n).alt < 0){
-            S_get.push(eval("img_" + n).alt)
+            S_get.push(Math.abs(eval("img_" + n).alt))
         }
     }
     else if((turn * (-1)) == -1){
         if((turn * (-1)) * eval("img_" + n).alt < 0){
-            G_get.push(eval("img_" + n).alt)
+            G_get.push(Math.abs(eval("img_" + n).alt))
         }
+    }
+    if(M_U_F == 1){
+        if(eval("img_" + old_P).alt > 0){
+            let S_get_S_R = S_get.filter(item => item != eval("img_" + old_P).alt)
+            let S_get_S_M = S_get.filter(item => item = eval("img_" + old_P).alt)
+            S_get = []
+            S_get_S_M.pop()
+            S_get = S_get_S_R.concat(S_get_S_M)
+        }
+        else if(eval("img_" + old_P).alt < 0){
+            let G_get_S_R = G_get.filter(item => item != Math.abs(eval("img_" + old_P).alt))
+            let G_get_S_M = S_get.filter(item => item = eval("img_" + old_P).alt)
+            G_get = []
+            G_get_S_M.pop()
+            G_get = G_get_S_R.concat(G_get_S_M)
+        }
+        M_U_F = 0;
     }
 }
 
 //持ち駒の表示
 function Moti_E(){
+    for(let i = -8; i<=8; i++){
+        if(i != 0){
+            if(i > 0){
+                eval("var Moti_C_" + i + "= 0;")
+            }
+            else if(i < 0){
+                let j = 100 + Math.abs(i);
+                eval("var Moti_C_" + j + "= 0;")
+            }
+        }
+    }
+    for(let i = 0; i <= S_get.length; i++){
+        for(let j = 1; j <= 8; j++){
+            if(S_get[i] == j){
+                eval("Moti_C_" + j + "= Moti_C_" + j + "+ 1;")
+            }
+        }
+    }
+    for(let i = 0; i <= G_get.length; i++){
+        for(let j = 1; j <= 8; j++){
+            if(G_get[i] == j){
+                eval("Moti_C_10" + j + "= Moti_C_10" + j + "+ 1;")
+            }
+        }
+    }
+    Moti_1.innerHTML = "<img  id='M_img_1' src = '../images/PLAY/syougi koma/fu.png' alt='" + Moti_C_1 +"'> × " + Moti_C_1
+    eval("M_img_" + 1).alt = Moti_C_1;
+    Moti_2.innerHTML = "<img id='M_img_2' src = '../images/PLAY/syougi koma/ginn.png' alt='" + Moti_C_2 +"'> × " + Moti_C_2
+    eval("M_img_" + 2).alt = Moti_C_2;
+    Moti_4.innerHTML = "<img id='M_img_4' src = '../images/PLAY/syougi koma/hi.png' alt='" + Moti_C_4 +"'> × " + Moti_C_4
+    eval("M_img_" + 4).alt = Moti_C_4;
+    Moti_5.innerHTML = "<img id='M_img_5' src = '../images/PLAY/syougi koma/kaku.png' alt='" + Moti_C_5 +"'> × " + Moti_C_5
+    eval("M_img_" + 5).alt = Moti_C_5;
+    Moti_6.innerHTML = "<img id='M_img_6' src = '../images/PLAY/syougi koma/kei.png' alt='" + Moti_C_6 +"'> × " + Moti_C_6
+    eval("M_img_" + 6).alt = Moti_C_6;
+    Moti_7.innerHTML = "<img id='M_img_7' src = '../images/PLAY/syougi koma/kinn.png' alt='" + Moti_C_7 +"'> × " + Moti_C_7
+    eval("M_img_" + 7).alt = Moti_C_7;
+    Moti_8.innerHTML = "<img id='M_img_8' src = '../images/PLAY/syougi koma/kyou.png' alt='" + Moti_C_8 +"'> × " + Moti_C_8
+    eval("M_img_" + 8).alt = Moti_C_8;
+    Moti_101.innerHTML = "<img id='M_img_101' src = '../images/PLAY/syougi koma/fu.png' alt='" + Moti_C_101 +"'> × " + Moti_C_101
+    eval("M_img_" + 101).alt = Moti_C_101;
+    Moti_102.innerHTML = "<img id='M_img_102' src = '../images/PLAY/syougi koma/ginn.png' alt='" + Moti_C_102 +"'> × " + Moti_C_102
+    eval("M_img_" + 102).alt = Moti_C_102;
+    Moti_104.innerHTML = "<img id='M_img_104' src = '../images/PLAY/syougi koma/hi.png' alt='" + Moti_C_104 +"'> × " + Moti_C_104
+    eval("M_img_" + 104).alt = Moti_C_104;
+    Moti_105.innerHTML = "<img id='M_img_105' src = '../images/PLAY/syougi koma/kaku.png' alt='" + Moti_C_105 +"'> × " + Moti_C_105
+    eval("M_img_" + 105).alt = Moti_C_105;
+    Moti_106.innerHTML = "<img id='M_img_106' src = '../images/PLAY/syougi koma/kei.png' alt='" + Moti_C_106 +"'> × " + Moti_C_106
+    eval("M_img_" + 106).alt = Moti_C_106;
+    Moti_107.innerHTML = "<img id='M_img_107' src = '../images/PLAY/syougi koma/kinn.png' alt='" + Moti_C_107 +"'> × " + Moti_C_107
+    eval("M_img_" + 107).alt = Moti_C_107;
+    Moti_108.innerHTML = "<img id='M_img_108' src = '../images/PLAY/syougi koma/kyou.png' alt='" + Moti_C_108 +"'> × " + Moti_C_108
+    eval("M_img_" + 108).alt = Moti_C_108;
+}
 
+//持ち駒の使用
+function Moti_U(n){
+    //行動範囲のクリーニング
+    Cleaning();
+    if(turn * n > 0 && M_U_F == 0){
+        if(n > 0){
+            M_n = n;
+        }
+        else if(n < 0){
+            M_n = 100 + Math.abs(n);
+        }
+        if((eval("M_img_" + M_n).alt) > 0){
+            mode = 1;
+            M_U_F = 1;
+            eval("img_" + old_P).alt = n;
+            for(let i = 1; i <= 9;i++){
+                for(let j = 1; j <= 9;j++){
+                let ij = (10 * i) + j;
+                if(eval("img_" + ij).alt == 0){
+                    Color_change(ij,0)
+                }
+                }
+            }
+            if(n == 1 || n == 6 || n == 7){
+                for(let i = 1; i <= 9; i++){
+                    if(eval("img_" + (10 + i)).classList.contains("komaMove")){
+                        eval("img_" + (10 + i)).classList.remove("komaMove")
+                    }
+                }
+                if(n == 6){
+                    for(let i = 1; i <= 9; i++){
+                        if(eval("img_" + (20 + i)).classList.contains("komaMove")){
+                            eval("img_" + (20 + i)).classList.remove("komaMove")
+                        }
+                    }
+                }
+            }
+            else if(n == -1 || n == -6 || n == -7){
+                for(let i = 1; i <= 9; i++){
+                    if(eval("img_" + (90 + i)).classList.contains("komaMove")){
+                        eval("img_" + (90 + i)).classList.remove("komaMove")
+                    }
+                }
+                if(n == -6){
+                    for(let i = 1; i <= 9; i++){
+                        if(eval("img_" + (80 + i)).classList.contains("komaMove")){
+                            eval("img_" + (80 + i)).classList.remove("komaMove")
+                        }
+                    }
+                }
+            }
+        }
+    }
+    else if(turn * n < 0 || M_U_F == 1){
+        mode = 0;
+        old_P = 0;
+        M_U_F = 0;
+        //行動範囲のクリーニング
+        Cleaning();
+    }
 }
 
 //メインの関数
@@ -885,14 +1033,13 @@ function Syougi(n){
         else if(n != old_P){
             //行動範囲のクリーニング
             Cleaning();
-
             Move_V(eval("img_" + n).alt,n,0);
             old_P = n;
             mode = 1;
         };
         }
     //自分の駒以外に触ったとき
-    else if(turn * eval("img_" + n).alt <= 0){
+    else if(turn * eval("img_" + n).alt <= 0 && turn != 0){
         //駒を動かせるとき
         if(mode == 1){
             //駒を動す
@@ -907,8 +1054,8 @@ function Syougi(n){
                     Ki.push(S_get);
                     Ki.push(G_get);
                     //駒の位置
-                    for(let i = 1; i <= 8; i++){
-                        for (let j = 1; j <= 8; j++){
+                    for(let i = 1; i <= 9; i++){
+                        for (let j = 1; j <= 9; j++){
                             let ij = (10 * i) + j;
                             Ki.push(eval("img_" + ij).alt);
                         };
@@ -938,6 +1085,9 @@ function Syougi(n){
 
                 //ターン表示
                 turn_E();
+
+                //持ち駒の表示
+                Moti_E();
 
                 //行動範囲のクリーニング
                 Cleaning();
@@ -975,14 +1125,13 @@ function Matta(){
         Ki.splice(0,1);
         turnsum = parseInt(Ki.slice(0,1));
         Ki.splice(0,1);
-        S_get = N_kifu.slice(0,1);
+        S_get = Ki.slice(0,1)[0];
         Ki.splice(0,1)
-        G_get = N_kifu.slice(0,1);
+        G_get = Ki.slice(0,1)[0];
         Ki.splice(0,1)
         for(let i = 0; i <= 8; i++){
             Ki.splice((10 * i),0,0);
         };
-        console.log(Ki)
 
         for(let i = 1; i <= 9; i++){
             for(let j = 1; j <= 9; j++){
@@ -997,6 +1146,9 @@ function Matta(){
 
         //ターン表示
         turn_E();
+
+        //持ち駒の表示
+        Moti_E();
 
         //N_kifuの更新
         S_kifu_N();
@@ -1052,9 +1204,9 @@ function kifu_D_R(){
         N_kifu.splice(0,1);
         turnsum = parseInt(N_kifu.slice(0,1));
         N_kifu.splice(0,1);
-        S_get = N_kifu.slice(0,1);
+        S_get = N_kifu.slice(0,1)[0];
         N_kifu.splice(0,1)
-        G_get = N_kifu.slice(0,1);
+        G_get = N_kifu.slice(0,1)[0];
         N_kifu.splice(0,1)
         for(let i = 0; i <= 8; i++){
             N_kifu.splice((10 * i),0,0);
@@ -1073,6 +1225,9 @@ function kifu_D_R(){
         //ターン表示
         turn_E();
 
+        //持ち駒の表示
+        Moti_E();
+
         Oute_check();
         //行動範囲のクリーニング
         Cleaning();
@@ -1088,17 +1243,17 @@ function Reset(){
     old_P = 0;
     prom_F = 0;
     prom_P = 0;
-    kifu = [[1,0,[],[],-8,-6,-2,-7,-3,-7,-2,-6,-8,-5,0,0,0,0,0,-4,0,-1,-1,-1,-1,-1,-1,-1,-1,-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,4,0,0,0,0,0,5,0,8,6,2,7,9,7,2,6,8]];
-    N_kifu = [1,0,[],[],-8,-6,-2,-7,-3,-7,-2,-6,-8,-5,0,0,0,0,0,-4,0,-1,-1,-1,-1,-1,-1,-1,-1,-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,4,0,0,0,0,0,5,0,8,6,2,7,9,7,2,6,8];
+    kifu = [[1,0,[],[],-8,-6,-2,-7,-3,-7,-2,-6,-8,0,-5,0,0,0,0,0,-4,0,-1,-1,-1,-1,-1,-1,-1,-1,-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,4,0,0,0,0,0,5,0,8,6,2,7,9,7,2,6,8]];
+    N_kifu = [1,0,[],[],-8,-6,-2,-7,-3,-7,-2,-6,-8,0,-5,0,0,0,0,0,-4,0,-1,-1,-1,-1,-1,-1,-1,-1,-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,4,0,0,0,0,0,5,0,8,6,2,7,9,7,2,6,8];
 
     //棋譜から盤面を再現
     turn = parseInt(N_kifu.slice(0,1));
     N_kifu.splice(0,1);
     turnsum = parseInt(N_kifu.slice(0,1));
     N_kifu.splice(0,1);
-    S_get = N_kifu.slice(0,1);
+    S_get = N_kifu.slice(0,1)[0];
     N_kifu.splice(0,1)
-    G_get = N_kifu.slice(0,1);
+    G_get = N_kifu.slice(0,1)[0];
     N_kifu.splice(0,1)
     for(let i = 0; i <= 8; i++){
         N_kifu.splice((10 * i),0,0);
@@ -1116,7 +1271,10 @@ function Reset(){
 
     //ターン表示
     turn_E();
-    
+
+    //持ち駒の表示
+    Moti_E();
+
     //N_kifuの更新
     S_kifu_N();
 
@@ -1145,9 +1303,9 @@ window.addEventListener("load", function(){
         N_kifu.splice(0,1);
         turnsum = parseInt(N_kifu.slice(0,1));
         N_kifu.splice(0,1);
-        S_get = N_kifu.slice(0,1);
+        S_get = N_kifu.slice(0,1)[0];
         N_kifu.splice(0,1)
-        G_get = N_kifu.slice(0,1);
+        G_get = N_kifu.slice(0,1)[0];
         N_kifu.splice(0,1)
         for(let i = 0; i <= 8; i++){
             N_kifu.splice((10 * i),0,0);
@@ -1166,10 +1324,13 @@ window.addEventListener("load", function(){
         Oute_check();
         //ターン表示
         turn_E();
+        //持ち駒の表示
+        Moti_E();
         //行動範囲のクリーニング
         Cleaning();
     };
 });
 
 function check(){
+    Moti_E()
 }
