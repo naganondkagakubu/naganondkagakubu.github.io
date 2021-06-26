@@ -24,10 +24,33 @@ body {
     opacity: 0;
 }
 
+.P_E_A{
+    opacity: 0;
+}
+
 #G_W{
     float: left;
     height: auto;
     transform: rotate(180deg);
+}
+
+#G_W img {
+    width: 40%;
+}
+
+#G_prom_E {
+    width: 30vw;
+    height: auto;
+    text-align: center;
+    cursor: pointer;
+}
+
+#G_prom_E button {
+    width: 13vw;
+    height: auto;
+    text-align: center;
+    cursor: pointer;
+    background-color: transparent;
 }
 
 .G_komadai td {
@@ -36,14 +59,6 @@ body {
     text-align: center;
     font-size: 2vw;
     cursor: pointer;
-}
-
-#G_W img {
-    width: 40%;
-}
-
-.nari_W{
-    
 }
 
 .syougi-board{
@@ -68,16 +83,31 @@ body {
     float: left;
 }
 
+#S_W img {
+    width: 40%;
+}
+
+#S_prom_E {
+    width: 30vw;
+    height: auto;
+    text-align: center;
+    cursor: pointer;
+}
+
+#S_prom_E button {
+    width: 13vw;
+    height: auto;
+    text-align: center;
+    cursor: pointer;
+    background-color: transparent;
+}
+
 .S_komadai td {
     width: 8vw;
     height: auto;
     text-align: center;
     font-size: 2vw;
     cursor: pointer;
-}
-
-#S_W img {
-    width: 40%;
 }
 
 .data_E{

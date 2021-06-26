@@ -27,6 +27,9 @@ for (let i = -8; i<=8; i++){
 const G_W = document.getElementById("G_W");
 const S_W = document.getElementById("S_W");
 
+const G_P_E = document.getElementById("G_prom_E");
+const S_P_E = document.getElementById("S_prom_E");
+
 let mode = 0;
 let turn = 1;   //1が先手、-1が後手の手番
 let turnsum = 0;
@@ -1019,6 +1022,53 @@ function Moti_U(n){
     }
 }
 
+//成り選択画面を表示
+function Prom_E(n){
+    turn = 0;
+    if(n == 1){
+        S_P_E.innerHTML = "<button onclick='Prom(1)'>不成<br><img src='../images/PLAY/syougi koma/fu.png'></button> <button onclick='Prom(11)'>成<br><img src='../images/PLAY/syougi koma/to.png'></button>"
+    }
+    else if(n == 2){
+        S_P_E.innerHTML = "<button onclick='Prom(2)'>不成<br><img src='../images/PLAY/syougi koma/ginn.png'></button> <button onclick='Prom(12)'>成<br><img src='../images/PLAY/syougi koma/nariginn.png'></button>"
+    }
+    else if(n == 4){
+        S_P_E.innerHTML = "<button onclick='Prom(4)'>不成<br><img src='../images/PLAY/syougi koma/hi.png'></button> <button onclick='Prom(14)'>成<br><img src='../images/PLAY/syougi koma/ryu.png'></button>"
+    }
+    else if(n == 5){
+        S_P_E.innerHTML = "<button onclick='Prom(5)'>不成<br><img src='../images/PLAY/syougi koma/kaku.png'></button> <button onclick='Prom(15)'>成<br><img src='../images/PLAY/syougi koma/uma.png'></button>"
+    }
+    else if(n == 6){
+        S_P_E.innerHTML = "<button onclick='Prom(6)'>不成<br><img src='../images/PLAY/syougi koma/kei.png'></button> <button onclick='Prom(16)'>成<br><img src='../images/PLAY/syougi koma/narikei.png'></button>"
+    }
+    else if(n == 8){
+        S_P_E.innerHTML = "<button onclick='Prom(8)'>不成<br><img src='../images/PLAY/syougi koma/kyou.png'></button> <button onclick='Prom(18)'>成<br><img src='../images/PLAY/syougi koma/narikyou.png'></button>"
+    }
+
+    else if(n == -1){
+        G_P_E.innerHTML = "<button onclick='Prom(-1)'>不成<br><img src='../images/PLAY/syougi koma/fu.png'></button> <button onclick='Prom(-11)'>成<br><img src='../images/PLAY/syougi koma/to.png'></button>"
+    }
+    else if(n == -2){
+        G_P_E.innerHTML = "<button onclick='Prom(-2)'>不成<br><img src='../images/PLAY/syougi koma/ginn.png'></button> <button onclick='Prom(-12)'>成<br><img src='../images/PLAY/syougi koma/nariginn.png'></button>"
+    }
+    else if(n == -4){
+        G_P_E.innerHTML = "<button onclick='Prom(-4)'>不成<br><img src='../images/PLAY/syougi koma/hi.png'></button> <button onclick='Prom(-14)'>成<br><img src='../images/PLAY/syougi koma/ryu.png'></button>"
+    }
+    else if(n == -5){
+        G_P_E.innerHTML = "<button onclick='Prom(-5)'>不成<br><img src='../images/PLAY/syougi koma/kaku.png'></button> <button onclick='Prom(-15)'>成<br><img src='../images/PLAY/syougi koma/uma.png'></button>"
+    }
+    else if(n == -6){
+        G_P_E.innerHTML = "<button onclick='Prom(-6)'>不成<br><img src='../images/PLAY/syougi koma/kei.png'></button> <button onclick='Prom(-16)'>成<br><img src='../images/PLAY/syougi koma/narikei.png'></button>"
+    }
+    else if(n == -8){
+        G_P_E.innerHTML = "<button onclick='Prom(-8)'>不成<br><img src='../images/PLAY/syougi koma/kyou.png'></button> <button onclick='Prom(-18)'>成<br><img src='../images/PLAY/syougi koma/narikyou.png'></button>"
+    }
+}
+
+//成りの選択
+function Prom(n){
+    
+}
+
 //メインの関数
 function Syougi(n){
     //自分の駒を触ったとき
@@ -1068,17 +1118,59 @@ function Syougi(n){
                     turn = turn * (-1);
                 };
                 
-        //駒の移動
+            //駒の移動
                 //成り選択画面表示 
-                
-                
-            //その他
-                    Moti(n);
-                    //駒の画像の入れ替え
-                    eval("img_" + n).alt = eval("img_" + old_P).alt;
-                    eval("img_" + old_P).alt = 0;
-                    changeImage(n);
-                    changeImage(old_P);
+                if(Math.abs(eval("img_" + old_P).alt) != 3 && Math.abs(eval("img_" + old_P).alt) != 9 && Math.abs(eval("img_" + old_P).alt) != 7){
+                    //先手側の処理
+                    if(eval("img_" + old_P).alt > 0){
+                        if((1 < Math.floor(old_P/10) && Math.floor(old_P/10) < 3) || (1 < Math.floor(n/10) && Math.floor(n/10) < 3)){
+                            //歩、桂、香の強制成り
+                            if(eval("img_" + old_P).alt == 1 || eval("img_" + old_P).alt == 6 || eval("img_" + old_P).alt == 8){
+                                if(eval("img_" + old_P).alt == 1 && Math.floor(n/10) == 1){
+                                    eval("img_" + old_P).alt = 11
+                                }
+                                else if(eval("img_" + old_P).alt == 8 && Math.floor(n/10) == 1){
+                                    eval("img_" + old_P).alt = 18
+                                }
+                                else if(eval("img_" + old_P).alt == 6 && (Math.floor(n/10) == 1 || Math.floor(n/10) == 2)){
+                                    eval("img_" + old_P).alt = 16
+                                }
+                            }
+                            else{
+                                prom_P = n;
+                                Prom_E(eval("img_" + old_P).alt);
+                            }
+                        }
+                    }
+                    //後手側の処理
+                    else if(eval("img_" + old_P).alt < 0){
+                        if((7 < Math.floor(old_P/10) && Math.floor(old_P/10) < 9) || (7 < Math.floor(n/10) && Math.floor(n/10) < 9)){
+                            //歩、桂、香の強制成り
+                            if(eval("img_" + old_P).alt == -1 || eval("img_" + old_P).alt == -6 || eval("img_" + old_P).alt == -8){
+                                if(eval("img_" + old_P).alt == -1 && Math.floor(n/10) == 9){
+                                    eval("img_" + old_P).alt = -11
+                                }
+                                else if(eval("img_" + old_P).alt == -8 && Math.floor(n/10) == 9){
+                                    eval("img_" + old_P).alt = -18
+                                }
+                                else if(eval("img_" + old_P).alt == -6 && (Math.floor(n/10) == 9 || Math.floor(n/10) == 8)){
+                                    eval("img_" + old_P).alt = -16
+                                }
+                            }
+                            else{
+                                prom_P = n;
+                                Prom_E(eval("img_" + old_P).alt);
+                            }
+                        }
+                    }
+                }
+
+                Moti(n);
+                //駒の画像の入れ替え
+                eval("img_" + n).alt = eval("img_" + old_P).alt;
+                eval("img_" + old_P).alt = 0;
+                changeImage(n);
+                changeImage(old_P);
                 
 
                 //王手チェック
@@ -1344,5 +1436,4 @@ window.addEventListener("load", function(){
 });
 
 function check(){
-    
 }
