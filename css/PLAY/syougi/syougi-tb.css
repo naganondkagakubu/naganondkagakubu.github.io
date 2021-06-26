@@ -12,22 +12,89 @@ body {
     background-color: #e6e6e6;
 }
 
-.syougi-board{
-    position: relative;
+#syougi {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+#img_0{
+    width: 0%;
+    height: 0%;
+    opacity: 0;
+}
+
+#G_W{
+    float: left;
+    max-width: 20vw;
+    height: auto;
+    transform: rotate(180deg);
+}
+
+.G_komadai td {
+    width: 8vw;
+    height: auto;
     text-align: center;
-    left: 10%;
-    transform: scale(0.8,0.8);
+    font-size: 3vw;
+    min-width: 30px;
+    cursor: pointer;
+}
+
+#G_W img {
+    width: 100%;
+}
+
+.nari_W{
+    
+}
+
+.syougi-board{
+    float: left;
 }
 
 .syougi-board td{
-    width: 60px;
-    height: 60px;
+    width: 3.8vw;
+    height: auto;
+    min-width: 30px;
     background-color: #ddd;
     text-align: center;
     font-size: 3.8vw;
     cursor: pointer;
 }
 
+.syougi-board img{
+    width: 100%;
+    height: auto;
+}
+
+#S_W{
+    float: left;
+    max-width: 20vw;
+    height: auto;
+}
+
+.S_komadai td {
+    width: 8vw;
+    height: auto;
+    text-align: center;
+    font-size: 3vw;
+    min-width: 30px;
+    cursor: pointer;
+}
+
+#S_W img {
+    width: 100%;
+}
+
+.data_E{
+    width: 200px;
+    height: 150px;
+}
+
 .komaMove {
     background-color: rgba(255, 0, 0, 0.5);
+}
+
+.enemy{
+    transform: rotate(180deg);
 }

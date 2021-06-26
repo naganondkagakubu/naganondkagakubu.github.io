@@ -963,6 +963,8 @@ function Matta(){
     //ターン表示
     turn_E();
 
+    Check_check();
+
     //N_kifuの更新
     S_kifu_N();
 
@@ -1182,6 +1184,8 @@ function Reset(){
 
     //ターン表示
     turn_E();
+
+    Check_check();
     
     //N_kifuの更新
     S_kifu_N();

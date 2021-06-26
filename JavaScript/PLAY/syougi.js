@@ -818,8 +818,8 @@ function Cleaning(){
 //王手のチェック
 function Oute_check(){
     //クリーニング
-    for(let i = 1; i <= 8; i++){
-        for(let j = 1;j <= 8; j++){
+    for(let i = 1; i <= 9; i++){
+        for(let j = 1;j <= 9; j++){
             let ij = (10 * i) + j
             if(eval("img_" + ij).classList.contains("Oute_checkforS")){
                 eval("img_" + ij).classList.remove("Oute_checkforS");
@@ -970,6 +970,7 @@ function Moti_U(n){
         if((eval("M_img_" + M_n).alt) > 0){
             mode = 1;
             M_U_F = 1;
+            old_P = 0;
             eval("img_" + old_P).alt = n;
             for(let i = 1; i <= 9;i++){
                 for(let j = 1; j <= 9;j++){
@@ -1048,11 +1049,13 @@ function Syougi(n){
                     turnsum = turnsum + 1;
                     //棋譜の記録
                     let Ki = [];
+                    let S_G = [].concat(S_get)
+                    let G_G = [].concat(S_get)
                     //各種数値
                     Ki.push(turn);
                     Ki.push(turnsum);
-                    Ki.push(S_get);
-                    Ki.push(G_get);
+                    Ki.push(S_G);
+                    Ki.push(G_G);
                     //駒の位置
                     for(let i = 1; i <= 9; i++){
                         for (let j = 1; j <= 9; j++){
@@ -1147,6 +1150,9 @@ function Matta(){
         //ターン表示
         turn_E();
 
+        //王手チェック
+        Oute_check();
+
         //持ち駒の表示
         Moti_E();
 
@@ -1228,7 +1234,9 @@ function kifu_D_R(){
         //持ち駒の表示
         Moti_E();
 
+        //王手チェック
         Oute_check();
+
         //行動範囲のクリーニング
         Cleaning();
     };
@@ -1271,6 +1279,9 @@ function Reset(){
 
     //ターン表示
     turn_E();
+
+    //王手チェック
+    Oute_check();
 
     //持ち駒の表示
     Moti_E();
@@ -1321,9 +1332,10 @@ window.addEventListener("load", function(){
         if(turn == 0){
             
         };
-        Oute_check();
         //ターン表示
         turn_E();
+        //王手チェック
+        Oute_check();
         //持ち駒の表示
         Moti_E();
         //行動範囲のクリーニング
@@ -1332,5 +1344,5 @@ window.addEventListener("load", function(){
 });
 
 function check(){
-    Moti_E()
+    
 }
