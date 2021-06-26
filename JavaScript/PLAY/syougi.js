@@ -1050,7 +1050,7 @@ function Syougi(n){
                     //棋譜の記録
                     let Ki = [];
                     let S_G = [].concat(S_get)
-                    let G_G = [].concat(S_get)
+                    let G_G = [].concat(G_get)
                     //各種数値
                     Ki.push(turn);
                     Ki.push(turnsum);
