@@ -1225,15 +1225,15 @@ function Syougi(n){
 
                 if(localStorage.getItem("kifu_H") !== null){
                     localStorage.removeItem("kifu_H");
-                    try{
-                        let kifu_H = kifu.concat();
-                        kifu_H.push(N_kifu);
-                        localStorage.setItem("kifu_H", JSON.stringify(kifu_H));
-                    }
-                    catch(e){
-                        console.log(e);
-                    };
                 }
+                try{
+                    let kifu_H = kifu.concat();
+                    kifu_H.push(N_kifu);
+                    localStorage.setItem("kifu_H", JSON.stringify(kifu_H));
+                }
+                catch(e){
+                    console.log(e);
+                };
             }
             //モードを戻す
             else{
