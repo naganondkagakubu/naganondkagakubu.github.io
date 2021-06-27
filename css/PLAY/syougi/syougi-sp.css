@@ -24,12 +24,13 @@ body {
     opacity: 0;
 }
 
-.P_E_A{
+.P_E_{
     opacity: 0;
 }
 
 #G_W{
     float: left;
+    max-width: 20vw;
     height: auto;
     transform: rotate(180deg);
 }
