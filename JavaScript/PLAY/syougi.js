@@ -1136,7 +1136,7 @@ function Syougi(n){
                 if(prom_F == 0 && Math.abs(eval("img_" + old_P).alt) != 3 && Math.abs(eval("img_" + old_P).alt) != 9 && Math.abs(eval("img_" + old_P).alt) != 7 && Math.abs(eval("img_" + old_P).alt) <= 9){
                     //先手側の処理
                     if(eval("img_" + old_P).alt > 0){
-                        if((1 <= Math.floor(old_P/10) && Math.floor(old_P/10) <= 3) || (1 <= Math.floor(n/10) && Math.floor(n/10) <= 3)){
+                        if((1 <= Math.floor(old_P/10) && Math.floor(old_P/10) <= 3) || (1 <= Math.floor(n/10) && Math.floor(n/10) <= 3) && old_P != 0){
                             //歩、桂、香の強制成り
                             if(eval("img_" + old_P).alt == 1 && Math.floor(n/10) == 1){
                                 eval("img_" + old_P).alt = 11
@@ -1157,7 +1157,7 @@ function Syougi(n){
                     }
                     //後手側の処理
                     else if(eval("img_" + old_P).alt < 0){
-                        if((7 <= Math.floor(old_P/10) && Math.floor(old_P/10) <= 9) || (7 <= Math.floor(n/10) && Math.floor(n/10) <= 9)){
+                        if((7 <= Math.floor(old_P/10) && Math.floor(old_P/10) <= 9) || (7 <= Math.floor(n/10) && Math.floor(n/10) <= 9 && old_P != 0)){
                             //歩、桂、香の強制成り
                             if(eval("img_" + old_P).alt == -1 && Math.floor(n/10) == 9){
                                 eval("img_" + old_P).alt = -11
