@@ -53,7 +53,10 @@
 <!--body回避-->
 <div class="body1">
 <p class="body-main">
-    未実装です
+    打ち歩詰め、ニ歩、千日手は予防しません。
+    <br>
+    成りの途中で更新した場合は基本的に不成になります。
+    <br>
     <!--データの保管(old_P)-->
     <img id="img_0" alt="0">
     <br>
@@ -65,8 +68,6 @@
     <br>
     <input type="button" value="待った" onclick="Matta()">
     <br>
-    <input type="button" value="as" onclick="check()">
-    <br>
 <div id = "syougi">
 <div id="G_W">
     <p id="G_turn_E">先手の手番です</p>
@@ -74,8 +75,8 @@
         <p id="G_check_E"></p>
         <br>
     <div id="G_prom_E">
-            <button id = "G_fu_P" class = "P_E_A" onclick="">不成<br><img src="../images/PLAY/syougi koma/fu.png"></button>
-            <button id = "G_kei_P" class = "P_E_A" onclick="">成<br><img src="../images/PLAY/syougi koma/to.png"></button>
+            <button class = "P_E_A" onclick="">不成<br><img src="../images/PLAY/syougi koma/fu.png"></button>
+            <button class = "P_E_A" onclick="">成<br><img src="../images/PLAY/syougi koma/to.png"></button>
     </div>
     <table class="G_komadai">
         <tr>
@@ -200,8 +201,8 @@
         <p id="S_check_E"></p>
         <br>
     <div id="S_prom_E">
-            <button id = "S_fu_P" class = "P_E_A" onclick="Prom(1)">不成<br><img src="../images/PLAY/syougi koma/fu.png"></button>
-            <button id = "S_kei_P" class = "P_E_A" onclick="Prom(11)">成<br><img src="../images/PLAY/syougi koma/to.png"></button>
+            <button class = "P_E_A" onclick="Prom(1)">不成<br><img src="../images/PLAY/syougi koma/fu.png"></button>
+            <button class = "P_E_A" onclick="Prom(11)">成<br><img src="../images/PLAY/syougi koma/to.png"></button>
     </div>
     <table class="S_komadai">
         <tr>

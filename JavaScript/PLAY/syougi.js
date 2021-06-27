@@ -529,13 +529,13 @@ function Move_V(m,n,l){
     //先手桂馬の動き
     else if(m == 6){
         //上開きY
-        if((1 <= Math.floor((n - 21)/10) && Math.floor((n - 21)/10) <= 8) && (1 <= Math.floor((n - 21)%10) && Math.floor((n - 21)%10) <= 8)){
+        if((1 <= Math.floor((n - 21)/10) && Math.floor((n - 21)/10) <= 9) && (1 <= Math.floor((n - 21)%10) && Math.floor((n - 21)%10) <= 9)){
             Color_change(n - 21,l);
             if(l == 0 && (eval("img_" + n).alt * eval("img_" + (n - 21)).alt) > 0){
                 eval("img_" + (n - 21)).classList.remove("komaMove")
             }
         };
-        if((1 <= Math.floor((n - 19)/10) && Math.floor((n - 19)/10) <= 8) && (1 <= Math.floor((n - 19)%10) && Math.floor((n - 19)%10) <= 8)){
+        if((1 <= Math.floor((n - 19)/10) && Math.floor((n - 19)/10) <= 9) && (1 <= Math.floor((n - 19)%10) && Math.floor((n - 19)%10) <= 9)){
             Color_change(n - 19,l);
             if(l == 0 && (eval("img_" + n).alt * eval("img_" + (n - 19)).alt) > 0){
                 eval("img_" + (n - 19)).classList.remove("komaMove")
@@ -546,13 +546,13 @@ function Move_V(m,n,l){
     //後手桂馬の動き
     else if(m == -6){
         //下開きY
-        if((1 <= Math.floor((n + 21)/10) && Math.floor((n + 21)/10) <= 8) && (1 <= Math.floor((n + 21)%10) && Math.floor((n + 21)%10) <= 8)){
+        if((1 <= Math.floor((n + 21)/10) && Math.floor((n + 21)/10) <= 9) && (1 <= Math.floor((n + 21)%10) && Math.floor((n + 21)%10) <= 9)){
             Color_change(n + 21,l);
             if(l == 0 && (eval("img_" + n).alt * eval("img_" + (n + 21)).alt) > 0){
                 eval("img_" + (n + 21)).classList.remove("komaMove")
             }
         };
-        if((1 <= Math.floor((n + 19)/10) && Math.floor((n + 19)/10) <= 8) && (1 <= Math.floor((n + 19)%10) && Math.floor((n + 19)%10) <= 8)){
+        if((1 <= Math.floor((n + 19)/10) && Math.floor((n + 19)/10) <= 9) && (1 <= Math.floor((n + 19)%10) && Math.floor((n + 19)%10) <= 9)){
             Color_change(n + 19,l);
             if(l == 0 && (eval("img_" + n).alt * eval("img_" + (n + 19)).alt) > 0){
                 eval("img_" + (n + 19)).classList.remove("komaMove")
@@ -875,12 +875,12 @@ function Oute_check(){
 function Moti(n){
     if((turn * (-1)) == 1){
         if((turn * (-1)) * eval("img_" + n).alt < 0){
-            S_get.push(Math.abs(eval("img_" + n).alt))
+            S_get.push(Math.abs(Math.floor((eval("img_" + n).alt)%10)))
         }
     }
     else if((turn * (-1)) == -1){
         if((turn * (-1)) * eval("img_" + n).alt < 0){
-            G_get.push(Math.abs(eval("img_" + n).alt))
+            G_get.push(Math.abs(Math.floor((eval("img_" + n).alt)%10)))
         }
     }
     if(M_U_F == 1){
@@ -1025,6 +1025,15 @@ function Moti_U(n){
 //成り選択画面を表示
 function Prom_E(n){
     turn = 0;
+
+    if(S_P_E.classList.contains("P_E_A") && n > 0){
+        S_P_E.classList.remove("P_E_A")
+    }
+    if(G_P_E.classList.contains("P_E_A") && n < 0){
+        G_P_E.classList.remove("P_E_A")
+    }
+
+
     if(n == 1){
         S_P_E.innerHTML = "<button onclick='Prom(1)'>不成<br><img src='../images/PLAY/syougi koma/fu.png'></button> <button onclick='Prom(11)'>成<br><img src='../images/PLAY/syougi koma/to.png'></button>"
     }
@@ -1066,7 +1075,11 @@ function Prom_E(n){
 
 //成りの選択
 function Prom(n){
-    
+    prom_F = 2
+    mode = 1;
+    eval("img_" + prom_P).classList.add("komaMove")
+    eval("img_" + old_P).alt = n;
+    Syougi(prom_P);
 }
 
 //メインの関数
@@ -1090,7 +1103,7 @@ function Syougi(n){
         };
         }
     //自分の駒以外に触ったとき
-    else if(turn * eval("img_" + n).alt <= 0 && turn != 0){
+    else if(turn * eval("img_" + n).alt <= 0){
         //駒を動かせるとき
         if(mode == 1){
             //駒を動す
@@ -1120,57 +1133,67 @@ function Syougi(n){
                 
             //駒の移動
                 //成り選択画面表示 
-                if(Math.abs(eval("img_" + old_P).alt) != 3 && Math.abs(eval("img_" + old_P).alt) != 9 && Math.abs(eval("img_" + old_P).alt) != 7){
+                if(prom_F == 0 && Math.abs(eval("img_" + old_P).alt) != 3 && Math.abs(eval("img_" + old_P).alt) != 9 && Math.abs(eval("img_" + old_P).alt) != 7 && Math.abs(eval("img_" + old_P).alt) <= 9){
                     //先手側の処理
                     if(eval("img_" + old_P).alt > 0){
-                        if((1 < Math.floor(old_P/10) && Math.floor(old_P/10) < 3) || (1 < Math.floor(n/10) && Math.floor(n/10) < 3)){
+                        if((1 <= Math.floor(old_P/10) && Math.floor(old_P/10) <= 3) || (1 <= Math.floor(n/10) && Math.floor(n/10) <= 3)){
                             //歩、桂、香の強制成り
-                            if(eval("img_" + old_P).alt == 1 || eval("img_" + old_P).alt == 6 || eval("img_" + old_P).alt == 8){
-                                if(eval("img_" + old_P).alt == 1 && Math.floor(n/10) == 1){
-                                    eval("img_" + old_P).alt = 11
-                                }
-                                else if(eval("img_" + old_P).alt == 8 && Math.floor(n/10) == 1){
-                                    eval("img_" + old_P).alt = 18
-                                }
-                                else if(eval("img_" + old_P).alt == 6 && (Math.floor(n/10) == 1 || Math.floor(n/10) == 2)){
-                                    eval("img_" + old_P).alt = 16
-                                }
+                            if(eval("img_" + old_P).alt == 1 && Math.floor(n/10) == 1){
+                                eval("img_" + old_P).alt = 11
+                            }
+                            else if(eval("img_" + old_P).alt == 8 && Math.floor(n/10) == 1){
+                                eval("img_" + old_P).alt = 18
+                            }
+                            else if(eval("img_" + old_P).alt == 6 && (Math.floor(n/10) == 1 || Math.floor(n/10) == 2)){
+                                eval("img_" + old_P).alt = 16
                             }
                             else{
                                 prom_P = n;
+                                prom_F = 1;
                                 Prom_E(eval("img_" + old_P).alt);
                             }
                         }
                     }
                     //後手側の処理
                     else if(eval("img_" + old_P).alt < 0){
-                        if((7 < Math.floor(old_P/10) && Math.floor(old_P/10) < 9) || (7 < Math.floor(n/10) && Math.floor(n/10) < 9)){
+                        if((7 <= Math.floor(old_P/10) && Math.floor(old_P/10) <= 9) || (7 <= Math.floor(n/10) && Math.floor(n/10) <= 9)){
                             //歩、桂、香の強制成り
-                            if(eval("img_" + old_P).alt == -1 || eval("img_" + old_P).alt == -6 || eval("img_" + old_P).alt == -8){
-                                if(eval("img_" + old_P).alt == -1 && Math.floor(n/10) == 9){
-                                    eval("img_" + old_P).alt = -11
-                                }
-                                else if(eval("img_" + old_P).alt == -8 && Math.floor(n/10) == 9){
-                                    eval("img_" + old_P).alt = -18
-                                }
-                                else if(eval("img_" + old_P).alt == -6 && (Math.floor(n/10) == 9 || Math.floor(n/10) == 8)){
-                                    eval("img_" + old_P).alt = -16
-                                }
+                            if(eval("img_" + old_P).alt == -1 && Math.floor(n/10) == 9){
+                                eval("img_" + old_P).alt = -11
+                            }
+                            else if(eval("img_" + old_P).alt == -8 && Math.floor(n/10) == 9){
+                                eval("img_" + old_P).alt = -18
+                            }
+                            else if(eval("img_" + old_P).alt == -6 && (Math.floor(n/10) == 9 || Math.floor(n/10) == 8)){
+                                eval("img_" + old_P).alt = -16
                             }
                             else{
                                 prom_P = n;
+                                prom_F = 1;
                                 Prom_E(eval("img_" + old_P).alt);
                             }
                         }
                     }
                 }
-
                 Moti(n);
                 //駒の画像の入れ替え
                 eval("img_" + n).alt = eval("img_" + old_P).alt;
                 eval("img_" + old_P).alt = 0;
                 changeImage(n);
                 changeImage(old_P);
+
+                if(prom_F == 2){
+                    prom_F = 0;
+
+                    if(eval("img_" + n).alt > 0){
+                        turn = -1;
+                        S_P_E.classList.add("P_E_A")
+                    }
+                    else if(eval("img_" + n).alt < 0){
+                        turn = 1;
+                        G_P_E.classList.add("P_E_A")
+                    }
+                }
                 
 
                 //王手チェック
@@ -1238,6 +1261,10 @@ function Matta(){
         turnsum = turnsum - 1;
         kifu.pop();
         Cleaning();
+
+        prom_F = 0;
+        S_P_E.classList.add("P_E_A")
+        G_P_E.classList.add("P_E_A")
 
         //ターン表示
         turn_E();
@@ -1318,7 +1345,12 @@ function kifu_D_R(){
         };
         
         if(turn == 0){
-
+            if(Math.floor(turnsum % 2) == 0){
+                turn = 1;
+            }
+            else if(Math.floor(turnsum % 2) == 1){
+                turn = -1;
+            }
         };
         //ターン表示
         turn_E();
@@ -1365,6 +1397,9 @@ function Reset(){
             changeImage(ij);
         };
     };
+
+    S_P_E.classList.add("P_E_A")
+    G_P_E.classList.add("P_E_A")
 
     //行動範囲のクリーニング
     Cleaning();
@@ -1422,7 +1457,12 @@ window.addEventListener("load", function(){
         };
         
         if(turn == 0){
-            
+            if(Math.floor(turnsum % 2) == 0){
+                turn = 1;
+            }
+            else if(Math.floor(turnsum % 2) == 1){
+                turn = -1;
+            }
         };
         //ターン表示
         turn_E();
@@ -1434,6 +1474,3 @@ window.addEventListener("load", function(){
         Cleaning();
     };
 });
-
-function check(){
-}
