@@ -1150,6 +1150,7 @@ function Syougi(n){
                             else{
                                 prom_P = n;
                                 prom_F = 1;
+                                Moti(n);
                                 Prom_E(eval("img_" + old_P).alt);
                             }
                         }
@@ -1170,6 +1171,7 @@ function Syougi(n){
                             else{
                                 prom_P = n;
                                 prom_F = 1;
+                                Moti(n);
                                 Prom_E(eval("img_" + old_P).alt);
                             }
                         }
