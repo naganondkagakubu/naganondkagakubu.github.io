@@ -832,8 +832,8 @@ function Oute_check(){
             };
         };
     };
-    let S_king_P
-    let G_king_P
+    let S_king_P = 0;
+    let G_king_P = 0;
     for(let i = 1; i <= 9; i++){
         for(let j = 1; j <= 9; j++){
             let ij = (10 * i) + j;
@@ -857,13 +857,21 @@ function Oute_check(){
         };
     };
     //王手の確認
-    if(eval("img_" + S_king_P).classList.contains("Oute_checkforS")){
+    if(S_king_P == 0){
+        document.getElementById("S_check_E").innerHTML = "後手の勝ち!!"
+        document.getElementById("G_check_E").innerHTML = "後手の勝ち!!"
+    }
+    else if(eval("img_" + S_king_P).classList.contains("Oute_checkforS")){
         document.getElementById("S_check_E").innerHTML = "王手されています"
     }
     else{
         document.getElementById("S_check_E").innerHTML = ""
     };
-    if(eval("img_" + G_king_P).classList.contains("Oute_checkforG")){
+    if(G_king_P == 0){
+        document.getElementById("S_check_E").innerHTML = "先手の勝ち!!"
+        document.getElementById("G_check_E").innerHTML = "先手の勝ち!!"
+    }
+    else if(eval("img_" + G_king_P).classList.contains("Oute_checkforG")){
         document.getElementById("G_check_E").innerHTML = "王手されています"
     }
     else{

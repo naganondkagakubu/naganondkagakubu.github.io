@@ -6,6 +6,8 @@ for (let i = 1; i<=8; i++){
     }
 }
 
+var img_0 = document.getElementById("img_0")
+
 const B_W = document.getElementById("B_W");
 const W_W = document.getElementById("W_W");
 
@@ -562,8 +564,8 @@ function Check_check(){
             };
         };
     };
-    let B_king_P;
-    let W_king_P
+    let B_king_P = 0;
+    let W_king_P = 0;
     for(let i = 1; i <= 8; i++){
         for(let j = 1; j <= 8; j++){
             let ij = (10 * i) + j;
@@ -587,19 +589,27 @@ function Check_check(){
         };
     };
     //チェックの確認
-    if(eval("img_" + B_king_P).classList.contains("Check_checkforB")){
+    if(B_king_P == 0){
+        document.getElementById("B_check_E").innerHTML = "白の勝ち!!"
+        document.getElementById("W_check_E").innerHTML = "白の勝ち!!"
+    }
+    else if(eval("img_" + B_king_P).classList.contains("Check_checkforB")){
         B_check = 1;
         document.getElementById("B_check_E").innerHTML = "チェックされています"
     }
-    else{
+    else if(W_king_P != 0){
         B_check = 0;
         document.getElementById("B_check_E").innerHTML = ""
     };
-    if(eval("img_" + W_king_P).classList.contains("Check_checkforW")){
+    if(W_king_P == 0){
+        document.getElementById("B_check_E").innerHTML = "黒の勝ち!!"
+        document.getElementById("W_check_E").innerHTML = "黒の勝ち!!"
+    }
+    else if(eval("img_" + W_king_P).classList.contains("Check_checkforW")){
         W_check = 1;
         document.getElementById("W_check_E").innerHTML = "チェックされています"
     }
-    else{
+    else if(B_king_P != 0){
         W_check = 0;
         document.getElementById("W_check_E").innerHTML = ""
     };
@@ -950,6 +960,15 @@ function Matta(){
     };
     turnsum = turnsum - 1;
     kifu.pop();
+
+    //ターン表示
+    turn_E();
+
+    Check_check();
+
+    //N_kifuの更新
+    S_kifu_N();
+
     //行動範囲のクリーニング
     for(let i = 1; i <= 8; i++){
         for(let j = 1;j <= 8; j++){
@@ -959,14 +978,6 @@ function Matta(){
             };
         };
     };
-
-    //ターン表示
-    turn_E();
-
-    Check_check();
-
-    //N_kifuの更新
-    S_kifu_N();
 
     if(localStorage.getItem("kifu_H") !== null){
         localStorage.removeItem("kifu_H");
@@ -1172,6 +1183,15 @@ function Reset(){
             eval("img_" + ij).alt = 0;
         };
     };
+
+    //ターン表示
+    turn_E();
+
+    Check_check();
+    
+    //N_kifuの更新
+    S_kifu_N();
+
     //行動範囲のクリーニング
     for(let i = 1; i <= 8; i++){
         for(let j = 1;j <= 8; j++){
@@ -1181,14 +1201,6 @@ function Reset(){
             };
         };
     };
-
-    //ターン表示
-    turn_E();
-
-    Check_check();
-    
-    //N_kifuの更新
-    S_kifu_N();
 
     if(localStorage.getItem("kifu_H") !== null){
         localStorage.removeItem("kifu_H");
