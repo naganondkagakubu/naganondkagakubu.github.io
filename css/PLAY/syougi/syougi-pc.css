@@ -63,19 +63,21 @@ body {
 
 .syougi-board{
     float: left;
+    background-color: #000;
 }
 
 .syougi-board td{
     width: 3.8vw;
-    height: auto;
+    height: 3.8vw;
     background-color: #ddd;
     text-align: center;
-    font-size: 3.8vw;
+    font-size: 0vw;
     cursor: pointer;
+    background-image: url("../../../images/PLAY/syougi koma/syougi_board.png");
 }
 
 .syougi-board img{
-    width: 100%;
+    width: 80%;
     height: auto;
 }
 
