@@ -55,12 +55,25 @@
 <p class="body-main">
     モードの説明
     <br>
+    <br>
+    <input type="radio" name="mode" value="setup" checked>駒を並べる
+    <input type="radio" name="mode" value="start">対戦
+    <br>
+    <br>
+        <input type="button" value="ヘッダーの透明化" onclick="header_A()">
+    <br>
+    <br>
+    <input type="button" value="リセット" onclick="Reset()">
+    <br>
+    <br>
+    <input type="button" value="1手戻す" onclick="Matta()">
+    <br>
     <!--データの保管(old_P)-->
     <img id="img_0" alt="0">
     <br>
 <div id = "Gsyougi">
 <div id="R_W">
-    <p id="R_turn_E">青の手番です</p>
+    <p id="R_turn_E"></p>
 </div>
 <table class="G-syougi-board">
     <tr>
@@ -137,7 +150,17 @@
     </tr>
 </table>
 <div id ="B_W">
-    <p id="B_turn_E">青の手番です</p>
+    <div class="setup">
+        <p id="set-up">駒を右から選択して並べてください</p>
+        <table>
+
+        </table>
+    </div>
+    <div class="game">
+        <p id="B_turn_E"></p>
+        <p id="B_sel"></p>
+        <button onclick="">駒の役職と動ける範囲を確認する</button>
+    </div>
 </div>
 </div>
 </p>

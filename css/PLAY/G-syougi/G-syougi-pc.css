@@ -30,7 +30,7 @@ body {
 
 #R_W{
     float: left;
-    max-width: 20vw;
+    width: 20vw;
     height: auto;
     transform: rotate(180deg);
 }
@@ -69,7 +69,7 @@ body {
 
 #B_W{
     float: left;
-    max-width: 20vw;
+    width: 20vw;
     height: auto;
 }
 
