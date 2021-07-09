@@ -374,6 +374,17 @@ function Cleaning(){
     };
 }
 
+//モード切替
+//駒を配置
+function preset(){
+
+}
+
+//対戦
+function battle(){
+    
+}
+
 //メインの関数
 function Gsyougi(n){
     //自分の駒を触ったとき
