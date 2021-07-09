@@ -40,7 +40,8 @@ let M_U_F = 0;
 let S_get = []; //先手が取った駒
 let G_get = []; //後手が取った駒
 let kifu = [[1,0,[],[],-8,-6,-2,-7,-3,-7,-2,-6,-8,0,-5,0,0,0,0,0,-4,0,-1,-1,-1,-1,-1,-1,-1,-1,-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,4,0,0,0,0,0,5,0,8,6,2,7,9,7,2,6,8]]; //棋譜
-let N_kifu = [1,0,[],[],-8,-6,-2,-7,-3,-7,-2,-6,-8,0,-5,0,0,0,0,0,-4,0,-1,-1,-1,-1,-1,-1,-1,-1,-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,4,0,0,0,0,0,5,0,8,6,2,7,9,7,2,6,8]; //現在の盤面
+let N_kifu = [1,0,[],[],-8,-6,-2,-7,-3,-7,-2,-6,-8,0,-5,0,0,0,0,0,-4,0,-1,-1,-1,-1,-1,-1,-1,-1,-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,4,0,0,0,0,0,5,0,8,6,2,7,9,7,2,6,8];
+; //現在の盤面
 
 function changeImage(n){
     if(Math.abs(eval("img_" + n).alt) == 1){
@@ -894,14 +895,16 @@ function Moti(n){
     if(M_U_F == 1){
         if(eval("img_" + old_P).alt > 0){
             let S_get_S_R = S_get.filter(item => item != eval("img_" + old_P).alt)
-            let S_get_S_M = S_get.filter(item => item = eval("img_" + old_P).alt)
+            let S_get_S_M = S_get.filter(item => item == eval("img_" + old_P).alt)
             S_get = []
             S_get_S_M.pop()
+            console.log(S_get_S_R)
+            console.log(S_get_S_M)
             S_get = S_get_S_R.concat(S_get_S_M)
         }
         else if(eval("img_" + old_P).alt < 0){
             let G_get_S_R = G_get.filter(item => item != Math.abs(eval("img_" + old_P).alt))
-            let G_get_S_M = S_get.filter(item => item = eval("img_" + old_P).alt)
+            let G_get_S_M = S_get.filter(item => item == eval("img_" + old_P).alt)
             G_get = []
             G_get_S_M.pop()
             G_get = G_get_S_R.concat(G_get_S_M)
