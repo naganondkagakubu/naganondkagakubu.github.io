@@ -375,7 +375,7 @@ function Cleaning(){
 }
 
 //メインの関数
-function Syougi(n){
+function Gsyougi(n){
     //自分の駒を触ったとき
     if(turn * eval("img_" + n).alt > 0){
         //さっきと同じ駒なら
@@ -470,6 +470,7 @@ function Matta(){
         Ki.splice(0,1);
         for(let i = 0; i <= 8; i++){
             Ki.splice((10 * i),0,0);
+            N_kifu.splice(((10 * i) + 7),3,0);
         };
 
         for(let i = 1; i <= 9; i++){
@@ -538,6 +539,7 @@ function kifu_D_R(){
         N_kifu.splice(0,1);
         for(let i = 0; i <= 8; i++){
             N_kifu.splice((10 * i),0,0);
+            N_kifu.splice(((10 * i) + 7),3,0);
         };
         for(let i = 1; i <= 9; i++){
             for(let j = 1; j <= 6; j++){
@@ -578,6 +580,7 @@ function Reset(){
     N_kifu.splice(0,1);
     for(let i = 0; i <= 8; i++){
         N_kifu.splice((10 * i),0,0);
+        N_kifu.splice(((10 * i) + 7),3,0);
     };
     for(let i = 1; i <= 9; i++){
         for(let j = 1; j <= 6; j++){
@@ -623,6 +626,7 @@ window.addEventListener("load", function(){
         N_kifu.splice(0,1);
         for(let i = 0; i <= 8; i++){
             N_kifu.splice((10 * i),0,0);
+            N_kifu.splice(((10 * i) + 7),3,0);
         };
         for(let i = 1; i <= 9; i++){
             for(let j = 1; j <= 6; j++){
