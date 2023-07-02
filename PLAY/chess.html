@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+    <div class="whole">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-site-verification" content="3jJ3Cu6MYFQcsBY9a1hj3Rijx8SNO53Qd5GnkyEjrDc" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+    <link rel="stylesheet" href="../css/style/style-pc.css" media="screen and (min-width: 767px)">
+    <link rel="stylesheet" href="../css/style/style-tb.css" media="screen and (min-width: 479px) and (max-width: 767px)">
+    <link rel="stylesheet" href="../css/style/style-sp.css" media="screen and (max-width: 479px)">
+
+    <link rel="stylesheet" href="../css/PLAY/chess/chess-pc.css" media="screen and (min-width: 767px)">
+    <link rel="stylesheet" href="../css/PLAY/chess/chess-tb.css" media="screen and (min-width: 479px) and (max-width: 767px)">
+    <link rel="stylesheet" href="../css/PLAY/chess/chess-sp.css" media="screen and (max-width: 479px)">
+    <title>kagakubu</title>
+</head>
+<body>
+<header>
+    <div class="body1">
+    <div class="nav-menu">
+        <h1>
+            <a href="../index.html">科学部</a>
+        </h1>
+
+        <nav class="pc-nav">
+            <ul class="nav-ul">
+                <li class="nav-li"><a href="../index.html">HOME</a></li>
+                <li class="nav-li"><a href="https://www.nagano-nichidai.ed.jp/">学校HP</a></li>
+                <li class="nav-li"><a href="https://www.nagano-nichidai.ed.jp/club-activities/">CLUBs</a></li>
+                <li class="nav-li"><a href="../Wikipedia/index.html">Wiki</a></li>
+                <button type="button" onclick="PW()"></button>
+            </ul>
+        </nav>
+<!--ハンバーガーメニュー-->
+    <span class="menu-btn">
+        <i></i>
+        <i></i>
+        <i></i>
+    </span>
+<!--メニューの中身-->
+<nav class="menu">
+    <ul class="menu_item_ul">
+        <li class="menu_item_li"><a href="../index.html">HOME</a></li>
+        <li class="menu_item_li"><a href="https://www.nagano-nichidai.ed.jp/">学校HP</a></li>
+        <li class="menu_item_li"><a href="https://www.nagano-nichidai.ed.jp/club-activities/">CLUBs</a></li>
+        <li class="menu_item_li"><a href="../Wikipedia/index.html">Wiki</a></li>
+        <button type="button" onclick="PW()"></button>
+    </ul>
+</nav>
+    </div>
+</div>
+</header>
+<!--body回避-->
+<div class="body1">
+<p class="body-main">
+    白が先手、黒が後手です。
+    <br>
+    キャスリングする時にはキングを選択してください。
+    <br>
+    <!--データの保管(old_P)-->
+    <img id="img_0" alt="0">
+    <br>
+    <input type="button" value="ヘッダーの透明化" onclick="header_A()">
+    <br>
+    <br>
+    <input type="button" value="リセット" onclick="Reset()">
+    <br>
+    <br>
+    <input type="button" value="1手戻す" onclick="Matta()">
+    <br>
+<div id="chess">
+    <div id="B_W">
+        <p id="B_turn_E">白の手番です</p>
+        <br>
+        <p id="B_check_E"></p>
+        <br>
+        <div id="B_prom_E" class="is-act">
+            <button id = "B_N_B" onclick="prom_choice(3)"><img src="../images/PLAY/chesspieces/bN.png"></button>
+            <button id = "B_B_B" onclick="prom_choice(1)"><img src="../images/PLAY/chesspieces/bB.png"></button>
+            <button id = "B_R_B" onclick="prom_choice(6)"><img src="../images/PLAY/chesspieces/bR.png"></button>
+            <button id = "B_Q_B" onclick="prom_choice(5)"><img src="../images/PLAY/chesspieces/bQ.png"></button>
+        </div>
+    </div>
+    <table class="chess-board">
+    <tr class="8r">
+        <td id="18" onclick="Chess(18)"><img id="img18" src="../images/PLAY/chesspieces/bR.png" alt = "6"></td>
+        <td id="28" onclick="Chess(28)"><img id="img28" src="../images/PLAY/chesspieces/bN.png" alt = "3"></td>
+        <td id="38" onclick="Chess(38)"><img id="img38" src="../images/PLAY/chesspieces/bB.png" alt = "1"></td>
+        <td id="48" onclick="Chess(48)"><img id="img48" src="../images/PLAY/chesspieces/bQ.png" alt = "5"></td>
+        <td id="58" onclick="Chess(58)"><img id="img58" src="../images/PLAY/chesspieces/bK.png" alt = "2"></td>
+        <td id="68" onclick="Chess(68)"><img id="img68" src="../images/PLAY/chesspieces/bB.png" alt = "1"></td>
+        <td id="78" onclick="Chess(78)"><img id="img78" src="../images/PLAY/chesspieces/bN.png" alt = "3"></td>
+        <td id="88" onclick="Chess(88)"><img id="img88" src="../images/PLAY/chesspieces/bR.png" alt = "6"></td>
+    </tr>
+    <tr class="7r">
+        <td id="17" onclick="Chess(17)"><img id="img17" src="../images/PLAY/chesspieces/bP.png" alt = "4"></td>
+        <td id="27" onclick="Chess(27)"><img id="img27" src="../images/PLAY/chesspieces/bP.png" alt = "4"></td>
+        <td id="37" onclick="Chess(37)"><img id="img37" src="../images/PLAY/chesspieces/bP.png" alt = "4"></td>
+        <td id="47" onclick="Chess(47)"><img id="img47" src="../images/PLAY/chesspieces/bP.png" alt = "4"></td>
+        <td id="57" onclick="Chess(57)"><img id="img57" src="../images/PLAY/chesspieces/bP.png" alt = "4"></td>
+        <td id="67" onclick="Chess(67)"><img id="img67" src="../images/PLAY/chesspieces/bP.png" alt = "4"></td>
+        <td id="77" onclick="Chess(77)"><img id="img77" src="../images/PLAY/chesspieces/bP.png" alt = "4"></td>
+        <td id="87" onclick="Chess(87)"><img id="img87" src="../images/PLAY/chesspieces/bP.png" alt = "4"></td>
+    </tr>
+    <tr class="6r">
+        <td id="16" onclick="Chess(16)"><img id="img16" src="../images/PLAY/chesspieces/empty.png" alt = "0"></td>
+        <td id="26" onclick="Chess(26)"><img id="img26" src="../images/PLAY/chesspieces/empty.png" alt = "0"></td>
+        <td id="36" onclick="Chess(36)"><img id="img36" src="../images/PLAY/chesspieces/empty.png" alt = "0"></td>
+        <td id="46" onclick="Chess(46)"><img id="img46" src="../images/PLAY/chesspieces/empty.png" alt = "0"></td>
+        <td id="56" onclick="Chess(56)"><img id="img56" src="../images/PLAY/chesspieces/empty.png" alt = "0"></td>
+        <td id="66" onclick="Chess(66)"><img id="img66" src="../images/PLAY/chesspieces/empty.png" alt = "0"></td>
+        <td id="76" onclick="Chess(76)"><img id="img76" src="../images/PLAY/chesspieces/empty.png" alt = "0"></td>
+        <td id="86" onclick="Chess(86)"><img id="img86" src="../images/PLAY/chesspieces/empty.png" alt = "0"></td>
+    </tr>
+    <tr class="5r">
+        <td id="15" onclick="Chess(15)"><img id="img15" src="../images/PLAY/chesspieces/empty.png" alt = "0"></td>
+        <td id="25" onclick="Chess(25)"><img id="img25" src="../images/PLAY/chesspieces/empty.png" alt = "0"></td>
+        <td id="35" onclick="Chess(35)"><img id="img35" src="../images/PLAY/chesspieces/empty.png" alt = "0"></td>
+        <td id="45" onclick="Chess(45)"><img id="img45" src="../images/PLAY/chesspieces/empty.png" alt = "0"></td>
+        <td id="55" onclick="Chess(55)"><img id="img55" src="../images/PLAY/chesspieces/empty.png" alt = "0"></td>
+        <td id="65" onclick="Chess(65)"><img id="img65" src="../images/PLAY/chesspieces/empty.png" alt = "0"></td>
+        <td id="75" onclick="Chess(75)"><img id="img75" src="../images/PLAY/chesspieces/empty.png" alt = "0"></td>
+        <td id="85" onclick="Chess(85)"><img id="img85" src="../images/PLAY/chesspieces/empty.png" alt = "0"></td>
+    </tr>
+    <tr class="4r">
+        <td id="14" onclick="Chess(14)"><img id="img14" src="../images/PLAY/chesspieces/empty.png" alt = "0"></td>
+        <td id="24" onclick="Chess(24)"><img id="img24" src="../images/PLAY/chesspieces/empty.png" alt = "0"></td>
+        <td id="34" onclick="Chess(34)"><img id="img34" src="../images/PLAY/chesspieces/empty.png" alt = "0"></td>
+        <td id="44" onclick="Chess(44)"><img id="img44" src="../images/PLAY/chesspieces/empty.png" alt = "0"></td>
+        <td id="54" onclick="Chess(54)"><img id="img54" src="../images/PLAY/chesspieces/empty.png" alt = "0"></td>
+        <td id="64" onclick="Chess(64)"><img id="img64" src="../images/PLAY/chesspieces/empty.png" alt = "0"></td>
+        <td id="74" onclick="Chess(74)"><img id="img74" src="../images/PLAY/chesspieces/empty.png" alt = "0"></td>
+        <td id="84" onclick="Chess(84)"><img id="img84" src="../images/PLAY/chesspieces/empty.png" alt = "0"></td>
+    </tr>
+    <tr class="3r">
+        <td id="13" onclick="Chess(13)"><img id="img13" src="../images/PLAY/chesspieces/empty.png" alt = "0"></td>
+        <td id="23" onclick="Chess(23)"><img id="img23" src="../images/PLAY/chesspieces/empty.png" alt = "0"></td>
+        <td id="33" onclick="Chess(33)"><img id="img33" src="../images/PLAY/chesspieces/empty.png" alt = "0"></td>
+        <td id="43" onclick="Chess(43)"><img id="img43" src="../images/PLAY/chesspieces/empty.png" alt = "0"></td>
+        <td id="53" onclick="Chess(53)"><img id="img53" src="../images/PLAY/chesspieces/empty.png" alt = "0"></td>
+        <td id="63" onclick="Chess(63)"><img id="img63" src="../images/PLAY/chesspieces/empty.png" alt = "0"></td>
+        <td id="73" onclick="Chess(73)"><img id="img73" src="../images/PLAY/chesspieces/empty.png" alt = "0"></td>
+        <td id="83" onclick="Chess(83)"><img id="img83" src="../images/PLAY/chesspieces/empty.png" alt = "0"></td>
+    </tr>
+    <tr class="2r">
+        <td id="12" onclick="Chess(12)"><img id="img12" src="../images/PLAY/chesspieces/wP.png" alt = "-4"></td>
+        <td id="22" onclick="Chess(22)"><img id="img22" src="../images/PLAY/chesspieces/wP.png" alt = "-4"></td>
+        <td id="32" onclick="Chess(32)"><img id="img32" src="../images/PLAY/chesspieces/wP.png" alt = "-4"></td>
+        <td id="42" onclick="Chess(42)"><img id="img42" src="../images/PLAY/chesspieces/wP.png" alt = "-4"></td>
+        <td id="52" onclick="Chess(52)"><img id="img52" src="../images/PLAY/chesspieces/wP.png" alt = "-4"></td>
+        <td id="62" onclick="Chess(62)"><img id="img62" src="../images/PLAY/chesspieces/wP.png" alt = "-4"></td>
+        <td id="72" onclick="Chess(72)"><img id="img72" src="../images/PLAY/chesspieces/wP.png" alt = "-4"></td>
+        <td id="82" onclick="Chess(82)"><img id="img82" src="../images/PLAY/chesspieces/wP.png" alt = "-4"></td>
+    </tr>
+    <tr class="1r">
+        <td id="11" onclick="Chess(11)"><img id="img11" src="../images/PLAY/chesspieces/wR.png" alt = "-6"></td>
+        <td id="21" onclick="Chess(21)"><img id="img21" src="../images/PLAY/chesspieces/wN.png" alt = "-3"></td>
+        <td id="31" onclick="Chess(31)"><img id="img31" src="../images/PLAY/chesspieces/wB.png" alt = "-1"></td>
+        <td id="41" onclick="Chess(41)"><img id="img41" src="../images/PLAY/chesspieces/wQ.png" alt = "-5"></td>
+        <td id="51" onclick="Chess(51)"><img id="img51" src="../images/PLAY/chesspieces/wK.png" alt = "-2"></td>
+        <td id="61" onclick="Chess(61)"><img id="img61" src="../images/PLAY/chesspieces/wB.png" alt = "-1"></td>
+        <td id="71" onclick="Chess(71)"><img id="img71" src="../images/PLAY/chesspieces/wN.png" alt = "-3"></td>
+        <td id="81" onclick="Chess(81)"><img id="img81" src="../images/PLAY/chesspieces/wR.png" alt = "-6"></td>
+    </tr>
+    </table>
+    <div id="W_W">
+        <p id="W_turn_E">白の手番です</p>
+        <br>
+        <p id="W_check_E"></p>
+        <br>
+        <div id="W_prom_E" class="is-act">
+        <button id = "W_N_B" onclick="prom_choice(-3)"><img src="../images/PLAY/chesspieces/wN.png"></button>
+        <button id = "W_B_B" onclick="prom_choice(-1)"><img src="../images/PLAY/chesspieces/wB.png"></button>
+        <button id = "W_R_B" onclick="prom_choice(-6)"><img src="../images/PLAY/chesspieces/wR.png"></button>
+        <button id = "W_Q_B" onclick="prom_choice(-5)"><img src="../images/PLAY/chesspieces/wQ.png"></button>
+        </div>
+    </div>
+</div>
+<br>
+<div>
+    <textarea class="data_E" cols="20" rows="4" wrap="soft"></textarea>
+    <button onclick="N_kifu_D_E()" class="data_E_B">盤面のデータを出力</button>
+    <textarea class="data_E" cols="20" rows="4" wrap="soft"></textarea>
+    <button onclick="kifu_D_R()" class="data_E_B">盤面を復元</button>
+</div>
+</p>
+</div>
+
+<footer class="site-footer">
+    <p class="copyright">@2020 NAGANICHIkagakubu</p>
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+</script>
+<script src="../JavaScript/style.js">
+</script>
+<script src="../JavaScript/PLAY/chess.js">
+</script>
+</body>
+</div>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+    <div class="whole">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-site-verification" content="3jJ3Cu6MYFQcsBY9a1hj3Rijx8SNO53Qd5GnkyEjrDc" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+    <link rel="stylesheet" href="../css/style/style-pc.css" media="screen and (min-width: 767px)">
+    <link rel="stylesheet" href="../css/style/style-tb.css" media="screen and (min-width: 479px) and (max-width: 767px)">
+    <link rel="stylesheet" href="../css/style/style-sp.css" media="screen and (max-width: 479px)">
+
+    <link rel="stylesheet" href="../css/PLAY/G-syougi/G-syougi-pc.css" media="screen and (min-width: 767px)">
+    <link rel="stylesheet" href="../css/PLAY/G-syougi/G-syougi-tb.css" media="screen and (min-width: 479px) and (max-width: 767px)">
+    <link rel="stylesheet" href="../css/PLAY/G-syougi/G-syougi-tb.css" media="screen and (max-width: 479px)">
+    <title>kagakubu</title>
+</head>
+<body>
+<header>
+    <div class="body1">
+    <div class="nav-menu">
+        <h1>
+            <a href="../index.html">科学部</a>
+        </h1>
+
+        <nav class="pc-nav">
+            <ul class="nav-ul">
+                <li class="nav-li"><a href="../index.html">HOME</a></li>
+                <li class="nav-li"><a href="https://www.nagano-nichidai.ed.jp/">学校HP</a></li>
+                <li class="nav-li"><a href="https://www.nagano-nichidai.ed.jp/club-activities/">CLUBs</a></li>
+                <li class="nav-li"><a href="../Wikipedia/index.html">Wiki</a></li>
+                <button type="button" onclick="PW()"></button>
+            </ul>
+        </nav>
+<!--ハンバーガーメニュー-->
+    <span class="menu-btn">
+        <i></i>
+        <i></i>
+        <i></i>
+    </span>
+<!--メニューの中身-->
+<nav class="menu">
+    <ul class="menu_item_ul">
+        <li class="menu_item_li"><a href="../index.html">HOME</a></li>
+        <li class="menu_item_li"><a href="https://www.nagano-nichidai.ed.jp/">学校HP</a></li>
+        <li class="menu_item_li"><a href="https://www.nagano-nichidai.ed.jp/club-activities/">CLUBs</a></li>
+        <li class="menu_item_li"><a href="../Wikipedia/index.html">Wiki</a></li>
+        <button type="button" onclick="PW()"></button>
+    </ul>
+</nav>
+    </div>
+</div>
+</header>
+<!--body回避-->
+<div class="body1">
+<p class="body-main">
+    モードの説明
+    <br>
+    <br>
+    <input type="radio" name="mode" value="setup" onclick="preset()" checked>駒を並べる
+    <input type="radio" name="mode" value="start" onclick="battle()">対戦
+    <br>
+    <br>
+        <input type="button" value="ヘッダーの透明化" onclick="header_A()">
+    <br>
+    <br>
+    <input type="button" value="リセット" onclick="Reset()">
+    <br>
+    <br>
+    <input type="button" value="1手戻す" onclick="Matta()">
+    <br>
+    <!--データの保管(old_P)-->
+    <img id="img_0" alt="0">
+    <br>
+<div id = "Gsyougi">
+<div id="R_W">
+    <p id="R_turn_E"></p>
+</div>
+<table class="G-syougi-board">
+    <tr>
+        <td id="16" onclick="Gsyougi(16)"><img id="img_16" src="../images/PLAY/G-syougi koma/empty.png" alt="0"></td>
+        <td id="15" onclick="Gsyougi(15)"><img id="img_15" src="../images/PLAY/G-syougi koma/empty.png" alt="0"></td>
+        <td id="14" onclick="Gsyougi(14)"><img id="img_14" src="../images/PLAY/G-syougi koma/empty.png" alt="0"></td>
+        <td id="13" onclick="Gsyougi(13)"><img id="img_13" src="../images/PLAY/G-syougi koma/empty.png" alt="0"></td>
+        <td id="12" onclick="Gsyougi(12)"><img id="img_12" src="../images/PLAY/G-syougi koma/empty.png" alt="0"></td>
+        <td id="11" onclick="Gsyougi(11)"><img id="img_11" src="../images/PLAY/G-syougi koma/empty.png" alt="0"></td>
+    </tr>
+    <tr>
+        <td id="26" onclick="Gsyougi(26)"><img id="img_26" src="../images/PLAY/G-syougi koma/empty.png" alt="0"></td>
+        <td id="25" onclick="Gsyougi(25)"><img id="img_25" src="../images/PLAY/G-syougi koma/empty.png" alt="0"></td>
+        <td id="24" onclick="Gsyougi(24)"><img id="img_24" src="../images/PLAY/G-syougi koma/empty.png" alt="0"></td>
+        <td id="23" onclick="Gsyougi(23)"><img id="img_23" src="../images/PLAY/G-syougi koma/empty.png" alt="0"></td>
+        <td id="22" onclick="Gsyougi(22)"><img id="img_22" src="../images/PLAY/G-syougi koma/empty.png" alt="0"></td>
+        <td id="21" onclick="Gsyougi(21)"><img id="img_21" src="../images/PLAY/G-syougi koma/empty.png" alt="0"></td>
+    </tr>
+    <tr>
+        <td id="36" onclick="Gsyougi(36)"><img id="img_36" src="../images/PLAY/G-syougi koma/empty.png" alt="0"></td>
+        <td id="35" onclick="Gsyougi(35)"><img id="img_35" src="../images/PLAY/G-syougi koma/empty.png" alt="0"></td>
+        <td id="34" onclick="Gsyougi(34)"><img id="img_34" src="../images/PLAY/G-syougi koma/empty.png" alt="0"></td>
+        <td id="33" onclick="Gsyougi(33)"><img id="img_33" src="../images/PLAY/G-syougi koma/empty.png" alt="0"></td>
+        <td id="32" onclick="Gsyougi(32)"><img id="img_32" src="../images/PLAY/G-syougi koma/empty.png" alt="0"></td>
+        <td id="31" onclick="Gsyougi(31)"><img id="img_31" src="../images/PLAY/G-syougi koma/empty.png" alt="0"></td>
+    </tr>
+    <tr>
+        <td id="46" onclick="Gsyougi(46)"><img id="img_46" src="../images/PLAY/G-syougi koma/empty.png" alt="0"></td>
+        <td id="45" onclick="Gsyougi(45)"><img id="img_45" src="../images/PLAY/G-syougi koma/empty.png" alt="0"></td>
+        <td id="44" onclick="Gsyougi(44)"><img id="img_44" src="../images/PLAY/G-syougi koma/empty.png" alt="0"></td>
+        <td id="43" onclick="Gsyougi(43)"><img id="img_43" src="../images/PLAY/G-syougi koma/empty.png" alt="0"></td>
+        <td id="42" onclick="Gsyougi(42)"><img id="img_42" src="../images/PLAY/G-syougi koma/empty.png" alt="0"></td>
+        <td id="41" onclick="Gsyougi(41)"><img id="img_41" src="../images/PLAY/G-syougi koma/empty.png" alt="0"></td>
+    </tr>
+    <tr>
+        <td id="56"><img id="img_56" src="../images/PLAY/G-syougi koma/empty.png"></td>
+        <td id="55"><img id="img_55" src="../images/PLAY/G-syougi koma/empty.png"></td>
+        <td id="54"><img id="img_54" src="../images/PLAY/G-syougi koma/empty.png"></td>
+        <td id="53"><img id="img_53" src="../images/PLAY/G-syougi koma/empty.png"></td>
+        <td id="52"><img id="img_52" src="../images/PLAY/G-syougi koma/empty.png"></td>
+        <td id="51"><img id="img_51" src="../images/PLAY/G-syougi koma/empty.png"></td>
+    </tr>
+    <tr>
+        <td id="66" onclick="Gsyougi(66)"><img id="img_66" src="../images/PLAY/G-syougi koma/empty.png" alt="0"></td>
+        <td id="65" onclick="Gsyougi(65)"><img id="img_65" src="../images/PLAY/G-syougi koma/empty.png" alt="0"></td>
+        <td id="64" onclick="Gsyougi(64)"><img id="img_64" src="../images/PLAY/G-syougi koma/empty.png" alt="0"></td>
+        <td id="63" onclick="Gsyougi(63)"><img id="img_63" src="../images/PLAY/G-syougi koma/empty.png" alt="0"></td>
+        <td id="62" onclick="Gsyougi(62)"><img id="img_62" src="../images/PLAY/G-syougi koma/empty.png" alt="0"></td>
+        <td id="61" onclick="Gsyougi(61)"><img id="img_61" src="../images/PLAY/G-syougi koma/empty.png" alt="0"></td>
+    </tr>
+    <tr>
+        <td id="76" onclick="Gsyougi(76)"><img id="img_76" src="../images/PLAY/G-syougi koma/empty.png" alt="0"></td>
+        <td id="75" onclick="Gsyougi(75)"><img id="img_75" src="../images/PLAY/G-syougi koma/empty.png" alt="0"></td>
+        <td id="74" onclick="Gsyougi(74)"><img id="img_74" src="../images/PLAY/G-syougi koma/empty.png" alt="0"></td>
+        <td id="73" onclick="Gsyougi(73)"><img id="img_73" src="../images/PLAY/G-syougi koma/empty.png" alt="0"></td>
+        <td id="72" onclick="Gsyougi(72)"><img id="img_72" src="../images/PLAY/G-syougi koma/empty.png" alt="0"></td>
+        <td id="71" onclick="Gsyougi(71)"><img id="img_71" src="../images/PLAY/G-syougi koma/empty.png" alt="0"></td>
+    </tr>
+    <tr>
+        <td id="86" onclick="Gsyougi(86)"><img id="img_86" src="../images/PLAY/G-syougi koma/empty.png" alt="0"></td>
+        <td id="85" onclick="Gsyougi(85)"><img id="img_85" src="../images/PLAY/G-syougi koma/empty.png" alt="0"></td>
+        <td id="84" onclick="Gsyougi(84)"><img id="img_84" src="../images/PLAY/G-syougi koma/empty.png" alt="0"></td>
+        <td id="83" onclick="Gsyougi(83)"><img id="img_83" src="../images/PLAY/G-syougi koma/empty.png" alt="0"></td>
+        <td id="82" onclick="Gsyougi(82)"><img id="img_82" src="../images/PLAY/G-syougi koma/empty.png" alt="0"></td>
+        <td id="81" onclick="Gsyougi(81)"><img id="img_81" src="../images/PLAY/G-syougi koma/empty.png" alt="0"></td>
+    </tr>
+    <tr>
+        <td id="96" onclick="Gsyougi(96)"><img id="img_96" src="../images/PLAY/G-syougi koma/empty.png" alt="0"></td>
+        <td id="95" onclick="Gsyougi(95)"><img id="img_95" src="../images/PLAY/G-syougi koma/empty.png" alt="0"></td>
+        <td id="94" onclick="Gsyougi(94)"><img id="img_94" src="../images/PLAY/G-syougi koma/empty.png" alt="0"></td>
+        <td id="93" onclick="Gsyougi(93)"><img id="img_93" src="../images/PLAY/G-syougi koma/empty.png" alt="0"></td>
+        <td id="92" onclick="Gsyougi(92)"><img id="img_92" src="../images/PLAY/G-syougi koma/empty.png" alt="0"></td>
+        <td id="91" onclick="Gsyougi(91)"><img id="img_91" src="../images/PLAY/G-syougi koma/empty.png" alt="0"></td>
+    </tr>
+</table>
+<div id ="B_W">
+    <div class="setup">
+        <p id="set-up">駒を右から選択して並べてください</p>
+        <table>
+
+        </table>
+    </div>
+    <div class="game">
+        <p id="B_turn_E"></p>
+        <p id="B_sel"></p>
+        <button onclick="">駒の役職と動ける範囲を確認する</button>
+    </div>
+</div>
+</div>
+</p>
+</div>
+
+<footer class="site-footer">
+    <p class="copyright">@2020 NAGANICHIkagakubu</p>
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+</script>
+<script src="../JavaScript/style.js">
+</script>
+</body>
+</div>
+</html>

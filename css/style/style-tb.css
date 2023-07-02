@@ -1,0 +1,158 @@
+/*文字コード宣言*/
+@charset "UTF-8";
+
+/* 設定の初期化*/
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", メイリオ, Meiryo, "ＭＳ Ｐゴシック", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: #e6e6e6;
+}
+
+/*headerの調整*/
+.nav-menu {
+    width: 100%;
+    padding: 30px 4% 10px;
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    display: block;
+    align-items: center;
+    z-index: 1;
+}
+
+/*headerの透明化*/
+.header_A_0 {
+    opacity: 0;
+}
+
+/*リンクの色替え*/
+a{
+    text-decoration: none;
+    color: #4b4b4b;
+}
+/*リンク(普通)の位置*/
+.nav-ul{
+    position: relative;
+    right: 80px;
+    list-style: none;
+    margin: 0;
+    display: flex;
+}
+
+.nav-li{
+    margin: 0 0 0 15px;
+}
+
+.pc-nav{
+    position: relative;
+    left: 20px;
+    margin: auto;
+}
+
+/*ハンバーガーメニュー*/
+/*メニューボタン*/
+/*メニュー開閉*/
+.menu-btn{
+    display: block;
+    position: absolute;
+    width: 2rem;
+    height: 1.80rem;
+    top: 20px;
+    right: 25px;
+    left: auto;
+    background-color: #333;
+    z-index: 2;
+}
+.menu-btn i {
+    display: block;
+    position: absolute;
+    width: 65%;
+    height: 2px;
+    left: 5px;
+    background-color: #fff;
+    transition: transform .5s, opacity .5s;
+}
+.menu-btn i:nth-child(1) {
+    top: 5px;
+}
+.menu-btn i:nth-child(2) {
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+.menu-btn i:nth-child(3) {
+    bottom: 5px;
+}
+/**/
+.menu-btn.is-active i:nth-child(1) {
+    transform: translateY(8px) rotate(-45deg);
+}
+.menu-btn.is-active i:nth-child(2) {
+    opacity: 0;
+}
+.menu-btn.is-active i:nth-child(3) {
+    transform: translateY(-9px) rotate(45deg);
+}
+/*メニューの中身のうごき*/
+/*ドロワーメニュー*/
+.menu{
+    position: absolute;
+    top: 0px;
+    left: auto;
+    right: 0px;
+    bottom: -1000px;
+    padding: 1rem;
+    background-color:rgba(250,250,250,0.7);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform .5s, opacity .5s, visibility .5s ;
+    transform: translateX(100%);
+}
+.menu.is-active{
+    opacity: 1;
+    visibility: visible;
+    z-index: 1;
+    transform: translateX(0%);
+}
+.menu_item_ul{
+    padding: 2rem;
+}
+/*アコーディオンメニュー*/
+.submenu_item_ul{
+    background-color: rgba(255,255,255,0.7);
+    display: none;
+}
+.submenu_item_li{
+    border-bottom: 1px solid #5200b7;
+    color: #222222;
+    padding: 1rem;
+}
+
+/*bodyの位置調整*/
+.body1{
+    position: relative;
+    padding-top: 140px;
+    padding-bottom: 0px;
+}
+.body-tytle{
+    padding-left: 10px;
+}
+.body-main{
+    padding-left: 20px;
+}
+.body-sub{
+    padding-left: 30px;
+}
+/*フッターの設定*/
+footer{
+    width: 100%;
+    background-color: #c3c3c3;
+    color: #000000;
+    text-align: center;
+    padding: 30px 0;
+}
+
